@@ -15,23 +15,6 @@ class StudentView(generics.ListCreateAPIView):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
 
-class Getstudentdetails(APIView):
-    serializer_class=StudentSerializer
-    lookup_url_kwarg='credentials'
-    def get(self,request,format=None):
-        credentials=request.GET.get(self.lookup_url_kwarg)
-        username = credentials.split("::",1)[0]
-        password = credentials.split("::",1)[1]
-        print(username+" "+password)
-        if username!=None and password!=None:
-            student=Student.objects.filter(username=username)
-            if len(student)>0:
-                if password == self.serializer_class(student[0]).data["password"]:
-                    data=self.serializer_class(student[0]).data
-                    return Response(data,status=status.HTTP_200_OK)
-                return Response({'Incorrect Password'},status=status.HTTP_401_UNAUTHORIZED)
-            return Response({'User Not Found'},status=status.HTTP_404_NOT_FOUND)
-        return Response({'User Name Not Received'},status=status.HTTP_400_BAD_REQUEST)
     
 class GetStudent(APIView):
     def get(self, request,format=None):
