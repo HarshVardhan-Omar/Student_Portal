@@ -15,6 +15,19 @@ class StudentView(generics.ListCreateAPIView):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
 
+class getstudentdetails(APIView):
+    serializer_class=StudentSerializer
+    lookup_url_kwarg='user_name'
+    def get(self,request,format=None):
+        user_name=request.GET.get(self.lookup_url_kwarg)
+        if user_name!=None:
+            student=Student.objects.filter(user_name=user_name)
+            if len(student)>0:
+                data=self.serializer_class(student[0]).data
+                return Response(data,status=status.HTTP_200_OK)
+            return Response({'User Not Found'},status=status.HTTP_401_UNAUTHORIZED)
+        return Response({'User Name Not Received'},status=status.HTTP_400_BAD_REQUEST)
+    
 class GetStudent(APIView):
     def get(self, request,format=None):
         return HttpResponse("<h1>BSDK Aukat me madarchod tmhare baap ki api ni hai</h1>")
