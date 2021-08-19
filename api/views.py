@@ -19,9 +19,9 @@ class getstudentdetails(APIView):
     serializer_class=StudentSerializer
     lookup_url_kwarg='user_name'
     def get(self,request,format=None):
-        user_name=request.GET.get(self.lookup_url_kwarg)
-        if user_name!=None:
-            student=Student.objects.filter(user_name=user_name)
+        username=request.GET.get(self.lookup_url_kwarg)
+        if username!=None:
+            student=Student.objects.filter(username=username)
             if len(student)>0:
                 data=self.serializer_class(student[0]).data
                 return Response(data,status=status.HTTP_200_OK)
