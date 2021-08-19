@@ -38,11 +38,8 @@ class GetStudent(APIView):
         username=request.data.get(self.lookup_url_kwarg_user)
         password=request.data.get(self.lookup_url_kwarg_pass)
         if username!=None and password!=None:
-            # print(username)
-            # print(password)
             student=Student.objects.filter(username=username)
             if len(student)>0:
-                # print(self.serializer_class(student[0]).data["password"])
                 if password == self.serializer_class(student[0]).data["password"]:
                     datum = self.serializer_class(student[0]).data
                     return Response(datum, status=status.HTTP_200_OK)
