@@ -24,13 +24,14 @@ export default function Login_func() {
             }),
         };
         fetch("/api/verifystudent",requestoptions).then((response)=>
-            {if(response.ok){
-                history.push({
-                    pathname:'/getstudentdetails',
-                    state:{user_name:user_name}
-                });
-            }
-            })
+            {
+                // history.push({
+                //     pathname:'/getstudentdetails',
+                //     state:{user_name:user_name}
+                // });
+                response.json()
+            
+            }).then((data)=> console.log(data))
     }
     return (
         <div>
