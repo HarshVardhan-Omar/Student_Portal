@@ -8,8 +8,8 @@ export default function homepage() {
     return (
         <div>
             <h1>Welcome to Homepage</h1>
-            <h2>The following user just signed in with username- {location.state.data.username} and
-             password -{location.state.data.password}</h2>
+            <h2>The following user just signed in with username- {location.state.username} and
+             password -{location.state.password}</h2>
         </div>
     )
 }
