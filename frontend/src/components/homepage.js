@@ -7,7 +7,7 @@ export default function homepage() {
     const[user_name,setUser_Name]=useState("")
     const[password,setPassword]=useState("")
     const getstudentdetails=()=>{
-        fetch("/api/getstudentinfo" + "?user_name=" + location.state.user_name)
+        fetch("/api/getstudentinfo?credentials=" + location.state.username + "::" + location.state.password)
         .then((response)=>{
             return  response.json()
         }).then((data)=>{
@@ -27,5 +27,3 @@ export default function homepage() {
         </div>
     )
 }
-
-
