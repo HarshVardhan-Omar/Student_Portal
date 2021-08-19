@@ -7,3 +7,4 @@ urlpatterns=[
     path('verifystudent',GetStudent.as_view()),
     path('getstudentinfo',Getstudentdetails.as_view())
 ]
+
