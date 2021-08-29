@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function homepage() {
     const location=useLocation();
+    document.title="HomePage";
 
     
     return (
