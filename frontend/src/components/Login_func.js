@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory} from "react-router";
 import { useState } from "react";
+import jQuery from "jQuery";
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
