@@ -1,6 +1,21 @@
 import React from 'react';
 import { useHistory} from "react-router";
 import { useState } from "react";
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
 
 export default function Login_func() {
     const history=useHistory();
@@ -17,7 +32,9 @@ export default function Login_func() {
         e.preventDefault();
         const requestoptions={
             method:"POST",
-            headers:{"Content-Type":"application/json"},
+            headers:{'Content-Type':'application/json',
+                    'X-CSRFToken': csrftoken
+                    },
             body:JSON.stringify({
                 user_name:user_name,
                 password:password
@@ -28,17 +45,20 @@ export default function Login_func() {
         {
             console.log(Response)
             if(Response.ok){
-                return Response.json().then((data)=>{
-                    history.push({
-                        pathname:'/getstudentdetails',
-                        state: data
-                    })
-                })
+                verified=1
+                return Response.json();
             }
-            else{
-                return Response
             }
+        ).then((data)=>{
+            if(verified){
+            history.push({
+                pathname:'/getstudentdetails',
+                state: data
+            })
+        }
+            
         })
+
     
     }
 
