@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Student(models.Model):
@@ -36,3 +37,7 @@ class Student(models.Model):
     Mothername=models.CharField(max_length=50,default='',null=False)
     FatherContact=models.IntegerField(default=1)
     FatherMail=models.EmailField(default='')
+
+class StoredSessions(models.Model):
+    key = models.CharField(unique=True,max_length=50,null=False,default="")
+    username = models.TextField(max_length=50, default="",null=False)
