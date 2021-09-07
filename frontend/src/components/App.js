@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { component, useState } from "react"
 import LoadingBar from 'react-top-loading-bar'
 import LoginPage from "./loginPage";
-import homepage from "./homepage";
+import Homepage from "./homepage";
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/"> <LoginPage setProgress={setProgress} /> </Route>
-        <Route exact path="/getstudentdetails"component={homepage} />
+        <Route exact path="/getstudentdetails"> <Homepage setProgress={setProgress} /> </Route>
       </Switch>
     </Router>
     </>

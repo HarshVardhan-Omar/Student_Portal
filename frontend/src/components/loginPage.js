@@ -1,6 +1,6 @@
 import React from 'react';
-import { useHistory} from "react-router";
-import { useState } from "react";
+import { useHistory } from "react-router";
+import { useState,useEffect } from "react";
 import css from './style.css'
 import logo from './logo.png'
 import hbtu from './hbtu.jpg'
@@ -21,7 +21,6 @@ function getCookie(name) {
 }
 var csrftoken = getCookie('csrftoken');
 
-
 export default function LoginPage(props) {
     const history=useHistory();
     const[user_name,setUser_name]=useState("");
@@ -38,12 +37,40 @@ export default function LoginPage(props) {
     const handlepasswordchange=(e)=>{
          setPassword(e.target.value);
     }
-
     
     const login=(e)=>{
         e.preventDefault();
         setErr("");
         fetchDetails();        
+    }
+
+    useEffect(() => {
+      fetchDetailsBySession();
+    }, []);
+
+    async function fetchDetailsBySession(){
+      const requestoptions={
+        method:"POST",
+        headers:{'Content-Type':'application/json',
+                    'X-CSRFToken': csrftoken
+                    },
+        body:JSON.stringify({
+        }),
+      };
+      props.setProgress(10)      
+      let response = await fetch("/api/sessionverify",requestoptions)
+      props.setProgress(50)
+      if(response.status == 200){
+        props.setProgress(100)
+        let data =  await response.json()
+        history.push({
+          pathname:'/getstudentdetails',
+          state: data
+        })
+      }
+      else{
+        props.setProgress(100)
+      }
     }
 
     async function fetchDetails(){
@@ -98,7 +125,7 @@ export default function LoginPage(props) {
     }, { passive: false });
 
 
-
+    document.title="Student Portal";
     return (
         <div className="all" style={im_style}>
         <div className="opacity">
