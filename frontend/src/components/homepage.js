@@ -28,7 +28,6 @@ export default function Homepage(props) {
     const locationgrab=useLocation();
     const history=useHistory();
     const match=useRouteMatch();
-    const[data,setData]=useState(locationgrab.state);
     // console.log(location.state)
     
 
@@ -90,14 +89,27 @@ export default function Homepage(props) {
         }
     }
     useEffect(() => {
-      fetchDetailsBySession();    //if logged in
-    }, []);
-    document.title="HomePage | "+ data.Name ;
+      fetchDetailsBySession();
+    }
+    , []);
+    if(locationgrab.state){
+      document.title="HomePage | "+locationgrab.state.Name ;
       return (
-          <div>
-              <Header data={data} logout={logout} csrftoken={csrftoken}></Header> 
-              <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
-          </div>
+        <div>
+            {/* <h1>Hello{locationgrab.state.Name}</h1> */}
+            <Header data={locationgrab.state} logout={logout} csrftoken={csrftoken}></Header> 
+            <Route exact path={`${match.url}`}  render={props => <Dashboard data={locationgrab.state} />}  />
+            {/* <button onClick={logout}>LogOut</button> */}
+        </div>
       )
-  
+    }
+    else{
+      useEffect(() => {
+        history.push({
+          pathname: "/"
+        })
+      }
+      , []);
+      return(<></>)
+    }
 }
