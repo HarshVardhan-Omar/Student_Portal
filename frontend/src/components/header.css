@@ -1,20 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Raleway:wght@400;600;900&display=swap');
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  text-decoration: none;
+  list-style: none;
+  /* transition: all 0.5s; */
+}
 :root {
   --col: #b6b1b1;
   --bgcol: #202022;
   --col1: #3e3f3f;
+  --col2:rgba(255, 255, 255, 0.952);
 }
 
 /*---------- Header Nav ---------*/
-
-.header{
+body {
+  color: var(--col);
+}
+.header {
   position: relative;
 }
 
 h2 {
+  padding-top: 5px;
   margin-right: 50px;
 }
 .title1 {
@@ -29,29 +42,31 @@ h2 {
   overflow: hidden;
   background-color: var(--col1);
   text-align: center;
-  margin: 0;
 }
 .logo {
   height: 9vh;
   margin: 0px 5px;
+  padding-left: 10px;
   max-height: 80px;
 }
 
-.btn {
+.butn {
   display: inline-block;
   margin-right: 25px;
-  padding: 7px 10px;
+  padding: 10px 10px;
   color: var(--col);
   background: var(--bgcol);
   border-radius: 7px;
   border: none;
+  cursor: pointer;
+  transition: 0.5s;
+  font-size: 1.1rem;
 }
-/* .btn:hover {
+.butn:hover {
   background: var(--col);
   color: var(--bgcol);
-  border: 2px solid var(--bgcol);
   transition: 0.5s;
-} */
+}
 .sidebar-btn {
   color: var(--col);
   margin: 3% 2%;
@@ -64,11 +79,11 @@ h2 {
 /* -------Header nav end-------- */ /* --------Side Nav ------------ */
 .side-bar {
   height: 90vh;
-  width: fit-content;
+  width: 220px;
   left: -300px;
   position: absolute;
   z-index: 1;
-   overflow: auto; 
+  overflow: auto;
   transition: 0.5s;
   background: var(--bgcol);
 }
@@ -79,22 +94,40 @@ h2 {
   flex-direction: column;
   flex-wrap: nowrap;
   background-color: var(--bgcol);
-  padding: 10px 15px 25px 10px;
+  padding: 10px 2px 25px 3px;
   transition: 0.5s;
 }
-.items-menu{
+.items-menu {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: space-evenly;
-
+  margin-top: 10px;
 }
 .items {
   display: flex;
+  width: 100%;
   font-size: 13px;
   font-weight: 600;
   padding: 10px 20px;
-  color: var(--col);
+  margin-bottom: 3px;
+  color: var(--col1);
+  cursor: pointer;
+}
+.items a:hover{
+  color: var(--col2);
+}
+.menu-btn{
+  color: var(--col2);
+}
+.active {
+  background-color: var(--col1);
+  border-radius: 7px;
+}
+.items:hover {
+  background-color: var(--col1);
+  border-radius: 7px;
+  transition: 0.5s;
 }
 .nav-items {
   padding-left: 2%;
@@ -103,15 +136,11 @@ h2 {
   justify-content: center;
   align-items: center;
 }
-.items:hover {
-  background-color: var(--col1);
-  border-radius: 5px;
-  border-left: 2px solid var(--col);
-  border-right: 2px solid var(--col);
-  transition: 0.5s;
+.nav-items h2{
+  font-size: 2rem;
 }
+
 .nav-icon {
-  /* display: inline-block; */
   text-align: center;
   margin-right: 10px;
   cursor: pointer;
@@ -121,8 +150,6 @@ a {
   transition: 0.5s;
 }
 .profile {
-  /* width: 100px;
-  height: 100px; */
   text-align: center;
   border-radius: 50%;
   margin: 20px auto;
@@ -153,30 +180,47 @@ a {
   transition: 0.5s;
 }
 /* Responsiveness */
-@media (max-width: 430px) {
+@media (max-width: 450px) {
   body {
     font-size: 80%;
   }
+  .sidebar-btn {
+    padding-left: 7px;
+  }
   .logo {
-    max-width: 65%;
+    max-width: 75%;
+  }
+  h2 {
+    font-size: 25px;
+    text-align: center;
+  }
+  .nav-items h2{
+    font-size: 2rem;
+    /* font-family: 'Urbanist', sans-serif;; */
+  }
+  .side-bar {
+    width: 170px;
   }
   .sidebar-menu,
   .items {
-    padding: 7px 7px 7px 10px;
+    padding: 5px 5px 5px 10px;
     width: 100%;
   }
   .items {
     text-align: center;
+    font-size: 10px;
   }
   .nav-icon {
     display: block;
     padding-bottom: 5px;
   }
+}
+@media only screen and (max-width:499px){
   .log-btn {
     margin: 15px auto;
     display: block;
   }
-  .btn {
+  .butn {
     display: none;
   }
 }
@@ -188,57 +232,74 @@ a {
     max-width: 85%;
   }
 }
-
-
-
-
-
-body {
-    
-    padding: 0;
-    margin: 0;
-    font-family: 'Lato', sans-serif;
-    color: #b6b1b1;
+@media only screen and (max-width:375px){
+  .nav-items h2{
+    font-size: 1rem;
+  }
 }
+
+@media (min-height: 1000px) {
+  .sidebar-menu {
+    height: fit-content;
+  }
+  .title {
+    height: 7vh;
+  }
+  .logo {
+    height: 8vh;
+  }
+}
+
+/* DashBoard */
 .student-profile .card {
-    border-radius: 10px;
+  border-radius: 10px;
 }
+.student-profile{
+  height: 90vh;
+}
+/* #card{
+  margin-bottom: 20px;
+} */
 .student-profile .card .card-header .profile_img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    margin: 10px auto;
-    border: 10px solid #ccc;
-    border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 10px auto;
+  border: 10px solid #ccc;
+  border-radius: 50%;
 }
 .student-profile .card h3 {
-    font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
+}
+.student-profile{
+  background-color: var(--bgcol);
 }
 .student-profile .card p {
-    font-size: 16px;
-    color: #b6b1b1;
+  font-size: 16px;
+  /* background-color: var(--col1); */
+}
+.card{
+  background-color: var(--col1)!important;
 }
 .student-profile .table th,
 .student-profile .table td {
-    font-size: 14px;
-    padding: 5px 10px;
-    color: #b6b1b1;
+  font-size: 14px;
+  padding: 5px 10px;
+  color: #b6b1b1;
 }
-#card{
-    background: #3e3f3f;
+.cardA {
+  background: #3e3f3f;
+  margin-bottom: 15px;
 }
-#student-profile{
-    background: var(--bgcol);
+.student-pr {
+  background: var(--bgcol);
 }
-a:hover{
+a:hover {
   text-decoration: none;
   /* color: #3e3f3f; */
-  color:var(--col);
+  color: var(--col);
 }
-
-
-
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -246,15 +307,15 @@ a:hover{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
