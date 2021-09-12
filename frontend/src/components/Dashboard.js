@@ -6,7 +6,7 @@ export default function Dashboard({ data }) {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-4">
-                        <div className="card shadow-sm" id="card">
+                        <div className="card shadow-sm mb-4" id="card">
                             <div className="card-header bg-transparent text-center">
                                 <img
                                     className="profile_img"
