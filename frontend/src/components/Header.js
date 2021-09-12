@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import logo from "./logo.png"
 import "./header.css"
+import {Link} from "react-router-dom"
 
 export default function Header({ data,logout,csrftoken }) {
     const[openNav,setOpenNav]=useState(false);
@@ -10,6 +11,9 @@ export default function Header({ data,logout,csrftoken }) {
     const side_bar_style = {
         left: openNav?"0px":"-300px",
     }
+
+
+
     return (
         <div className="main" style={{ backgroundColor: "#202022" }}>
             <div className="header">
@@ -27,7 +31,7 @@ export default function Header({ data,logout,csrftoken }) {
                             <h2>Student Portal</h2>
                         </div>
                         <div>
-                            <button className="btn" onClick={logout}>
+                            <button className="butn" onClick={logout}>
                                 Logout <i className="fas fa-sign-out-alt"></i>
                             </button>
                         </div>
@@ -49,7 +53,7 @@ export default function Header({ data,logout,csrftoken }) {
                                 <a href="">
                                     <i className="fas fa-desktop nav-icon"></i>
                                 </a>
-                                <a href="" className="menu-btn">
+                                <a to="" className="menu-btn">
                                     Dashboard
                                 </a>
                             </li>
@@ -158,4 +162,5 @@ export default function Header({ data,logout,csrftoken }) {
             </div>
         </div>
     );
+    
 }
