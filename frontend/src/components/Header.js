@@ -52,106 +52,70 @@ export default function Header({ data,logout,csrftoken }) {
                         </div>
                         <ul className="items-menu" id="profile">
                             <li className="items">
-                                <a href="">
-                                    <i className="fas fa-desktop nav-icon"></i>
-                                </a>
                                 <Link to={`${match.url}`} className="menu-btn">
+                                    <i className="fas fa-desktop nav-icon"></i>
                                     Dashboard
                                 </Link>
                             </li>
                             <li className="items">
-                                <a href="">
+                                <Link to={`${match.url}/studentregistration`} className="menu-btn">
                                     <i className="far fa-registered nav-icon"></i>
-                                </a>
-                                <Link href="" className="menu-btn">
-                                    {" "}
                                     Student Registration
                                 </Link>
                             </li>
                             <li className="items">
-                                <a href="">
+                                <Link to={`${match.url}/semesterregistration`} className="menu-btn">
                                     <i className="far fa-registered nav-icon"></i>
-                                </a>
-                                <a href="" className="menu-btn">
-                                    {" "}
                                     Semester Registration
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
-                                <a href="">
+                                <Link to={`${match.url}/registrationcard`} className="menu-btn">
                                     <i className="fas fa-download nav-icon"></i>
-                                </a>
-
-                                <a href="" className="menu-btn">
                                     Registration Card
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
-                                <a href="">
+                                <Link to={`${match.url}/examform`} className="menu-btn">
                                     <i className="fas fa-sticky-note nav-icon"></i>
-                                </a>
-
-                                <a href="" className="menu-btn">
-                                    {" "}
                                     Exam Form
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
-                                <a href="">
+                                <Link to={`${match.url}/admitcard`} className="menu-btn">
                                     <i className="fas fa-download nav-icon"></i>{" "}
-                                </a>
-                                <a href="" className="menu-btn">
                                     Admit Card
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
-                                <a href="">
-                                    {" "}
+                                <Link to={`${match.url}/lodgegrievance`} className="menu-btn">
                                     <i className="fas fa-frown nav-icon"></i>
-                                </a>
-
-                                <a href="" className="menu-btn">
-                                    {" "}
                                     Lodge Grievance
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
-                                <a href="">
+                                <Link to={`${match.url}/result`} className="menu-btn">
                                     <i className="fas fa-poll nav-icon"></i>
-                                </a>
-
-                                <a href="" className="menu-btn">
-                                    {" "}
                                     Result
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
-                                <a href="">
+                                <Link to={`${match.url}/coursemanagement`} className="menu-btn">
                                     <i className="fas fa-tasks nav-icon"></i>
-                                </a>
-
-                                <a href="" className="menu-btn">
                                     Course Management
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
-                                <a href="">
-                                    <i className="fas fa-key nav-icon"></i>
-                                </a>
-
                                 <Link to={`${match.url}/changepassword`} className="menu-btn">
+                                    <i className="fas fa-key nav-icon"></i>
                                     Change Password
                                 </Link>
                             </li>
                             <li className="items">
-                                <a href="">
+                                <Link href="" className="menu-btn">
                                     <i className="fas fa-rupee-sign nav-icon"></i>
-                                </a>
-
-                                <a href="" className="menu-btn">
-                                    {" "}
                                     Student Fee Payment
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <button className="log-btn" onClick={logout}>
