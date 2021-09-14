@@ -81,7 +81,7 @@ h2 {
 /* -------Header nav end-------- */ /* --------Side Nav ------------ */
 .side-bar {
   height: 90vh;
-  width: 220px;
+  width: max-content;
   left: -300px;
   position: absolute;
   z-index: 1;
@@ -108,6 +108,7 @@ h2 {
 }
 .items {
   display: flex;
+  /* flex-direction: column; */
   width: 100%;
   font-size: 13px;
   font-weight: 600;
@@ -184,7 +185,7 @@ a {
   transition: 0.5s;
 }
 /* Responsiveness */
-@media (max-width: 450px) {
+/* @media (max-width: 450px) {
   body {
     font-size: 80%;
   }
@@ -199,16 +200,16 @@ a {
     text-align: center;
   }
   .nav-items h2{
-    font-size: 2rem;
+    font-size: 2rem; */
     /* font-family: 'Urbanist', sans-serif;; */
-  }
+  /* }
   .side-bar {
     width: 170px;
   }
   .sidebar-menu,
-  .items {
-    padding: 5px 5px 5px 10px;
-    width: 100%;
+  .items { */
+    /* padding: 5px 5px 5px 10px; */
+    /* width: 100%;
   }
   .items {
     text-align: center;
@@ -218,7 +219,7 @@ a {
     display: block;
     padding-bottom: 5px;
   }
-}
+} */
 @media only screen and (max-width:499px){
   .log-btn {
     margin: 15px auto;
