@@ -1,11 +1,11 @@
 import React, { useEffect,useState } from 'react';
 import { useHistory, useRouteMatch } from "react-router";
-import { useLocation } from 'react-router-dom';
 import jQuery from './jQuery'
 import { Link,Switch,Route } from "react-router-dom";
 
 import Header from './Header'
 import Dashboard from './Dashboard'
+import ChangePassword from './ChangePassword'
 
 function getCookie(name) {
     var cookieValue = null;
@@ -25,10 +25,9 @@ var csrftoken = getCookie('csrftoken');
 
 
 export default function Homepage(props) {
-    const locationgrab=useLocation();
     const history=useHistory();
     const match=useRouteMatch();
-    // console.log(location.state)
+    const data = props.data
     
 
     const logout=(e)=>{
@@ -52,11 +51,13 @@ export default function Homepage(props) {
         history.push({
           pathname:'/',
         })
+        props.setData(null)
       }
       else{
         history.push({
           pathname:'/',
         })
+        props.setData(null)
         props.setProgress(100)
       }
     }
@@ -78,8 +79,8 @@ export default function Homepage(props) {
           let data =  await response.json()
           history.push({
             pathname:'/getstudentdetails',
-            state: data
           })
+          props.setData(data)
         }
         else{
           props.setProgress(100)
@@ -92,24 +93,20 @@ export default function Homepage(props) {
       fetchDetailsBySession();
     }
     , []);
-    if(locationgrab.state){
-      document.title="HomePage | "+locationgrab.state.Name ;
+    if(props.data){
+      console.log(props.data)
+      document.title="HomePage | "+props.data.Name ;
       return (
         <div>
             {/* <h1>Hello{locationgrab.state.Name}</h1> */}
-            <Header data={locationgrab.state} logout={logout} csrftoken={csrftoken}></Header> 
-            <Route exact path={`${match.url}`}  render={props => <Dashboard data={locationgrab.state} />}  />
+            <Header data={data} logout={logout} csrftoken={csrftoken}></Header> 
+            <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
+            <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword data={data} />}  />
             {/* <button onClick={logout}>LogOut</button> */}
         </div>
       )
     }
     else{
-      useEffect(() => {
-        history.push({
-          pathname: "/"
-        })
-      }
-      , []);
-      return(<></>)
+      return(<><h1>You are not logged In.</h1><button onClick={logout}>LogOut</button></>)
     }
 }
