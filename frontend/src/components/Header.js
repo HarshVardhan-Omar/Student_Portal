@@ -115,7 +115,7 @@ export default function Header({ data,logout,csrftoken }) {
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link href="" className="menu-btn">
+                                <Link to={`${match.url}/studentfeepayment`} className="menu-btn">
                                     <i className="fas fa-rupee-sign nav-icon"></i>
                                     Student Fee Payment
                                 </Link>
