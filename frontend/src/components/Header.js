@@ -10,6 +10,9 @@ export default function Header({ data,logout,csrftoken }) {
     const toggleNav=(e)=>{
             openNav? setOpenNav(false) : setOpenNav(true);
         }
+    const closeNav=(e)=>{
+        setOpenNav(false)
+    }
     const side_bar_style = {
         left: openNav?"0px":"-300px",
     }
@@ -39,7 +42,7 @@ export default function Header({ data,logout,csrftoken }) {
                         </div>
                     </div>
                 </div>
-                <div id="sidebar" className="side-bar" style={side_bar_style}>
+                <div id="sidebar" className="side-bar" onClick={closeNav} style={side_bar_style}>
                     <div className="sidebar-menu">
                         <div className="profile">
                             <a href="#">
