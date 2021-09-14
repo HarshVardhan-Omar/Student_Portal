@@ -94,7 +94,7 @@ export default function Homepage(props) {
     }
     , []);
     if(props.data){
-      console.log(props.data)
+//       console.log(props.data)
       document.title="HomePage | "+props.data.Name ;
       return (
         <div className="homepage">
