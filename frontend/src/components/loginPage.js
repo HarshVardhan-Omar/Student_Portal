@@ -65,8 +65,8 @@ export default function LoginPage(props) {
         let data =  await response.json()
         history.push({
           pathname:'/getstudentdetails',
-          state: data
         })
+        props.setData(data)
       }
       else{
         props.setProgress(100)
@@ -92,8 +92,8 @@ export default function LoginPage(props) {
         let data =  await response.json()
         history.push({
           pathname:'/getstudentdetails',
-          state: data
         })
+        props.setData(data)
       }
       else if(response.status == 404){
         console.clear()
