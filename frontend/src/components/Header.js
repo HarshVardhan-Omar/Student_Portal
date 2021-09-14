@@ -1,9 +1,11 @@
 import React,{useState} from "react";
+import { useRouteMatch } from "react-router";
 import logo from "./logo.png"
 import "./header.css"
 import {Link} from "react-router-dom"
 
 export default function Header({ data,logout,csrftoken }) {
+    const match=useRouteMatch();
     const[openNav,setOpenNav]=useState(false);
     const toggleNav=(e)=>{
             openNav? setOpenNav(false) : setOpenNav(true);
@@ -53,18 +55,18 @@ export default function Header({ data,logout,csrftoken }) {
                                 <a href="">
                                     <i className="fas fa-desktop nav-icon"></i>
                                 </a>
-                                <a to="" className="menu-btn">
+                                <Link to={`${match.url}`} className="menu-btn">
                                     Dashboard
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
                                 <a href="">
                                     <i className="far fa-registered nav-icon"></i>
                                 </a>
-                                <a href="" className="menu-btn">
+                                <Link href="" className="menu-btn">
                                     {" "}
                                     Student Registration
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
                                 <a href="">
@@ -137,9 +139,9 @@ export default function Header({ data,logout,csrftoken }) {
                                     <i className="fas fa-key nav-icon"></i>
                                 </a>
 
-                                <a href="" className="menu-btn">
+                                <Link to={`${match.url}/changepassword`} className="menu-btn">
                                     Change Password
-                                </a>
+                                </Link>
                             </li>
                             <li className="items">
                                 <a href="">
