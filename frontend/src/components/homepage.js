@@ -97,7 +97,7 @@ export default function Homepage(props) {
       console.log(props.data)
       document.title="HomePage | "+props.data.Name ;
       return (
-        <div>
+        <div className="homepage">
             {/* <h1>Hello{locationgrab.state.Name}</h1> */}
             <Header data={data} logout={logout} csrftoken={csrftoken}></Header> 
             <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
