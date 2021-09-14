@@ -111,7 +111,7 @@ h2 {
   width: 100%;
   font-size: 13px;
   font-weight: 600;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   margin-bottom: 3px;
   color: var(--col1);
   cursor: pointer;
@@ -121,6 +121,8 @@ h2 {
 }
 .menu-btn{
   color: var(--col2);
+  padding: 10px 20px;
+  width: 100%;
 }
 .active {
   background-color: var(--col1);
