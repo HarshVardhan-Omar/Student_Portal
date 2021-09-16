@@ -17,15 +17,15 @@ export default function Dashboard({ data }) {
                             </div>
                             <div className="card-body">
                                 <p className="mb-0">
-                                    <strong className="pr-1">Roll Number:</strong>
-                                    {data.RollNo}
+                                    Roll Number: {data.RollNo}
+                                    
                                 </p>
                                 <p className="mb-0">
-                                    <strong className="pr-1">Course:</strong>BTech
+                                    Course: BTech
                                 </p>
                                 <p className="mb-0">
-                                    <strong className="pr-1">Branch:</strong>
-                                    {data.Branch}
+                                    Branch: {data.Branch}
+                                    
                                 </p>
                             </div>
                         </div>
