@@ -35,7 +35,7 @@ export default function Header({ data,logout,csrftoken}) {
         }
         else{
             // Black Theme Colors
-            document.documentElement.style.setProperty('--sidecol1', '#3e3f3f');
+            document.documentElement.style.setProperty('--sidecol1', '#202022');
             document.documentElement.style.setProperty('--col1', '#3e3f3f');
             document.documentElement.style.setProperty('--textcolor', '#b6b1b1');
             document.documentElement.style.setProperty('--bgcol', '#202022');
