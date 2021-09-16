@@ -6,7 +6,7 @@ export default function Dashboard({ data }) {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-4">
-                        <div className="card shadow-sm mb-4" id="card">
+                        <div className="card shadow-sm mb-4 mycard" id="card">
                             <div className="card-header bg-transparent text-center">
                                 <img
                                     className="profile_img"
@@ -31,7 +31,7 @@ export default function Dashboard({ data }) {
                         </div>
                     </div>
                     <div className="col-lg-8">
-                        <div className="card shadow-sm" id="card">
+                        <div className="card shadow-sm mycard" id="card">
                             <div className="card-header bg-transparent border-0">
                                 <h3 className="mb-0">
                                     <i className="far fa-clone pr-1"></i>General Information
@@ -68,7 +68,7 @@ export default function Dashboard({ data }) {
                             </div>
                         </div>
                         <div style={{ height: "26px" }}></div>
-                        <div className="card shadow-sm" id="card">
+                        <div className="card shadow-sm mycard" id="card">
                             <div className="card-header bg-transparent border-0">
                                 <h3 className="mb-0">
                                     <i className="far fa-clone pr-1"></i>Other Information
