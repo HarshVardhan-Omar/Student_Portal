@@ -1,11 +1,12 @@
-import React,{useState} from "react";
+import React,{useState ,useEffect} from "react";
 import { useRouteMatch } from "react-router";
 import logo from "./logo.png"
 import "./header.css"
 import {Link} from "react-router-dom"
 
-export default function Header({ data,logout,csrftoken }) {
+export default function Header({ data,logout,csrftoken}) {
     const match=useRouteMatch();
+    const[theme,setTheme]=useState("Black");
     const[openNav,setOpenNav]=useState(false);
     const toggleNav=(e)=>{
             openNav? setOpenNav(false) : setOpenNav(true);
@@ -17,10 +18,33 @@ export default function Header({ data,logout,csrftoken }) {
         left: openNav?"0px":"-300px",
     }
 
+    const toggleTheme=()=>{
+        if(theme==="White"){
+        setTheme("Black");
+        }
+        else
+        setTheme("White")
 
+        if(theme==="Black"){
+            // White theme Colors
+            document.documentElement.style.setProperty('--sidecol1', '#004064');
+            document.documentElement.style.setProperty('--col1', 'white');
+            document.documentElement.style.setProperty('--textcolor', '#010101');
+            document.documentElement.style.setProperty('--bgcol', '#85bad761');
+            document.documentElement.style.setProperty('--themeiconcolor', '#004064');
+        }
+        else{
+            // Black Theme Colors
+            document.documentElement.style.setProperty('--sidecol1', '#3e3f3f');
+            document.documentElement.style.setProperty('--col1', '#3e3f3f');
+            document.documentElement.style.setProperty('--textcolor', '#b6b1b1');
+            document.documentElement.style.setProperty('--bgcol', '#202022');
+            document.documentElement.style.setProperty('--themeiconcolor', 'white');
+        }
+    }
 
     return (
-        <div className="main" style={{ backgroundColor: "#202022" }}>
+        <div className="main">
             <div className="header">
                 <div className="header-menu">
                     <div className="title1">
@@ -32,17 +56,21 @@ export default function Header({ data,logout,csrftoken }) {
                                 <img className="logo" src={logo} alt="logo-hbtu" />
                             </div>
                         </div>
-                        <div className="nav-items">
-                            <h2>Student Portal</h2>
+                        <div className="nav-items heading">
+                            <h2>STUDENT PORTAL</h2>
+                        </div>
+                        <div className="nav-items themeicon" >
+                        <i className={"fas fa-2x " +(theme==="Black"? "fa-sun theme":"fa-moon theme")} onClick={toggleTheme}></i>
                         </div>
                         <div>
-                            <button className="butn" onClick={logout}>
+                            
+                            <button className="butn" onClick={logout} >
                                 Logout <i className="fas fa-sign-out-alt"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div id="sidebar" className="side-bar" onClick={closeNav} style={side_bar_style}>
+                <div id="sidebar" className="side-bar" onClick={closeNav}style={side_bar_style} >
                     <div className="sidebar-menu">
                         <div className="profile">
                             <a href="#">
@@ -53,7 +81,7 @@ export default function Header({ data,logout,csrftoken }) {
                                 />
                             </a>
                         </div>
-                        <ul className="items-menu" id="profile">
+                        <ul className="items-menu" id="profile" >
                             <li className="items">
                                 <Link to={`${match.url}`} className="menu-btn">
                                     <i className="fas fa-desktop nav-icon"></i>
@@ -61,61 +89,70 @@ export default function Header({ data,logout,csrftoken }) {
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/studentregistration`} className="menu-btn">
+                                <Link to={`${match.url}/studentregistration`} className="menu-btn"
+                                >
                                     <i className="far fa-registered nav-icon"></i>
                                     Student Registration
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/semesterregistration`} className="menu-btn">
+                                <Link to={`${match.url}/semesterregistration`} className="menu-btn"
+                                >
                                     <i className="far fa-registered nav-icon"></i>
                                     Semester Registration
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/registrationcard`} className="menu-btn">
+                                <Link to={`${match.url}/registrationcard`} className="menu-btn"
+                                >
                                     <i className="fas fa-download nav-icon"></i>
                                     Registration Card
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/examform`} className="menu-btn">
+                                <Link to={`${match.url}/examform`} className="menu-btn"
+                                >
                                     <i className="fas fa-sticky-note nav-icon"></i>
                                     Exam Form
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/admitcard`} className="menu-btn">
+                                <Link to={`${match.url}/admitcard`} className="menu-btn"
+                                >
                                     <i className="fas fa-download nav-icon"></i>{" "}
                                     Admit Card
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/lodgegrievance`} className="menu-btn">
+                                <Link to={`${match.url}/lodgegrievance`} className="menu-btn"
+                                >
                                     <i className="fas fa-frown nav-icon"></i>
                                     Lodge Grievance
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/result`} className="menu-btn">
+                                <Link to={`${match.url}/result`} className="menu-btn"
+                                >
                                     <i className="fas fa-poll nav-icon"></i>
                                     Result
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/coursemanagement`} className="menu-btn">
+                                <Link to={`${match.url}/coursemanagement`} className="menu-btn"
+                                >
                                     <i className="fas fa-tasks nav-icon"></i>
                                     Course Management
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/changepassword`} className="menu-btn">
+                                <Link to={`${match.url}/changepassword`} className="menu-btn"
+                                >
                                     <i className="fas fa-key nav-icon"></i>
                                     Change Password
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/studentfeepayment`} className="menu-btn">
+                                <Link to="" className="menu-btn">
                                     <i className="fas fa-rupee-sign nav-icon"></i>
                                     Student Fee Payment
                                 </Link>
@@ -131,5 +168,7 @@ export default function Header({ data,logout,csrftoken }) {
             </div>
         </div>
     );
-    
 }
+    
+
+
