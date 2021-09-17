@@ -57,10 +57,10 @@
 }
 .title{
   position: relative;
-    font-size: 4rem;
-    margin: 3%;
-    opacity: 0;
-    animation: reveal-title 0.5s ease-out 0.5s 1 forwards;
+  font-size: 4rem;
+  margin: 3%;
+  opacity: 0;
+  animation: reveal-title 0.5s ease-out 0.5s 1 forwards;
 }
 .title .image{
   height: 200px;
@@ -160,13 +160,13 @@ h1{
 }
 .forgot{
     position: relative;
-    padding: 20px 0;
+    margin: 20px 0;
     color:rgb(46, 172, 255);
     background: none;
     border: none;
     cursor: pointer;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: normal;
 
 }
 .form__button{

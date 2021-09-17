@@ -1,7 +1,12 @@
 import React, { useEffect,useState } from 'react';
-import { useHistory } from "react-router";
-import { useLocation } from 'react-router-dom';
+import { useHistory, useRouteMatch } from "react-router";
 import jQuery from './jQuery'
+import { Link,Switch,Route } from "react-router-dom";
+
+import Header from './Header'
+import Dashboard from './Dashboard'
+import ChangePassword from './ChangePassword'
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -16,13 +21,14 @@ function getCookie(name) {
     }
     return cookieValue;
   }
-  var csrftoken = getCookie('csrftoken');
+var csrftoken = getCookie('csrftoken');
 
 
 export default function Homepage(props) {
-    const location=useLocation();
     const history=useHistory();
-    // console.log(location.state)
+    const match=useRouteMatch();
+    const data = props.data
+    
 
     const logout=(e)=>{
       logoutbysession()
@@ -45,11 +51,13 @@ export default function Homepage(props) {
         history.push({
           pathname:'/',
         })
+        props.setData(null)
       }
       else{
         history.push({
           pathname:'/',
         })
+        props.setData(null)
         props.setProgress(100)
       }
     }
@@ -71,50 +79,34 @@ export default function Homepage(props) {
           let data =  await response.json()
           history.push({
             pathname:'/getstudentdetails',
-            state: data
           })
+          props.setData(data)
         }
         else{
           props.setProgress(100)
+          history.push({
+            pathname: "/"
+          })
         }
     }
-
-    useEffect(async () => {
-//       console.log("Confirming Login")
-      const requestoptions={
-        method:"POST",
-        headers:{'Content-Type':'application/json',
-                    'X-CSRFToken': csrftoken
-                    },
-        body:JSON.stringify({
-        }),
-      };
-      let response = await fetch("/api/sessionverify",requestoptions)
-      var status = await response.status
-      if(status != 200){
-        history.push({
-          pathname:'/',
-        })
-      }
-    }, []);
-
-    if(location.state){
-        document.title="HomePage | " + location.state.username;
-        return (
-            <div>
-                <h1>Welcome to Homepage</h1>
-                <h2>The following user just signed in with username- {location.state.username} and
-                password -{location.state.password}</h2>
-                <button onClick={logout}>LogOut</button>
-            </div>
-        )
+    useEffect(() => {
+      fetchDetailsBySession();
+    }
+    , []);
+    if(props.data){
+//       console.log(props.data)
+      document.title="HomePage | "+props.data.Name ;
+      return (
+        <div className="homepage">
+            {/* <h1>Hello{locationgrab.state.Name}</h1> */}
+            <Header data={data} logout={logout} csrftoken={csrftoken}></Header> 
+            <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
+            <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword data={data} />}  />
+            {/* <button onClick={logout}>LogOut</button> */}
+        </div>
+      )
     }
     else{
-        useEffect(() => {
-            fetchDetailsBySession();
-          }, []);
-        return (
-            <p> You are logged out. <a href="/" >Login</a> </p>
-        )
+      return(<><h1>You are not logged In.</h1><button onClick={logout}>LogOut</button></>)
     }
 }

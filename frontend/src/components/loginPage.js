@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router";
 import { useState,useEffect } from "react";
-import css from './style.css'
+import './loginPage.css'
 import logo from './logo.png'
 import hbtu from './hbtu.jpg'
 import jQuery from './jQuery'
@@ -65,8 +65,8 @@ export default function LoginPage(props) {
         let data =  await response.json()
         history.push({
           pathname:'/getstudentdetails',
-          state: data
         })
+        props.setData(data)
       }
       else{
         props.setProgress(100)
@@ -92,8 +92,8 @@ export default function LoginPage(props) {
         let data =  await response.json()
         history.push({
           pathname:'/getstudentdetails',
-          state: data
         })
+        props.setData(data)
       }
       else if(response.status == 404){
         console.clear()
@@ -150,7 +150,7 @@ export default function LoginPage(props) {
               </div>
               <i className={"eye fa " + (pwdvbt ? "fa-eye-slash " : "fa-eye ")} onClick={togglePasswordVisibility}/>
               <div className="bottom">
-                <button className="forgot">Forgot Password?</button>
+                <button type="button" className="forgot">Forgot Password?</button>
                 <button onClick={login} type="submit" className="form__button">Sign In</button>
                 <div className="error" style={error_style}>
                   <p>{err+""}</p>

@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Raleway:wght@400;600;900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  text-decoration: none;
+  list-style: none;
+  /* transition: all 0.5s; */
+}
+
+:root {
+  --col: #b6b1b1;
+  --bgcol: #202022;
+  --col1: #3e3f3f;
+  --sidecol1: #202022;
+  --textcolor:#b6b1b1;
+  --textcolorhover:#010101;
+  --themeiconcolor:white;
+  --logoutcolor:#b6b1b1;
+  --logouttextcolor:#010101;
+  --sidemenuhover:#ffffff36;
+  --col2:rgba(255, 255, 255, 0.952);
+}
+
+/*---------- Header Nav ---------*/
+body {
+  color: var(--textcolor);
+}
+.header {
+  position: relative;
+}
+
+h2 {
+  padding-top: 5px;
+  margin-right: 50px;
+}
+
+.title1 {
+  color: var(--col);
+  display: flex;
+  flex-direction: row;
+  flex: 3;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--col1);
+  text-align: center;
+}
+
+.logo {
+  height: 7vh;
+  margin: 0px 5px;
+  padding-left: 10px;
+  max-height: 80px;
+}
+
+.theme{
+  cursor: pointer;
+  color: var(--themeiconcolor);
+}
+
+.fa-sun{
+  text-shadow: 0px 0xp 20px white;
+}
+
+.themeicon{
+  padding: 0;
+  margin: 0;
+  margin-left: 0%;
+  margin-right: 1%;
+  
+}
+.heading{
+  margin: auto;
+  padding: 0;
+  width: fit-content;
+
+}
+.fa-bars{
+  color: var(--textcolor);
+}
+.heading h2{
+  font-weight: 100;
+  font-family: 'Raleway', sans-serif;
+}
+
+.butn {
+  display: inline-block;
+  margin-right: 25px;
+  padding: 10px 10px;
+  color: var(--textcolor);
+  background: var(--bgcol);
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  transition: 0.5s;
+  font-size: 1.1rem;
+}
+
+.butn:hover {
+  background: var(--logoutcolor);
+  color: var(--logouttextcolor);
+  transition: 0.5s;
+}
+
+.sidebar-btn {
+  color: var(--col);
+  margin: 3% 2%;
+  cursor: pointer;
+}
+
+.sidebar-btn:hover {
+  color: #ffffff;
+}
+
+/* -------Header nav end-------- */ /* --------Side Nav ------------ */
+.side-bar {
+  height: 90vh;
+  width: 220px;
+  left: -300px;
+  position: absolute;
+  z-index: 1;
+  overflow: auto;
+  transition: 0.5s;
+  background-color: var(--sidecol1);
+}
+
+.sidebar-menu {
+  height: 90vh;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  background-color: var(--sidecol1);
+  padding: 10px 2px 25px 3px;
+  transition: 0.5s;
+}
+
+.items-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.items {
+  display: flex;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  margin-bottom: 3px;
+  color: var(--col1);
+  cursor: pointer;
+}
+
+.items a:hover{
+  color: var(--col2);
+}
+
+.menu-btn{
+  color: var(--col2);
+}
+
+.active {
+  background-color: var(--col1);
+  border-radius: 7px;
+}
+
+.items:hover {
+  background-color: var(--sidemenuhover);
+  border-radius: 7px;
+  transition: 0.5s;
+}
+
+.nav-items {
+  padding-left: 2%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-items h2{
+  color:var(--textcolor);
+  font-size: 2rem;
+}
+
+.nav-icon {
+  text-align: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+a {
+  color: var(--col);
+  transition: 0.5s;
+}
+
+.profile {
+  text-align: center;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.items{
+  font-weight: 100;
+
+}
+.log-btn {
+  display: flex;
+  margin-right: 25px;
+  padding: 7px 10px;
+  color: var(--col);
+  background: var(--bgcol);
+  border-radius: 7px;
+  border: none;
+  align-items: center;
+  width: fit-content;
+  margin: 5px auto;
+  display: none;
+}
+
+.log-btn:hover {
+  background: var(--col);
+  color: var(--bgcol);
+  border: 2px solid var(--bgcol);
+  transition: 0.5s;
+}
+
+/* Responsiveness */
+@media (max-width: 450px) {
+  body {
+    font-size: 80%;
+  }
+  .sidebar-btn {
+    padding-left: 7px;
+  }
+  .logo {
+    max-width: 75%;
+  }
+  h2 {
+    font-size: 25px;
+    text-align: center;
+  }
+  .nav-items h2{
+    font-size: 2rem;
+    /* font-family: 'Urbanist', sans-serif;; */
+  }
+  .side-bar {
+    width: 170px;
+  }
+  .sidebar-menu,
+  .items {
+    padding: 5px 5px 5px 10px;
+    width: 100%;
+  }
+  .items {
+    text-align: center;
+    font-size: 10px;
+  }
+  .nav-icon {
+    display: block;
+    padding-bottom: 5px;
+  }
+}
+
+@media only screen and (max-width:499px){
+  .log-btn {
+    margin: 15px auto;
+    display: block;
+  }
+  .butn {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 80%;
+  }
+  .logo {
+    max-width: 85%;
+  }
+}
+@media only screen and (max-width:375px){
+  .nav-items h2{
+    font-size: 1rem;
+  }
+}
+
+@media (min-height: 1000px) {
+  .sidebar-menu {
+    height: fit-content;
+  }
+  .title {
+    height: 7vh;
+  }
+  .logo {
+    height: 8vh;
+  }
+}
+
+/* DashBoard */
+.student-profile .card {
+  border-radius: 10px;
+}
+
+.student-profile{
+  height: 90vh;
+}
+
+.student-profile .card .card-header .profile_img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 10px auto;
+  border: 10px solid #ccc;
+  border-radius: 50%;
+}
+
+.card-header h3{
+  font-weight: 100!important;
+}
+
+.card-body p{
+  font-weight: 100!important;
+}
+
+.mycard{
+  background-color: var(--col1)!important;
+}
+
+.student-profile .card h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.student-profile{
+  background-color: var(--bgcol);
+}
+
+.student-profile .card p {
+  font-size: 16px;
+  background-color: var(--col1);
+}
+
+.student-profile .table th,
+.student-profile .table td {
+  font-size: 14px;
+  padding: 5px 10px;
+  color: #b6b1b1;
+}
+
+.cardA {
+  background: #3e3f3f;
+  margin-bottom: 15px;
+}
+
+.student-pr {
+  background: var(--bgcol);
+}
+
+a:hover {
+  text-decoration: none;
+  /* color: #3e3f3f; */
+  color: var(--col);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

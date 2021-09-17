@@ -7,6 +7,7 @@ class Student(models.Model):
     username=models.TextField(max_length=50, default="",null=False,unique=True)
     password=models.TextField(max_length=40,null=False,unique=False)
     Name=models.CharField(max_length=50,default="",null=False,unique=False)
+    photo=models.ImageField(upload_to="api/images",default="")
     DateOfBirth=models.DateField(null=True)
     Contact=models.IntegerField(default=0,null=False)
     AlternateContact=models.IntegerField(default=0)
@@ -37,6 +38,11 @@ class Student(models.Model):
     Mothername=models.CharField(max_length=50,default='',null=False)
     FatherContact=models.IntegerField(default=1)
     FatherMail=models.EmailField(default='')
+
+
+
+    def __str__(self):
+        return self.username
 
 class StoredSessions(models.Model):
     key = models.CharField(unique=True,max_length=50,null=False,default="")
