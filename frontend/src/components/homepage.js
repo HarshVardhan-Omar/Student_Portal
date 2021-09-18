@@ -99,8 +99,8 @@ export default function Homepage(props) {
       return (
         <div className="homepage">
             {/* <h1>Hello{locationgrab.state.Name}</h1> */}
-            <Header data={data} logout={logout} csrftoken={csrftoken}></Header>
-            <div style={{width: "100%", height: 'calc( 10vh - 2px )', position: "relative", backgroundColor: "red", zIndex: "1" }} ></div>
+            <Header data={data} logout={logout} csrftoken={csrftoken} ></Header>
+            <div style={{width: "100%", height: '10vh', position: "relative", backgroundColor: "var(--col1)", zIndex: "1" }} ></div>
             <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
             <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword data={data} />}  />
             {/* <button onClick={logout}>LogOut</button> */}
