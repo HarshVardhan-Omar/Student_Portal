@@ -14,6 +14,8 @@ body {
   height: max-content;
 }
 * {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -32,6 +34,7 @@ body {
   background: var(--bgcol);
 }
 :root {
+  --vh: 0vh;
   --col: #b6b1b1;
   --bgcol: #202022;
   --col1: #3e3f3f;
@@ -125,17 +128,18 @@ h2 {
   color: #fff;
 }
 .side-bar {
-  height: 90vh;
+  height: calc(var(--vh, 1vh) * 90);
   width: max-content;
   left: -300px;
   position: absolute;
   z-index: 5;
   overflow: auto;
-  transition: 0.5s;
+  transition: left 0.5s;
+  transition: height 0.2s;
   background-color: var(--sidecol1);
 }
 .sidebar-menu {
-  height: 90vh;
+  height: calc(var(--vh, 1vh) * 90);
   font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
