@@ -10,6 +10,13 @@ export default function App() {
 
   const[progress,setProgress]=useState(0);
   const[data,setData]=useState();
+  //CHromeMonileFix
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
 
   return (
     <>
