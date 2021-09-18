@@ -57,6 +57,7 @@ export default function Header({ data,logout,csrftoken}) {
         document.documentElement.style.setProperty('--textcolor', '#010101');
         document.documentElement.style.setProperty('--bgcol', '#85bad761');
         document.documentElement.style.setProperty('--themeiconcolor', '#004064');
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
     }
     function makeblack(){
         // Black Theme Colors
@@ -65,6 +66,7 @@ export default function Header({ data,logout,csrftoken}) {
         document.documentElement.style.setProperty('--textcolor', '#b6b1b1');
         document.documentElement.style.setProperty('--bgcol', '#202022');
         document.documentElement.style.setProperty('--themeiconcolor', 'white');
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
     }
 
     return (
@@ -168,7 +170,7 @@ export default function Header({ data,logout,csrftoken}) {
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to="" className="menu-btn">
+                                <Link to={`${match.url}/studentfeepayment`} className="menu-btn">
                                     <i className="fas fa-rupee-sign nav-icon"></i>
                                     Student Fee Payment
                                 </Link>
