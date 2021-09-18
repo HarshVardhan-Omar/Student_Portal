@@ -316,9 +316,15 @@ h1{
       color:#fff;
     }
   }
-@media screen and (max-width: 350px){
+@media screen and (max-width: 400px){
   .form{
-    width: 100vw;
+    width: 90vw;
+  }
+  .mobile-image{
+    height: 16vw;
+  }
+  .mobile-title h1{
+    font-size: 14vw;
   }
 }
 @media screen and (max-width: 320px){
