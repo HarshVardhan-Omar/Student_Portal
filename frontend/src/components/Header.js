@@ -6,8 +6,8 @@ import {Link} from "react-router-dom"
 
 export default function Header({ data,logout,csrftoken}) {
     const match=useRouteMatch();
-    const[theme,setTheme]=useState("Black");
     const[openNav,setOpenNav]=useState(false);
+    const[theme,setTheme]=useState("Black")
     const toggleNav=(e)=>{
             openNav? setOpenNav(false) : setOpenNav(true);
         }
@@ -17,30 +17,54 @@ export default function Header({ data,logout,csrftoken}) {
     const side_bar_style = {
         left: openNav?"0px":"-300px",
     }
+    const dark = {background: openNav?"#00000020":"#00000000", height: "90vh", width: "100vw", position: "absolute", zIndex: "1", visibility: openNav?"visible":"hidden", transition: "0.3s"}
 
-    const toggleTheme=()=>{
-        if(theme==="White"){
-        setTheme("Black");
-        }
-        else
-        setTheme("White")
-
-        if(theme==="Black"){
-            // White theme Colors
-            document.documentElement.style.setProperty('--sidecol1', '#004064');
-            document.documentElement.style.setProperty('--col1', 'white');
-            document.documentElement.style.setProperty('--textcolor', '#010101');
-            document.documentElement.style.setProperty('--bgcol', '#85bad761');
-            document.documentElement.style.setProperty('--themeiconcolor', '#004064');
+    useEffect(() => {
+        var data = localStorage.getItem('theme');
+        if(data){
+            setTheme(data)
         }
         else{
-            // Black Theme Colors
-            document.documentElement.style.setProperty('--sidecol1', '#202022');
-            document.documentElement.style.setProperty('--col1', '#3e3f3f');
-            document.documentElement.style.setProperty('--textcolor', '#b6b1b1');
-            document.documentElement.style.setProperty('--bgcol', '#202022');
-            document.documentElement.style.setProperty('--themeiconcolor', 'white');
+            setTheme("White")
+            makewhite();
         }
+        if(data==="White"){
+            makewhite();
+        }
+        if(data==="Black"){
+            makeblack();
+        }
+      }
+      , []);
+
+    const toggleTheme=(e)=>{
+        if(theme==="White"){
+            localStorage.setItem('theme', 'Black')
+            setTheme("Black");
+            makeblack();
+        }
+        else{
+            localStorage.setItem('theme', 'White')
+            setTheme("White")
+            makewhite();
+        }
+    }
+
+    function makewhite(){
+        // White Theme Colors 
+        document.documentElement.style.setProperty('--sidecol1', '#004064');
+        document.documentElement.style.setProperty('--col1', 'white');
+        document.documentElement.style.setProperty('--textcolor', '#010101');
+        document.documentElement.style.setProperty('--bgcol', '#85bad761');
+        document.documentElement.style.setProperty('--themeiconcolor', '#004064');
+    }
+    function makeblack(){
+        // Black Theme Colors
+        document.documentElement.style.setProperty('--sidecol1', '#151515');
+        document.documentElement.style.setProperty('--col1', '#3e3f3f');
+        document.documentElement.style.setProperty('--textcolor', '#b6b1b1');
+        document.documentElement.style.setProperty('--bgcol', '#202022');
+        document.documentElement.style.setProperty('--themeiconcolor', 'white');
     }
 
     return (
@@ -70,7 +94,8 @@ export default function Header({ data,logout,csrftoken}) {
                         </div>
                     </div>
                 </div>
-                <div id="sidebar" className="side-bar" onClick={closeNav}style={side_bar_style} >
+                <div style={dark} onClick={closeNav}></div>
+                <div id="sidebar" className="side-bar" style={side_bar_style} >
                     <div className="sidebar-menu">
                         <div className="profile">
                             <a href="#">
@@ -81,7 +106,7 @@ export default function Header({ data,logout,csrftoken}) {
                                 />
                             </a>
                         </div>
-                        <ul className="items-menu" id="profile" >
+                        <ul onClick={closeNav} className="items-menu" id="profile" >
                             <li className="items">
                                 <Link to={`${match.url}`} className="menu-btn">
                                     <i className="fas fa-desktop nav-icon"></i>
@@ -89,64 +114,55 @@ export default function Header({ data,logout,csrftoken}) {
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/studentregistration`} className="menu-btn"
-                                >
+                                <Link to={`${match.url}/studentregistration`} className="menu-btn">
                                     <i className="far fa-registered nav-icon"></i>
                                     Student Registration
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/semesterregistration`} className="menu-btn"
-                                >
+                                <Link to={`${match.url}/semesterregistration`} className="menu-btn">
                                     <i className="far fa-registered nav-icon"></i>
                                     Semester Registration
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/registrationcard`} className="menu-btn"
-                                >
+                                <Link to={`${match.url}/registrationcard`} className="menu-btn">
                                     <i className="fas fa-download nav-icon"></i>
                                     Registration Card
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/examform`} className="menu-btn"
-                                >
+                                <Link to={`${match.url}/examform`} className="menu-btn">
                                     <i className="fas fa-sticky-note nav-icon"></i>
                                     Exam Form
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/admitcard`} className="menu-btn"
-                                >
+                                <Link to={`${match.url}/admitcard`} className="menu-btn">
                                     <i className="fas fa-download nav-icon"></i>{" "}
                                     Admit Card
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/lodgegrievance`} className="menu-btn"
-                                >
+                                <Link to={`${match.url}/lodgegrievance`} className="menu-btn">
                                     <i className="fas fa-frown nav-icon"></i>
                                     Lodge Grievance
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/result`} className="menu-btn"
-                                >
+                                <Link to={`${match.url}/result`} className="menu-btn">
                                     <i className="fas fa-poll nav-icon"></i>
                                     Result
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/coursemanagement`} className="menu-btn"
-                                >
+                                <Link to={`${match.url}/coursemanagement`} className="menu-btn">
                                     <i className="fas fa-tasks nav-icon"></i>
                                     Course Management
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.url}/changepassword`} className="menu-btn"
-                                >
+                                <Link to={`${match.url}/changepassword`} className="menu-btn">
                                     <i className="fas fa-key nav-icon"></i>
                                     Change Password
                                 </Link>
@@ -159,7 +175,7 @@ export default function Header({ data,logout,csrftoken}) {
                             </li>
                             <li>
                                 <button className="log-btn" onClick={logout}>
-                                    Logout<i className="fas fa-sign-out-alt"></i>
+                                    {"Logout "}<i className="fas fa-sign-out-alt"></i>
                                 </button>
                             </li>
                         </ul>
