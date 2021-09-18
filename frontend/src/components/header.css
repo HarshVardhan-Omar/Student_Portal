@@ -28,14 +28,14 @@ body {
 }
 .homepage {
   font-family: "Raleway", sans-serif;
-  height: 100%;
+  min-height: 100%;
   background: var(--bgcol);
 }
 :root {
   --col: #b6b1b1;
   --bgcol: #202022;
   --col1: #3e3f3f;
-  --sidecol1: #202022;
+  --sidecol1: #151515;
   --textcolor: #b6b1b1;
   --textcolorhover: #010101;
   --themeiconcolor: white;
@@ -52,9 +52,10 @@ body {
 }
 h2 {
   padding-top: 5px;
-  margin-right: 50px;
+  /* margin-right: 50px; */
 }
 .title1 {
+  padding: 0px 25px;
   color: var(--col);
   display: flex;
   flex-direction: row;
@@ -100,7 +101,7 @@ h2 {
 }
 .butn {
   display: inline-block;
-  margin-right: 25px;
+  /* margin-right: 25px; */
   padding: 10px 10px;
   color: var(--textcolor);
   background: var(--bgcol);
@@ -128,7 +129,7 @@ h2 {
   width: max-content;
   left: -300px;
   position: absolute;
-  z-index: 1;
+  z-index: 5;
   overflow: auto;
   transition: 0.5s;
   background-color: var(--sidecol1);
@@ -139,7 +140,7 @@ h2 {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding: 10px 2px 25px 3px;
+  /* padding: 10px 2px 25px 3px; */
   transition: 0.5s;
 }
 .items-menu {
@@ -172,11 +173,11 @@ h2 {
 }
 .items:hover {
   background-color: var(--sidemenuhover);
-  border-radius: 7px;
+  /* border-radius: 7px; */
   transition: 0.5s;
 }
 .nav-items {
-  padding-left: 2%;
+  /* padding-left: 2%; */
   height: 10vh;
   display: flex;
   justify-content: center;
@@ -184,7 +185,7 @@ h2 {
 }
 .nav-items h2 {
   color: var(--textcolor);
-  font-size: 2rem;
+  /* font-size: 2rem; */
 }
 .nav-icon {
   text-align: center;
@@ -205,6 +206,7 @@ a {
   height: 100px;
   border-radius: 50%;
   margin: auto;
+  object-fit: cover;
 }
 .items {
   font-weight: 100;
@@ -238,20 +240,15 @@ a {
   }
 }
 @media (max-width: 600px) {
-  body {
-    font-size: 80%;
-  }
-  .logo {
-    max-width: 85%;
-  }
+  
 }
-@media only screen and (max-width: 375px) {
+/* @media only screen and (max-width: 375px) {
   .nav-items h2 {
     font-size: 1rem;
   }
-}
+} */
 @media (min-height: 1000px) {
-  .sidebar-menu {
+  /* .sidebar-menu {
     height: fit-content;
   }
   .title {
@@ -259,14 +256,17 @@ a {
   }
   .logo {
     height: 8vh;
-  }
+  } */
+
 }
 .student-profile .card {
   border-radius: 10px;
 }
 .student-profile .card .card-header .profile_img {
-  width: 150px;
-  height: 150px;
+  max-width: 150px;
+  width: 100%;
+  max-height: 150px;
+  height: 100%;
   object-fit: cover;
   margin: 10px auto;
   border: 10px solid #ccc;
@@ -321,5 +321,19 @@ a:hover {
 @media only screen and (max-height: 500px) {
   .sidebar-menu {
     height: max-content;
+  }
+}
+@media only screen and (max-width: 410px) {
+  .nav-items h2 {
+    font-size: 5vw;
+  }
+  .logo{
+    height: 10vw;
+  }
+  .fa-sun {
+    font-size: 8vw !important;
+  }
+  .fa-moon {
+    font-size: 8vw !important;
   }
 }
