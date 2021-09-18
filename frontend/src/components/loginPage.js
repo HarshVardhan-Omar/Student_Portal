@@ -120,9 +120,9 @@ export default function LoginPage(props) {
       display: err!=""?"block":"none",
     }
 
-    document.addEventListener('touchmove', function (event) {
-      if (event.scale !== 1) { event.preventDefault(); }
-    }, { passive: false });
+//     document.addEventListener('touchmove', function (event) {
+//       if (event.scale !== 1) { event.preventDefault(); }
+//     }, { passive: false });
 
 
     document.title="Student Portal";
