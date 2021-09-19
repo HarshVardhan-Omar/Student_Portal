@@ -3,9 +3,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap");
 html {
   height: 100%;
+  overflow: hidden;
 }
 body {
+  width: 100%;
   height: 100%;
+  position: fixed;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 #app {
   height: 100%;
@@ -21,6 +26,7 @@ body {
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
+  transition: background-color 0.1s ;
 }
 .main {
   width: 100%;
@@ -134,8 +140,8 @@ h2 {
   position: absolute;
   z-index: 5;
   overflow: auto;
-  transition: left 0.5s;
-  transition: height 0.2s;
+  transition: 0.5s;
+  /* transition: height 0.2s; */
   background-color: var(--sidecol1);
 }
 .sidebar-menu {
@@ -339,5 +345,20 @@ a:hover {
   }
   .fa-moon {
     font-size: 8vw !important;
+  }
+}
+@media only screen and (max-height: 700px) {
+  /* .title1{
+    height: 50px;
+  } */
+  .butn{
+    height: 7.5vh;
+    padding: 0px 10px;
+  }
+  .fa-sun {
+    font-size: 4vh !important;
+  }
+  .fa-moon {
+    font-size: 4vh !important;
   }
 }
