@@ -346,7 +346,7 @@ a {
 .card-body p {
   font-weight: 100 !important;
 }
-.mycard {
+.card {
   background-color: var(--col1) !important;
 }
 .student-profile .card h3 {
@@ -361,7 +361,7 @@ a {
 .student-profile .table td {
   font-size: 14px;
   padding: 5px 10px;
-  color: #b6b1b1;
+  color: var(--cpcoltable);
 }
 .cardA {
   background: #3e3f3f;
