@@ -7960,4 +7960,33 @@ a.text-dark:hover {
     border-color: #dee2e6;
   }
 }
+
+:root {
+  --cpcol: black;
+  --cpbgcol: #202022;
+  --color: #6f7a85;
+  --colw: #fff;
+  --colborder: #434a52;
+  --col1: #3e3f3f;
+}
+.accordion-button{
+  background-color: var(--col1) ;
+}
+.accordion-item{
+  background-color: var(--col1);
+ color: var(--colw);
+}
+.table-dark td, .table-dark th, .table-dark thead th{
+  color: var(--colw);
+}
+.table>:not(caption)>*>* {
+  background-color: var(--col1);
+}
+.table>:not(caption)>*>* {
+  box-shadow: none;
+}
+.table-dark td, .table-dark th, .table-dark thead th {
+  border-color: var(--colw);
+}
+
 /*# sourceMappingURL=bootstrap.min.css.map */
