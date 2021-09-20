@@ -69,6 +69,7 @@ export default function Header({ data,logout,csrftoken}) {
         document.documentElement.style.setProperty('--textcolor', '#010101');
         document.documentElement.style.setProperty('--bgcol', '#85bad761');
         document.documentElement.style.setProperty('--themeiconcolor', '#004064');
+        document.documentElement.style.setProperty('--cpcoltable', '#000000');
         document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
     }
     function makeblack(){
@@ -78,6 +79,7 @@ export default function Header({ data,logout,csrftoken}) {
         document.documentElement.style.setProperty('--textcolor', '#b6b1b1');
         document.documentElement.style.setProperty('--bgcol', '#202022');
         document.documentElement.style.setProperty('--themeiconcolor', 'white');
+        document.documentElement.style.setProperty('--cpcoltable', '#ffffff');
         document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
     }
 
