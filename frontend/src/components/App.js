@@ -4,6 +4,7 @@ import { component, useState } from "react"
 import LoadingBar from 'react-top-loading-bar'
 import LoginPage from "./loginPage";
 import Homepage from "./homepage";
+import NotFound from "./NotFound";
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 
 export default function App() {
@@ -26,7 +27,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" render={props => <LoginPage setData={setData} setProgress={setProgress} />} />
         <Route path="/getstudentdetails" render={props => <Homepage setData={setData} data={data} setProgress={setProgress} />}  />
-        <Route> <h1> 404 Not Found. </h1></Route>
+        <Route> <NotFound/> </Route>
       </Switch>
     </Router>
     </>
