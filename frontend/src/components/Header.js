@@ -2,6 +2,7 @@ import React,{useState ,useEffect} from "react";
 import { useRouteMatch } from "react-router";
 import logo from "./logo.png"
 import "./header.css"
+import { BiSun } from "react-icons/bi";
 import {Link} from "react-router-dom"
 
 export default function Header({ data,logout,csrftoken}) {
@@ -14,11 +15,22 @@ export default function Header({ data,logout,csrftoken}) {
     const closeNav=(e)=>{
         setOpenNav(false)
     }
+    
     const side_bar_style = {
         left: openNav?"0px":"-300px",
     }
     const dark = {background: openNav?"#00000020":"#00000000", height: "90vh", width: "100vw", position: "absolute", zIndex: "1", visibility: openNav?"visible":"hidden", transition: "0.3s"}
+    
 
+    const checkboxstyle={
+        clip: 'rect(0 0 0 0)',
+        border: '0',
+        height: '1px',
+        margin: '-1px',
+        overflow: 'hidden',
+        position: 'absolute',
+        width: '1px'
+    }
     useEffect(() => {
         var data = localStorage.getItem('theme');
         if(data){
@@ -85,8 +97,18 @@ export default function Header({ data,logout,csrftoken}) {
                         <div className="nav-items heading">
                             <h2>STUDENT PORTAL</h2>
                         </div>
-                        <div className="nav-items themeicon" >
-                        <i className={"fas fa-2x " +(theme==="Black"? "fa-sun theme":"fa-moon theme")} onClick={toggleTheme}></i>
+                        <div className="nav-items themeicon react-toggle" >
+                        {/* <i className={"fas fa-2x " +(theme==="Black"? "fa-sun theme":"fa-moon theme")} onClick={toggleTheme}></i> */}
+                        <div class="react-toggle-track" role="button" onClick={toggleTheme} tabIndex="-1">
+                            <div class="react-toggle-track-check">
+                                <span class="toggle_2wFP">🌜</span>
+                            </div>
+                            <div class="react-toggle-track-x">
+                                <span class="toggle_2wFP">🌞</span>
+                            </div>
+                            <div class="react-toggle-thumb" style={{left: theme==="Black"?"12px":"-12px" }}></div>
+                            <input type="checkbox" class="form-check-input" style={checkboxstyle}  aria-label="Switch between dark and light mode" ></input>
+                        </div>
                         </div>
                         <div>
                             
