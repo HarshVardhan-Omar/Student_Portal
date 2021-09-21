@@ -31,10 +31,11 @@ body {
 }
 .errgobackbutn{
   color: #1a8e53;
-  font-family: Cabin, sans-serif;
-  border: 2px solid;
-  padding: 4px;
-  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+}
+p{
+  color: black;
+  font-size: 17px;
 }
 .errgobackbutn:hover{
   color: #000;
