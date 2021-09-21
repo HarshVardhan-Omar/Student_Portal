@@ -18,14 +18,13 @@ Make Sure to add the above dependencies to your Environment Variables.
  ```
 
 Run the following commands on a terminal:
-1. ##### Install React and its related dependencies from npm.
+1. ##### Install REquired Node Modules
 ```
-  npm i react react-router-dom react-dom --save-dev
+  npm i
 ```
-
-4. ##### Install React Bootstrap(Latest Version as per the date)
+2. ##### Run The Webpack
 ```
-  npm i react-bootstrap@next bootstrap@version
+  npm run dev
 ```
 
 # Setting Up Backend
