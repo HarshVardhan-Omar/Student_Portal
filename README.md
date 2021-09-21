@@ -14,7 +14,7 @@ Make Sure to add the above dependencies to your Environment Variables.
 # Setting Up Frontend
  cd inside the frontend folder
  ```
- cd .\frontend\
+  cd .\frontend\
  ```
 
 Run the following commands on a terminal:
