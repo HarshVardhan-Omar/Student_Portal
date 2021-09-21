@@ -18,7 +18,7 @@ Make Sure to add the above dependencies to your Environment Variables.
  ```
 
 Run the following commands on a terminal:
-1. ##### Install REquired Node Modules
+1. ##### Install Required Node Modules
 ```
   npm i
 ```
