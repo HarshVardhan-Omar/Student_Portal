@@ -38,10 +38,10 @@ Run the following commands on a terminal:
 
 1.Install Django and and its related dependencies from npm.
 ```
-pip install django djangorestframework pillow
+  pip install django djangorestframework pillow
 ```
 # Starting the Project 
 Make Sure that you are in the base directory of the project then run the following command
 ```
-python manage.py runserver 
+  python manage.py runserver 
 ```
