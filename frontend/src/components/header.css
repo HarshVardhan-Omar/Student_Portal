@@ -56,6 +56,7 @@ body {
     height: 10px;
     justify-content: center;
     width: 10px;
+  transition:none;
 
 }
 .react-toggle-track-check{
