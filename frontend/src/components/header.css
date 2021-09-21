@@ -346,6 +346,7 @@ a {
 }
 .card-body p {
   font-weight: 100 !important;
+  color:var(--textcolor);
 }
 .card {
   background-color: var(--col1) !important;
