@@ -31,6 +31,10 @@ Run the following commands on a terminal:
   npm i @babel/core babel-loader @babel/preset-env @babel/preset-react  --save-dev
   npm install @babel/plugin-proposal-class-properties
 ```
+4. ##### Install React Bootstrap(Latest Version as per the date)
+```
+  npm install react-bootstrap@next bootstrap@version
+```
 
 # Setting Up Backend
  Make Sure to move out from the 
