@@ -20,20 +20,12 @@ Make Sure to add the above dependencies to your Environment Variables.
 Run the following commands on a terminal:
 1. ##### Install React and its related dependencies from npm.
 ```
-  npm install react react-router-dom react-dom --save-dev
+  npm i react react-router-dom react-dom --save-dev
 ```
-2. ##### Install Webpack
-```
-  npm install webpack webpack-cli --save-dev
-```
-3. ##### Install Babel
-```
-  npm i @babel/core babel-loader @babel/preset-env @babel/preset-react  --save-dev
-  npm install @babel/plugin-proposal-class-properties
-```
+
 4. ##### Install React Bootstrap(Latest Version as per the date)
 ```
-  npm install react-bootstrap@next bootstrap@version
+  npm i react-bootstrap@next bootstrap@version
 ```
 
 # Setting Up Backend
