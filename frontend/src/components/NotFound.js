@@ -1,6 +1,6 @@
 import React from "react";
 import "./error.css";
-import {Link} from "react-router-dom";
+
 
 function NotFound() {
     return (
@@ -11,7 +11,7 @@ function NotFound() {
                     <h1><span>#</span><span>4</span><span>0</span><span>4</span></h1>
                 </div>
                 <h2>We are sorry, the page you requested was not found.</h2>
-                <p>Go back to HBTU <Link className="errgobackbutn"  to="/">Student Login</Link></p>
+                <p>Go back to HBTU <a className="errgobackbutn"  href="/">Student Login</a></p>
             </div>
         </div>
     );
