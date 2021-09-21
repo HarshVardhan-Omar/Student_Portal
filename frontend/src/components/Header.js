@@ -102,10 +102,10 @@ export default function Header({ data,logout,csrftoken}) {
                         <div className="nav-items themeicon react-toggle" >
                         {/* <i className={"fas fa-2x " +(theme==="Black"? "fa-sun theme":"fa-moon theme")} onClick={toggleTheme}></i> */}
                         <div class="react-toggle-track" role="button" onClick={toggleTheme} tabIndex="-1">
-                            <div class="react-toggle-track-check">
+                            <div class="react-toggle-track-check" style={{visibility:(theme==='Black'?'visible':'hidden')}}>
                                 <span class="toggle_2wFP">🌜</span>
                             </div>
-                            <div class="react-toggle-track-x">
+                            <div class="react-toggle-track-x" style={{visibility:(theme==='White'?'visible':'hidden')}}>
                                 <span class="toggle_2wFP">🌞</span>
                             </div>
                             <div class="react-toggle-thumb" style={{left: theme==="Black"?"12px":"-12px" }}></div>
