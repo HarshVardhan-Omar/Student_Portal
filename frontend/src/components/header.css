@@ -349,6 +349,7 @@ a {
   color:var(--textcolor);
 }
 .card {
+  padding-top: 12px;
   background-color: var(--col1) !important;
 }
 .student-profile .card h3 {
