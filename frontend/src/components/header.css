@@ -94,7 +94,7 @@ body {
   /* left: 26px; */
 }
 .homepage {
-  font-family: "Raleway", sans-serif;
+  font-family: "sans-serif";
   min-height: 100%;
   background: var(--bgcol);
 }
@@ -165,7 +165,7 @@ h2 {
 }
 .heading h2 {
   font-weight: 100;
-  font-family: "Raleway", sans-serif;
+  font-family: "sans-serif";
 }
 .butn {
   display: inline-block;

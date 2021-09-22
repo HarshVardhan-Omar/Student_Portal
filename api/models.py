@@ -38,6 +38,8 @@ class Student(models.Model):
     Mothername=models.CharField(max_length=50,default='',null=False)
     FatherContact=models.IntegerField(default=1)
     FatherMail=models.EmailField(default='')
+    CurrentSemester=models.TextField(default='')
+    CGPA=models.DecimalField(default=0.0,max_digits=7,decimal_places=4)
 
 
 

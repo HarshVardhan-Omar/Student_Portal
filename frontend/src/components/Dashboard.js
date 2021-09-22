@@ -41,27 +41,27 @@ export default function Dashboard({ data }) {
                           <tr>
                             {/* <td>1</td> */}
                             <td>Current Semester</td>
-                            <td>V</td>
+                            <td>{data.CurrentSemester}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
                             <td>CGPA</td>
-                            <td>0</td>
+                            <td>{data.CGPA}</td>
                           </tr>
                           <tr>
                             {/* <td>3</td> */}
                             <td>Mobile Number</td>
-                            <td>9874563201</td>
+                            <td>{data.Contact}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
                             <td>HBTU Email</td>
-                            <td>190108038@HBTU.AC.IN</td>
+                            <td>{data.OfficialEmail}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
                             <td>Personal Email</td>
-                            <td>y.vardhan1234@outlook.com</td>
+                            <td>{data.Email}</td>
                           </tr>
                         </tbody>
                 </Table>
@@ -85,32 +85,32 @@ export default function Dashboard({ data }) {
                           <tr>
                             {/* <td>1</td> */}
                             <td>University Roll No.</td>
-                            <td>Yaha pe roll no lana h</td>
+                            <td>{data.RollNo}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
                             <td>Enrollment No.</td>
-                            <td>HBTU1919191</td>
+                            <td>{data.EnrollmentNumber}</td>
                           </tr>
                           <tr>
                             {/* <td>3</td> */}
                             <td>Programme</td>
-                            <td>BTECH</td>
+                            <td>{data.Programme}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
                             <td>Branch</td>
-                            <td>Information Technology</td>
+                            <td>{data.Branch}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
                             <td>Admission Source</td>
-                            <td>JEE MAINS</td>
+                            <td>{data.EntranceExam}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
                             <td>Current Semester</td>
-                            <td>V</td>
+                            <td>{data.CurrentSemester}</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -123,71 +123,71 @@ export default function Dashboard({ data }) {
                         <tbody>
                           <tr>
                             <td>Student Name</td>
-                            <td>Name</td>
+                            <td>{data.Name}</td>
                           </tr>
                           <tr>
                             <td>Student Name in Hindi</td>
-                            <td>Name in Hindi</td>
+                            <td>{data.Name}</td>
                           </tr>
                           <tr>
                             <td>Date of Birth</td>
-                            <td>04/07/2001</td>
+                            <td>{data.DateOfBirth}</td>
                           </tr>
                           <tr>
                             <td>Gender</td>
-                            <td>Male</td>
+                            <td>{data.Gender}</td>
                           </tr>
                           <tr>
                             <td>Contact No.</td>
-                            <td>2323232323</td>
+                            <td>{data.Contact}</td>
                           </tr>
                           <tr>
                             <td>Alternate Contact No</td>
-                            <td>04072001</td>
+                            <td>{data.AlternateContact}</td>
                           </tr>
                           <tr>
                             <td>Personal Email</td>
-                            <td>hellohi@gmail.com</td>
+                            <td>{data.Email}</td>
                           </tr>
                           <tr>
                             <td>HBTU Email</td>
-                            <td>2322113@hbtu.ac.in</td>
+                            <td>{data.OfficialEmail}</td>
                           </tr>
                           <tr>
                             <td>Category</td>
-                            <td>General</td>
+                            <td>{data.Category}</td>
                           </tr>
                           <tr>
                             <td>Sub Category</td>
-                            <td>None</td>
+                            <td>{data.SubCategory}</td>
                           </tr>
                           <tr>
                             <td>Fee Waiver</td>
-                            <td>B+</td>
+                            <td>{data.FeeWaiver}</td>
                           </tr>
                           <tr>
                             <td>Identification Mark</td>
-                            <td>Shakal Kharab h</td>
+                            <td>{data.IdentificationMark}</td>
                           </tr>
                           <tr>
                             <td>Aadhar Card Number</td>
-                            <td>6969696969</td>
+                            <td>{data.Aadhaar}</td>
                           </tr>
                           <tr>
                             <td>Hostel Required</td>
-                            <td>No</td>
+                            <td>{data.Hosteler}</td>
                           </tr>
                           <tr>
                             <td>Mode of Transport</td>
-                            <td>Aeroplane</td>
+                            <td>{data.ModeOfTransport}</td>
                           </tr>
                           <tr>
                             <td>Nationality</td>
-                            <td>India</td>
+                            <td>{data.Nationality}</td>
                           </tr>
                           <tr>
                             <td>Religion</td>
-                            <td>Hindu</td>
+                            <td>{data.Religion}</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -202,27 +202,27 @@ export default function Dashboard({ data }) {
                         <tbody>
                           <tr>
                             <td>Entrance Exam</td>
-                            <td>JEE MAINS</td>
+                            <td>{data.EntranceExam}</td>
                           </tr>
                           <tr>
                             <td>Year</td>
-                            <td>2019</td>
+                            <td>{data.YearOfEntranceExam}</td>
                           </tr>
                           <tr>
                             <td>Roll No / Application Number</td>
-                            <td>696969</td>
+                            <td>{data.ApplicationNo}</td>
                           </tr>
                           <tr>
                             <td>AIR Rank</td>
-                            <td>696969</td>
+                            <td>{data.AIRRank}</td>
                           </tr>
                           <tr>
                             <td>Category</td>
-                            <td>General</td>
+                            <td>{data.Category}</td>
                           </tr>
                           <tr>
                             <td>Category Rank</td>
-                            <td>696969</td>
+                            <td>{data.CategoryRank}</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -235,19 +235,19 @@ export default function Dashboard({ data }) {
                         <tbody>
                           <tr>
                             <td>Father's Name</td>
-                            <td>Animesh Trivedi</td>
+                            <td>{data.Fathername}</td>
                           </tr>
                           <tr>
                             <td>Father's Contact</td>
-                            <td>69696969</td>
+                            <td>{data.FatherContact}</td>
                           </tr>
                           <tr>
                             <td>Mother's Name</td>
-                            <td>Disha Patani (Paatni)</td>
+                            <td>{data.Mothername}</td>
                           </tr>
                           <tr>
                             <td>Parent's Mail Id</td>
-                            <td>anniki dishu@gmail.com</td>
+                            <td>{data.FatherMail}</td>
                           </tr>
                         </tbody>
                       </Table>
