@@ -1,9 +1,10 @@
 import React, { useEffect,useState } from 'react';
-import { useHistory, useRouteMatch } from "react-router";
+import { Router, useHistory, useRouteMatch } from "react-router";
 import jQuery from './jQuery'
 import { Link,Switch,Route } from "react-router-dom";
 
 import Header from './Header'
+import NotFound from './NotFound';
 import Dashboard from './Dashboard'
 import ChangePassword from './ChangePassword'
 
@@ -77,9 +78,9 @@ export default function Homepage(props) {
         if(response.status == 200){
           props.setProgress(100)
           let data =  await response.json()
-          history.push({
-            pathname:'/getstudentdetails',
-          })
+          // history.push({
+          //   pathname:'/getstudentdetails',
+          // })
           props.setData(data)
         }
         else{
@@ -101,8 +102,11 @@ export default function Homepage(props) {
             {/* <h1>Hello{locationgrab.state.Name}</h1> */}
             <Header data={data} logout={logout} csrftoken={csrftoken} ></Header>
             <div style={{width: "100%", height: '10vh', position: "relative", backgroundColor: "var(--col1)", zIndex: "1" }} ></div>
+            <Switch>
             <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
             <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword data={data} />}  />
+            <Route> <NotFound/> </Route>
+            </Switch>
             {/* <button onClick={logout}>LogOut</button> */}
         </div>
       )
