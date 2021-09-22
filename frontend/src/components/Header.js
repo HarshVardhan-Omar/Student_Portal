@@ -107,7 +107,7 @@ export default function Header({ data, logout, csrftoken }) {
                                 <div className="react-toggle-track-check" style={{ visibility: (theme === 'Black' ? 'visible' : 'hidden') }} >
                                     <span className="toggle_2wFP">🌜</span>
                                 </div>
-                                <div className="react-toggle-track-x" style={{ visibility: (theme === 'Black' ? 'visible' : 'hidden') }} >
+                                <div className="react-toggle-track-x" style={{ visibility: (theme === 'White' ? 'visible' : 'hidden') }} >
                                     <span className="toggle_2wFP">🌞</span>
                                 </div>
                                 <div className="react-toggle-thumb" style={{ left: theme === "Black" ? "12px" : "-12px" }}></div>
