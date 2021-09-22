@@ -22,7 +22,7 @@ export default function Dashboard({ data }) {
                   Roll Number: {data.RollNo}
                 </p>
                 <p className="mb-0">
-                  Course: BTech
+                  Course: {data.Programme}
                 </p>
                 <p className="mb-0">
                   Branch: {data.Branch}
@@ -34,32 +34,36 @@ export default function Dashboard({ data }) {
             <div className="card shadow-sm" id="card">
               <div className="card-header bg-transparent border-0">
                 <h3 className="mb-0">
-                  <i className="far fa-clone pr-1"></i>General Information
+                  <i className="far fa-clone pr-1"></i>{" General Information"}
                 </h3>
                 <Table striped bordered hover variant="dark">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td colSpan="2">Larry the Bird</td>
-                    </tr>
-                  </tbody>
+                        <tbody>
+                          <tr>
+                            {/* <td>1</td> */}
+                            <td>Current Semester</td>
+                            <td>V</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>CGPA</td>
+                            <td>0</td>
+                          </tr>
+                          <tr>
+                            {/* <td>3</td> */}
+                            <td>Mobile Number</td>
+                            <td>9874563201</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>HBTU Email</td>
+                            <td>190108038@HBTU.AC.IN</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>Personal Email</td>
+                            <td>y.vardhan1234@outlook.com</td>
+                          </tr>
+                        </tbody>
                 </Table>
               </div>
               <div className="card-body pt-0"></div>
@@ -68,7 +72,7 @@ export default function Dashboard({ data }) {
             <div className="card shadow-sm" id="card">
               <div className="card-header bg-transparent border-0">
                 <h3 className="mb-0">
-                  <i className="far fa-clone pr-1"></i>Other Information
+                  <i className="far fa-clone pr-1"></i>{" Other Information"}
                 </h3>
               </div>
               <div className="card-body pt-0">
