@@ -64,7 +64,7 @@ export default function LoginPage(props) {
         props.setProgress(100)
         let data =  await response.json()
         history.push({
-          pathname:'/getstudentdetails',
+          pathname:'/getstudentdetails/',
         })
         props.setData(data)
       }
@@ -91,7 +91,7 @@ export default function LoginPage(props) {
         props.setProgress(100)
         let data =  await response.json()
         history.push({
-          pathname:'/getstudentdetails',
+          pathname:'/getstudentdetails/',
         })
         props.setData(data)
       }
