@@ -94,7 +94,7 @@ body {
   /* left: 26px; */
 }
 .homepage {
-  font-family: "sans-serif";
+  font-family: "raleway";
   min-height: 100%;
   background: var(--bgcol);
 }
@@ -165,7 +165,7 @@ h2 {
 }
 .heading h2 {
   font-weight: 100;
-  font-family: "sans-serif";
+  font-family: "raleway";
 }
 .butn {
   display: inline-block;
@@ -422,4 +422,7 @@ a:hover {
   .fa-moon {
     font-size: 4vh !important;
   }
+}
+#student-profile{
+  font-family: sans-serif;
 }
