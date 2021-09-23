@@ -105,7 +105,8 @@ export default function Homepage(props) {
             <Switch>
             <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
             <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword data={data} />}  />
-            <Route> <NotFound/> </Route>
+            <Route exact path={`${match.url}/studentregistration`}  render={props => <StudentRegistration data={data} />}  />
+             <Route> <NotFound/> </Route>
             </Switch>
             {/* <button onClick={logout}>LogOut</button> */}
         </div>
