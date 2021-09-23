@@ -7,6 +7,7 @@ import Header from './Header'
 import NotFound from './NotFound';
 import Dashboard from './Dashboard'
 import ChangePassword from './ChangePassword'
+import Lodge from './Lodge';
 
 function getCookie(name) {
     var cookieValue = null;
@@ -106,6 +107,7 @@ export default function Homepage(props) {
             <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
             <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword data={data} />}  />
             <Route exact path={`${match.url}/studentregistration`}  render={props => <StudentRegistration data={data} />}  />
+            <Route exact path={`${match.url}/lodgegrievance`} render={props => <Lodge data={data} />} />
              <Route> <NotFound/> </Route>
             </Switch>
             {/* <button onClick={logout}>LogOut</button> */}
