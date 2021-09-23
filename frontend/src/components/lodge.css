@@ -3,6 +3,7 @@
 font-family: 'Raleway', sans-serif; */
 
 .application {
+  height: 100vh;
   width: 60%;
   margin: auto;
   font-family: 'Raleway', sans-serif;
