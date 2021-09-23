@@ -1,1 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Raleway:wght@400;600&display=swap');
+/* font-family: 'Montserrat', sans-serif;
+font-family: 'Raleway', sans-serif; */
 
+.application {
+  width: 60%;
+  margin: auto;
+  font-family: 'Raleway', sans-serif;
+  /* background-color: #fff; */
+}
+.application h1 {
+  text-align: center;
+  font-weight: 600;
+  padding: 25px 10px;
+}
+.input-form {
+  background-color: var(--col1);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  caret-color: var(--cpcoltable);
+}
+
+.input-form:focus {
+  background-color: var(--col1);
+}
