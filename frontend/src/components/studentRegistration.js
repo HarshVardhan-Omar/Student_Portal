@@ -1,5 +1,5 @@
 import React from "react";
-import './studentRegistration.css';
+// import './studentRegistration.css';
 
 export default function StudentRegistration() {
 

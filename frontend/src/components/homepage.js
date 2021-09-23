@@ -8,6 +8,7 @@ import NotFound from './NotFound';
 import Dashboard from './Dashboard'
 import ChangePassword from './ChangePassword'
 import Lodge from './Lodge';
+import StudentRegistration from './studentRegistration';
 
 function getCookie(name) {
     var cookieValue = null;
