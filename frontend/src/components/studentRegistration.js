@@ -1,11 +1,10 @@
 import React from "react";
- import './studentRegistration.css';
+// import './studentRegistration.css';
 
 export default function StudentRegistration() {
 
   return (
-    <div className="studentregistration">
-    <div class="container">
+    <div>
       <form class="row g-3">
         <h3>Academic details</h3>
         <div class="col-md-6">
@@ -27,7 +26,7 @@ export default function StudentRegistration() {
             type="text"
             class="form-control"
             id="inputAddress"
-            placeholder="University Enrollment No."
+            placeholder="University Roll No."
           ></input>
         </div>
         <div class="col-md-6">
@@ -193,7 +192,6 @@ export default function StudentRegistration() {
             </ul>
           </div>
         </div>
-        <hr/>
         <h3>Personal Details</h3>
         <div class="col-md-6">
           <label for="inputAddress" class="form-label">
@@ -520,7 +518,7 @@ export default function StudentRegistration() {
             type="text"
             class="form-control"
             id="inputAddress"
-            placeholder="Identification Mark"
+            placeholder="Student Name in Hindi"
           ></input>
            </div>
            <div class="col-md-6">
@@ -532,7 +530,7 @@ export default function StudentRegistration() {
             class="form-control"
             id="inputAddress"
             pattern="[0-9]{12}"
-            placeholder="Aadhar number"
+            placeholder="aadhar number"
           ></input>
            </div>
            <div class="col-md-6">
@@ -672,7 +670,6 @@ export default function StudentRegistration() {
             </ul>
           </div>
         </div>
-        <hr/>
         <h3>Entrance Exam Details</h3>
         <div class="col-md-6">
           <label for="inputAddress" class="form-label">
@@ -773,7 +770,6 @@ export default function StudentRegistration() {
             id="inputCity"
           ></input>
         </div>
-        <hr/>
         <h3>Parent's Details </h3>
 
         
@@ -831,7 +827,6 @@ export default function StudentRegistration() {
           </button>
         </div>
       </form>
-    </div>
     </div>
   );
 }
