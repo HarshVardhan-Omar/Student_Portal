@@ -335,6 +335,7 @@ a {
   max-width: 150px;
   width: 100%;
   max-height: 150px;
+  min-height: 150px;
   height: 100%;
   object-fit: cover;
   margin: 10px auto;
