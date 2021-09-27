@@ -24,11 +24,17 @@
 background-color: var(--col1);
 }
 .student-registration input{
+  font-size: medium;
+  height: 30px;
   background: none;
   width: 80%;
   border: none;
   border-bottom: 1px solid var(--textcolor);
   color: var(--cpcoltable);
+}
+.student-registration label{
+  font-size: small;
+  margin-bottom: 0px !important;
 }
 .student-registration input:focus{
   border: none;
@@ -37,13 +43,14 @@ background-color: var(--col1);
   /* background: none; */
 }
 .student-registration select{
+  margin-top: 10px;
   width: 80%;
   border: none;
   outline: none;
   padding: 6px 0px;
-  border-radius: 8px;
+  border-radius: 5px;
   color: var(--textcolor);
-  border: 0.2px solid var(--textcolor);
+  border: 1px solid var(--textcolor);
   background:none;
   /* background-color: var(--selectcol); */
 }
@@ -55,7 +62,9 @@ background-color: var(--col1);
 
 .student-registration select:focus{
   outline: none;
-  border: 0.2px solid var(--textcolor);
+  font-weight: bold;
+  color: var(--cpcoltable);
+  border: 1px solid var(--cpcoltable);
 }
 .academic-details-input{
   display: flex;
@@ -279,7 +288,7 @@ background-color: var(--col1);
 }
 .tabs button{
   color: white;
-  font-weight: 700;
+  font-weight: 100;
   font-size:15px;
 }
 /* .tabs button:focus{

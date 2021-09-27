@@ -3,8 +3,6 @@ import "./studentRegistration.css"
 import { useState } from 'react'
 
 export default function studentRegistrationimproved() {
-    var r = document.querySelector(':root');
-    var rs = getComputedStyle(r);
     const[ImageField,setImageField]=useState("https://www.pngitem.com/pimgs/b/508-5087236_profile-icon-png.png");
     const[formTitle,setFormtitle]=useState("Studentdetail")
     const setimage=(e)=>{
