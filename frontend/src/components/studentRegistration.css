@@ -1,0 +1,464 @@
+:root{
+  --selectcol:#85bad761;
+  --tabcolor:#85bad761;
+  --col1: #3e3f3f;
+  --textcolor: #b6b1b1;
+}
+
+.student-registration{
+  /* background-color: var(--bgcol); */
+  height: 100%;
+  font-family: "raleway";
+  
+}
+.student-registration h2{
+  font-weight: 600;
+}
+.student-registration .form-main-heading h1{
+  font-weight: 100;
+  font-family: "raleway";
+  text-align: center;
+  padding:5px 0px;
+}
+.form-body{
+background-color: var(--col1);
+}
+.student-registration input{
+  background: none;
+  width: 80%;
+  border: none;
+  border-bottom: 1px solid black;
+  color: var(--cpcoltable);
+}
+.student-registration input:focus{
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  /* background: none; */
+}
+.student-registration select{
+  width: 80%;
+  border: none;
+  outline: none;
+  padding: 6px 0px;
+  border-radius: 8px;
+  color: var(--textcolor);
+  border: 0.2px solid var(--textcolor);
+  background:none;
+  /* background-color: var(--selectcol); */
+}
+.student-registration option{
+  background-color: var(--sidecol1);
+  color: white;
+}
+.student-registration select.decorated option:checked{
+  background-color: var(--col2);
+}
+/* .student-registration .select-selected{
+  background-color: #85bad761;
+} */
+.student-registration select:focus{
+  outline: none;
+  border: 0.2px solid var(--textcolor);
+}
+.academic-details-input{
+  display: flex;
+  flex-direction: row;
+}
+.academicline1{
+  width: 35%;
+  /* border: 1px solid red; */
+}
+.academicline2{
+  width: 35%;
+}
+.academicline3{
+  width: 30%;
+}
+.academic-detail-input1{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* justify-content: space-evenly; */
+}
+.academic-detail-input2{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* justify-content: space-evenly; */
+}
+.academic-detail-input3{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* justify-content: space-evenly; */
+}
+.roll-input{
+  display: flex;
+  flex-direction: column;
+  /* margin: 14px; */
+}
+.enroll-input{
+  display: flex;
+  flex-direction: column;
+}
+.programme{
+  display: flex;
+  flex-direction: column;
+
+}
+.branch{
+  display: flex;
+  flex-direction: column;
+
+}
+.admission-source{
+  display: flex;
+  flex-direction: column;
+
+}
+.current-semester{
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* Personal Details Start */
+.personalline1{
+  width: 35%;
+  /* border: 1px solid red; */
+}
+.personalline2{
+  width: 35%;
+  /* border: 1px solid red; */
+}
+.personal-details-input{
+  display: flex;
+  flex-direction: row;
+}
+.englishname{
+  display: flex;
+  flex-direction: column;
+
+}
+.dob{
+  display: flex;
+  flex-direction: column;
+
+}
+.contactnumber{
+  display: flex;
+  flex-direction: column;
+
+}
+.hbtuemail{
+  display: flex;
+  flex-direction: column;
+
+}
+.subcategoryinput{
+  display: flex;
+  flex-direction: column;
+
+}
+.bloodgroupinput{
+  display: flex;
+  flex-direction: column;
+
+}
+.aadhaarinput{
+  display: flex;
+  flex-direction: column;
+
+}
+.nationalityinput{
+  display: flex;
+  flex-direction: column;
+}
+.hindiname{
+  display: flex;
+  flex-direction: column;
+}
+.genderinput{
+  display: flex;
+  flex-direction: column;
+}
+.alternatecontactinput{
+  display: flex;
+  flex-direction: column;
+}
+.personalemailinput{
+  display: flex;
+  flex-direction: column;
+}
+.categoryinput{
+  display: flex;
+  flex-direction: column;
+}
+.feewaiverinput{
+  display: flex;
+  flex-direction: column;
+}
+.hostelrequired{
+  display: flex;
+  flex-direction: column;
+}
+.transportmodeinput{
+  display: flex;
+  flex-direction: column;
+}
+.religioninput{
+  display: flex;
+  flex-direction: column;
+}
+.entrance-exam-input{
+  display: flex;
+  flex-direction: row;
+}
+.entranceline1{
+  width: 35%;
+}
+.entranceline2{
+  width: 35%;
+}
+.entranceexaminput{
+  display: flex;
+  flex-direction: column;
+}
+.applicationno{
+  display: flex;
+  flex-direction: column;
+}
+.categoryrank{
+  display: flex;
+  flex-direction: column;
+}
+.yearinput{
+  display: flex;
+  flex-direction: column;
+}
+.airrank{
+  display: flex;
+  flex-direction: column;
+}
+.seatcategoryinput{
+  display: flex;
+  flex-direction: column;
+}
+
+.parent-detail-input{
+  display: flex;
+  flex-direction: row;
+}
+.parentline1{
+  width: 35%;
+}
+.parentline2{
+  width: 35%;
+}
+.fathername{
+  display: flex;
+  flex-direction: column;
+}
+.mothername{
+  display: flex;
+  flex-direction: column;
+}
+.fathercontact{
+  display: flex;
+  flex-direction: column;
+}
+.landline{
+  display: flex;
+  flex-direction: column;
+}
+.parentemailid{
+  display: flex;
+  flex-direction: column;
+}
+.tabs{
+  background-color: var(--sidecol1);
+  /* padding: 6px; */
+  color: var(--textcolor);
+}
+.tabs button{
+  color: white;
+  font-weight: 700;
+  font-size:15px;
+}
+/* .tabs button:focus{
+  color: var(--cpcoltable);
+} */
+.buttons{
+  width: fit-content;
+  margin: auto;
+  padding-top: 8px;
+}
+/* #Studentdetail:focus{
+  background-color: red;
+} */
+
+.address-input{
+  display: flex;
+  flex-direction: row;
+}
+.curraddressline1{
+  width: 50%;
+}
+.curraddressline2{
+  width: 50%;
+}
+.addressline1{
+  display: flex;
+  flex-direction: column;
+}
+.addressline2{
+  display: flex;
+  flex-direction: column;
+}
+.zipcode{
+  display: flex;
+  flex-direction: column;
+}
+.city{
+  display: flex;
+  flex-direction: column;
+}
+.state{
+  display: flex;
+  flex-direction: column;
+}
+.country{
+  display: flex;
+  flex-direction: column;
+}
+.permanentaddressheading{
+  display: flex;
+  flex-direction: row;
+}
+.checkbox{
+  width: fit-content;
+  height: fit-content;
+  padding: 12px;
+}
+.permanent-address-input{
+  display: flex;
+  flex-direction: row;
+}
+.permanentaddressline1{
+  width: 50%;
+}
+.permanentaddressline2{
+  width: 50%;
+}
+#checkbox1{
+  width: fit-content;
+}
+
+.highschool-detail-input{
+  display: flex;
+  flex-direction: row;
+}
+.highschoolline1{
+  width: 50%;
+}
+.highschoolline2{
+  width: 50%;
+}
+.board{
+  display: flex;
+  flex-direction: column;
+}
+.rollno{
+  display: flex;
+  flex-direction: column;
+}
+.year{
+  display: flex;
+  flex-direction: column;
+}
+.nameofinstitute{
+  display: flex;
+  flex-direction: column;
+}
+.division{
+  display: flex;
+  flex-direction: column;
+}
+.subjects{
+  display: flex;
+  flex-direction: column;
+}
+.family-detail-input{
+  display: flex;
+  flex-direction: row;
+}
+.familydetailline1{
+  width: 50%;
+}
+.familydetailline2{
+  width: 50%;
+}
+.membername{
+  display: flex;
+  flex-direction: column;
+}
+.relationship{
+  display: flex;
+  flex-direction: column;
+}
+.ageinput{
+  display: flex;
+  flex-direction: column;
+}
+.familyaddressinput{
+  display: flex;
+  flex-direction: column;
+}
+.eduqualification{
+  display: flex;
+  flex-direction: column;
+}
+.proqualification{
+  display: flex;
+  flex-direction: column;
+}
+.earningstatus{
+  display: flex;
+  flex-direction: column;
+}
+.occupation{
+  display: flex;
+  flex-direction: column;
+}
+.organization{
+  display: flex;
+  flex-direction: column;
+}
+.incomepermonth{
+  display: flex;
+  flex-direction: column;
+}
+.physics-marks-input{
+  display: flex;
+  flex-direction: row;
+}
+.physicsline1{
+  width: 50%;
+}
+.physicsline2{
+  width: 50%;
+}
+.obtainedmarks{
+  display: flex;
+  flex-direction: column;
+
+}
+.totalmarks{
+  display: flex;
+  flex-direction: column;
+}
+.percentageheading{
+  width: 50%;
+}
+
