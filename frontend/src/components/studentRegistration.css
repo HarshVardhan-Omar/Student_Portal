@@ -6,10 +6,10 @@
 }
 
 .student-registration{
-  /* background-color: var(--bgcol); */
   height: 100%;
   font-family: "raleway";
-  
+  color: var(--cpcoltable);
+  padding-bottom: 10vh;  
 }
 .student-registration h2{
   font-weight: 600;
@@ -27,13 +27,13 @@ background-color: var(--col1);
   background: none;
   width: 80%;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--textcolor);
   color: var(--cpcoltable);
 }
 .student-registration input:focus{
   border: none;
   outline: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--textcolor);
   /* background: none; */
 }
 .student-registration select{
@@ -47,16 +47,12 @@ background-color: var(--col1);
   background:none;
   /* background-color: var(--selectcol); */
 }
+
 .student-registration option{
   background-color: var(--sidecol1);
   color: white;
 }
-.student-registration select.decorated option:checked{
-  background-color: var(--col2);
-}
-/* .student-registration .select-selected{
-  background-color: #85bad761;
-} */
+
 .student-registration select:focus{
   outline: none;
   border: 0.2px solid var(--textcolor);

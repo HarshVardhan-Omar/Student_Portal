@@ -5,7 +5,7 @@ import { useState } from 'react'
 export default function studentRegistrationimproved() {
     var r = document.querySelector(':root');
     var rs = getComputedStyle(r);
-    const[ImageField,setImageField]=useState("");
+    const[ImageField,setImageField]=useState("https://www.pngitem.com/pimgs/b/508-5087236_profile-icon-png.png");
     const[formTitle,setFormtitle]=useState("Studentdetail")
     const setimage=(e)=>{
         var input = document.getElementById("ImageField");
@@ -13,7 +13,6 @@ export default function studentRegistrationimproved() {
         fReader.readAsDataURL(input.files[0]);
         fReader.onloadend = function(event){
             var img = document.getElementById("imageuploaded");
-            img.src = event.target.result;
             setImageField(event.target.result)
         }
     }
@@ -136,7 +135,7 @@ export default function studentRegistrationimproved() {
                                 Maximum File size:200Kb
                             </div>
                             <div className="imagedisplay">
-                               <img style={{position: "absolute", height: "150px", width: "150px", objectFit: "cover"  }} id="imageuploaded" alt="" />
+                               <img src={ImageField} style={{position: "absolute", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="imageuploaded" alt="" />
                             </div>
                             <div style={{position: "relative", top: "150px"}} className="imageinput">
                                 <input type="file" name="" id="ImageField" onChange={setimage}/>
