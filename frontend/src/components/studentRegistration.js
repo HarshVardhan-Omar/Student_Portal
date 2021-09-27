@@ -7,7 +7,16 @@ export default function studentRegistrationimproved() {
     var rs = getComputedStyle(r);
     const[ImageField,setImageField]=useState("");
     const[formTitle,setFormtitle]=useState("Studentdetail")
-
+    const setimage=(e)=>{
+        var input = document.getElementById("ImageField");
+        var fReader = new FileReader();
+        fReader.readAsDataURL(input.files[0]);
+        fReader.onloadend = function(event){
+            var img = document.getElementById("imageuploaded");
+            img.src = event.target.result;
+            setImageField(event.target.result)
+        }
+    }
     const setform=(e)=>{
         setFormtitle(e.target.id)
     }
@@ -127,13 +136,13 @@ export default function studentRegistrationimproved() {
                                 Maximum File size:200Kb
                             </div>
                             <div className="imagedisplay">
-                               <img src={ImageField} alt="" />
+                               <img style={{position: "absolute", height: "150px", width: "150px", objectFit: "cover"  }} id="imageuploaded" alt="" />
                             </div>
-                            <div className="imageinput">
-                                <input type="file" name="" id="ImageField" onChange={(e)=>{setImageField(e.target.value)}}/>
+                            <div style={{position: "relative", top: "150px"}} className="imageinput">
+                                <input type="file" name="" id="ImageField" onChange={setimage}/>
                             </div>
-                            <div className="imageupload">
-                                <button type="button">Upload Photo</button>
+                            <div style={{position: "relative", top: "150px"}} className="imageupload">
+                                <button type="button" onClick={(e)=>console.log(ImageField)}>Upload Photo</button>
                             </div>
                             
                             
