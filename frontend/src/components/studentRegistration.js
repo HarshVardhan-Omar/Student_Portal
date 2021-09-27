@@ -133,7 +133,7 @@ export default function studentRegistrationimproved() {
                                 <input type="file" name="" id="ImageField" onChange={(e)=>{setImageField(e.target.value)}}/>
                             </div>
                             <div className="imageupload">
-                                <button>Upload Photo</button>
+                                <button type="button">Upload Photo</button>
                             </div>
                             
                             
