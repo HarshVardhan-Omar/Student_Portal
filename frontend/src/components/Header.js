@@ -72,6 +72,9 @@ export default function Header({ data, logout, csrftoken }) {
         document.documentElement.style.setProperty('--bgcol', '#85bad761');
         document.documentElement.style.setProperty('--themeiconcolor', '#004064');
         document.documentElement.style.setProperty('--cpcoltable', '#000000');
+        document.documentElement.style.setProperty('--selectcol', '#85bad761');
+        document.documentElement.style.setProperty('--tabcolor', '#85bad761');
+        document.documentElement.style.setProperty('--tabcolorform', '#b6b1b1');
         document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
     }
     function makeblack() {
@@ -82,6 +85,9 @@ export default function Header({ data, logout, csrftoken }) {
         document.documentElement.style.setProperty('--bgcol', '#202022');
         document.documentElement.style.setProperty('--themeiconcolor', 'white');
         document.documentElement.style.setProperty('--cpcoltable', '#ffffff');
+        document.documentElement.style.setProperty('--selectcol', '#202022');
+        document.documentElement.style.setProperty('--tabcolor', '#151515');
+        document.documentElement.style.setProperty('--tabcolorform', 'white');
         document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000000");
     }
 
