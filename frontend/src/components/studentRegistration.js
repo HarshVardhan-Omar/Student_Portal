@@ -40,7 +40,7 @@ export default function studentRegistrationimproved() {
             {/* <div className="form-main-heading">
                 <h1>Student Registration</h1>
             </div> */}
-            <div className="tabs container">
+            <div className="tabs container mt-4">
                 <div className="buttons">
                 <button id="Studentdetail" style={(formTitle==="Studentdetail"?buttonstyleactive:buttonstyleinactive)}className="ms-3" onClick={setform}>Student Detail</button>
                 <button id="address" style={(formTitle==="address"?buttonstyleactive:buttonstyleinactive)}className="mx-3" onClick={setform}>Address</button>
