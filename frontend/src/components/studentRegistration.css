@@ -11,6 +11,9 @@
   font-family: "raleway";
   
 }
+.student-registration h2{
+  font-weight: 600;
+}
 .student-registration .form-main-heading h1{
   font-weight: 100;
   font-family: "raleway";
