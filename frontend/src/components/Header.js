@@ -5,10 +5,10 @@ import "./header.css"
 import { BiSun } from "react-icons/bi";
 import { Link } from "react-router-dom"
 
-export default function Header({ data, logout, csrftoken }) {
+export default function Header({ data, logout, csrftoken,theme,setTheme }) {
     const match = useRouteMatch();
     const [openNav, setOpenNav] = useState(false);
-    const [theme, setTheme] = useState("Black")
+    // const [theme, setTheme] = useState("Black")
     const [activeLink, setActiveLink] = useState(location.pathname);
     const toggleNav = (e) => {
         openNav ? setOpenNav(false) : setOpenNav(true);
