@@ -5,7 +5,8 @@ from django.db import models
 
 class Student(models.Model):
     username=models.TextField(max_length=50, default="",null=False,unique=True)
-    password=models.TextField(max_length=40,null=False,unique=False)
+    password=models.TextField(max_length=40,null=True,unique=False)
+    encryptedpassword=models.TextField(max_length=500,null=True,blank=True)
     Name=models.CharField(max_length=50,default="",null=False,unique=False)
     photo=models.ImageField(upload_to="api/images",default="")
     DateOfBirth=models.DateField(null=True)
