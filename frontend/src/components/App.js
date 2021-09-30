@@ -9,7 +9,6 @@ import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 
 export default function App() {
 
-  const [theme, setTheme] = useState("White")
   const[progress,setProgress]=useState(0);
   const[data,setData]=useState();
   //CHromeMonileFix
@@ -27,7 +26,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" render={props => <LoginPage setData={setData} setProgress={setProgress} />} />
-        <Route path="/getstudentdetails" render={props => <Homepage setData={setData} theme={theme} setTheme={setTheme} data={data} setProgress={setProgress} />}  />
+        <Route path="/getstudentdetails" render={props => <Homepage setData={setData} data={data} setProgress={setProgress} />}  />
         <Route> <NotFound/> </Route>
       </Switch>
     </Router>
