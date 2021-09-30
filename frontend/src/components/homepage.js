@@ -31,7 +31,6 @@ export default function Homepage(props) {
     const history=useHistory();
     const match=useRouteMatch();
     const data = props.data
-    const hometheme=props.theme
     
 
     const logout=(e)=>{
@@ -103,12 +102,12 @@ export default function Homepage(props) {
       return (
         <div className="homepage">
             {/* <h1>Hello{locationgrab.state.Name}</h1> */}
-            <Header data={data} theme={props.theme} setTheme={props.setTheme} logout={logout} csrftoken={csrftoken} ></Header>
+            <Header data={data} logout={logout} csrftoken={csrftoken} ></Header>
             <div style={{width: "100%", height: '10vh', position: "relative", backgroundColor: "var(--col1)", zIndex: "1" }} ></div>
             <Switch>
             <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
             <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword data={data} />}  />
-            <Route exact path={`${match.url}/studentregistration`}  render={props => <StudentRegistration theme={hometheme} data={data} />}  />
+            <Route exact path={`${match.url}/studentregistration`}  render={props => <StudentRegistration data={data} />}  />
             <Route exact path={`${match.url}/lodgegrievance`} render={props => <Lodge data={data} />} />
              <Route> <NotFound/> </Route>
             </Switch>
