@@ -109,7 +109,7 @@ export default function Homepage(props) {
             <div style={{width: "100%", height: '10vh', position: "relative", backgroundColor: "var(--col1)", zIndex: "1" }} ></div>
             <Switch>
             <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
-            <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword data={data} />}  />
+            <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword csrftoken={csrftoken} setProgress={setProgress}data={data} />}  />
             <Route exact path={`${match.url}/studentregistration`}  render={props => <StudentRegistration theme={hometheme} data={data} />}  />
             <Route exact path={`${match.url}/lodgegrievance`} render={props => <Lodge data={data} />} />
             <Route exact path={`${match.url}/semesterregistration`} render={props => <Cp data={data} />} />
