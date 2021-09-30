@@ -2,7 +2,7 @@ import React from 'react'
 import "./studentRegistration.css"
 import { useState } from 'react'
 
-export default function studentRegistrationimproved() {
+export default function studentRegistrationimproved(props) {
     const[ImageField,setImageField]=useState("https://www.pngitem.com/pimgs/b/508-5087236_profile-icon-png.png");
     const[formTitle,setFormtitle]=useState("Studentdetail")
     const setimage=(e)=>{
@@ -133,7 +133,7 @@ export default function studentRegistrationimproved() {
                                 Maximum File size:200Kb
                             </div>
                             <div className="imagedisplay">
-                               <img src={ImageField} style={{position: "absolute", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="imageuploaded" alt="" />
+                               <img src={ImageField} style={{position: "absolute", height: "150px", width: "150px", objectFit: "cover", padding: "10px",filter:(props.theme==="Black"?(ImageField==="https://www.pngitem.com/pimgs/b/508-5087236_profile-icon-png.png"?"invert(1)":"none"):"none")}} id="imageuploaded" alt="" />
                             </div>
                             <div style={{position: "relative", top: "150px"}} className="imageinput">
                                 <input type="file" name="" id="ImageField" onChange={setimage}/>
