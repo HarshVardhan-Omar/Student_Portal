@@ -5,6 +5,7 @@ import './loginPage.css'
 import logo from './logo.png'
 import hbtu from './hbtu.jpg'
 import jQuery from './jQuery'
+var SHA512 = require("crypto-js/sha512");
 function getCookie(name) {
   var cookieValue = null;
   if (document.cookie && document.cookie !== '') {
@@ -81,7 +82,8 @@ export default function LoginPage(props) {
                     },
         body:JSON.stringify({
             user_name:user_name,
-            password:password
+            password:password,
+            encryptedpassword:SHA512(password).toString()
         }),
       };
       props.setProgress(10)      

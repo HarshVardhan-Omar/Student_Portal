@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import StudentView,welcome,GetStudent,GetStudentBySession,LogoutStudentBySession,SessionsView
+from .views import StudentView,welcome,GetStudent,GetStudentBySession,LogoutStudentBySession,SessionsView,ChangePassword
 
 urlpatterns=[
     path('',welcome),
@@ -8,5 +8,6 @@ urlpatterns=[
     path('sessionverify',GetStudentBySession.as_view()),
     path('logoutbysession',LogoutStudentBySession.as_view()),
     path('loginsessions',SessionsView.as_view()),
+    path('changepassword',ChangePassword.as_view()),
 ]
 

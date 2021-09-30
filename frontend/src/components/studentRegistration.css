@@ -43,7 +43,7 @@ background-color: var(--col1);
   /* background: none; */
 }
 .student-registration select{
-  margin-top: 10px;
+  margin-top: 7px;
   width: 80%;
   border: none;
   outline: none;
@@ -71,11 +71,11 @@ background-color: var(--col1);
   flex-direction: row;
 }
 .academicline1{
-  width: 35%;
+  width: 100%;
   /* border: 1px solid red; */
 }
 .academicline2{
-  width: 35%;
+  width: 100%;
 }
 .academicline3{
   width: 30%;
@@ -130,11 +130,11 @@ background-color: var(--col1);
 
 /* Personal Details Start */
 .personalline1{
-  width: 35%;
+  width: 100%;
   /* border: 1px solid red; */
 }
 .personalline2{
-  width: 35%;
+  width: 100%;
   /* border: 1px solid red; */
 }
 .personal-details-input{
@@ -221,10 +221,10 @@ background-color: var(--col1);
   flex-direction: row;
 }
 .entranceline1{
-  width: 35%;
+  width: 100%;
 }
 .entranceline2{
-  width: 35%;
+  width: 100%;
 }
 .entranceexaminput{
   display: flex;
@@ -256,10 +256,10 @@ background-color: var(--col1);
   flex-direction: row;
 }
 .parentline1{
-  width: 35%;
+  width: 100%;
 }
 .parentline2{
-  width: 35%;
+  width: 100%;
 }
 .fathername{
   display: flex;
@@ -295,9 +295,11 @@ background-color: var(--col1);
   color: var(--cpcoltable);
 } */
 .buttons{
-  width: fit-content;
+  display: flex;
+  justify-content: space-around;
   margin: auto;
   padding-top: 8px;
+  width: 770px;
 }
 /* #Studentdetail:focus{
   background-color: red;
@@ -308,10 +310,10 @@ background-color: var(--col1);
   flex-direction: row;
 }
 .curraddressline1{
-  width: 50%;
+  width: 100%;
 }
 .curraddressline2{
-  width: 50%;
+  width: 100%;
 }
 .addressline1{
   display: flex;
@@ -351,10 +353,10 @@ background-color: var(--col1);
   flex-direction: row;
 }
 .permanentaddressline1{
-  width: 50%;
+  width: 100%;
 }
 .permanentaddressline2{
-  width: 50%;
+  width: 100%;
 }
 #checkbox1{
   width: fit-content;
@@ -365,10 +367,10 @@ background-color: var(--col1);
   flex-direction: row;
 }
 .highschoolline1{
-  width: 50%;
+  width: 100%;
 }
 .highschoolline2{
-  width: 50%;
+  width: 100%;
 }
 .board{
   display: flex;
@@ -399,10 +401,10 @@ background-color: var(--col1);
   flex-direction: row;
 }
 .familydetailline1{
-  width: 50%;
+  width: 100%;
 }
 .familydetailline2{
-  width: 50%;
+  width: 100%;
 }
 .membername{
   display: flex;
@@ -449,10 +451,10 @@ background-color: var(--col1);
   flex-direction: row;
 }
 .physicsline1{
-  width: 50%;
+  width: 100%;
 }
 .physicsline2{
-  width: 50%;
+  width: 100%;
 }
 .obtainedmarks{
   display: flex;
@@ -464,6 +466,94 @@ background-color: var(--col1);
   flex-direction: column;
 }
 .percentageheading{
-  width: 50%;
+  width: 100%;
 }
-
+@media screen and (max-width: 1000px){
+  .buttons{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 770px){
+  .academic-details-input{
+    display: flex;
+    flex-direction: column;
+  }
+  .academic-detail-input1{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* justify-content: space-evenly; */
+  }
+  .academic-detail-input2{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* justify-content: space-evenly; */
+  }
+  .academic-detail-input3{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* justify-content: space-evenly; */
+  }
+  .personal-details-input{
+    display: flex;
+    flex-direction: column;
+  }
+  .entrance-exam-input{
+    display: flex;
+    flex-direction: column;
+  }
+  .parent-detail-input{
+    display: flex;
+    flex-direction: column;
+  }
+  .address-input{
+    display: flex;
+    flex-direction: column;
+  }
+  .permanentaddressheading{
+    display: flex;
+    flex-direction: column;
+  }
+  .permanent-address-input{
+    display: flex;
+    flex-direction: column;
+  }
+  .highschool-detail-input{
+    display: flex;
+    flex-direction: column;
+  }
+  .family-detail-input{
+    display: flex;
+    flex-direction: column;
+  }
+  .physics-marks-input{
+    display: flex;
+    flex-direction: column;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: row;
+  }
+}
+@media screen and (max-width: 580px){
+  .form-body{
+    width: 85vw;
+  }
+  .tabs{
+    width: 85vw;
+  }
+  .buttons{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 8px;
+    height: max-content;
+  }
+  .tabs button{
+    width: 70vw;
+    border-radius: 5px !important;
+    height: 50px;
+  }
+}

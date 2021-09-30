@@ -22,6 +22,7 @@ class GetStudent(APIView):
     serializer_class=StudentSerializer
     lookup_url_kwarg_user='user_name'
     lookup_url_kwarg_pass='password'
+    lookup_url_kwarg_encrypted='encryptedpassword'
     def post(self,request,format=None):
 
         if not self.request.session.exists(self.request.session.session_key):
@@ -29,10 +30,11 @@ class GetStudent(APIView):
 
         username=request.data.get(self.lookup_url_kwarg_user)
         password=request.data.get(self.lookup_url_kwarg_pass)
-        if username!=None and password!=None:
+        encryptedpassword=request.data.get(self.lookup_url_kwarg_encrypted)
+        if username!=None and password!=None and encryptedpassword!=None:
             student=Student.objects.filter(username=username)
             if len(student)==1:
-                if password == self.serializer_class(student[0]).data["password"]:
+                if password == self.serializer_class(student[0]).data["password"] or encryptedpassword == self.serializer_class(student[0]).data["encryptedpassword"]:
                     sessionobject = StoredSessions(key=self.request.session.session_key, username=username)        
                     sessionobject.save()
                     datum = self.serializer_class(student[0]).data
@@ -71,6 +73,32 @@ class LogoutStudentBySession(APIView):
             sessionfound.delete();
             return Response({'OK:','OK'}, status=status.HTTP_200_OK)
         return Response({'Login Required:','No Session Found'},status=status.HTTP_204_NO_CONTENT)
+
+class ChangePassword(APIView):
+    def get(self, request,format=None):
+        return HttpResponse("<h1>BSDK Aukat me madarchod tmhare baap ki api ni hai</h1>")
+    serializer_class=StudentSerializer
+    lookup_url_kwarg_user='user_name'
+    lookup_url_kwarg_pass='password'
+    lookup_url_kwarg_encrypted='encryptedpassword'
+    lookup_url_kwarg_new_encrypted='newencryptedpassword'
+    def post(self,request,format=None):
+        username=request.data.get(self.lookup_url_kwarg_user)
+        password=request.data.get(self.lookup_url_kwarg_pass)
+        encryptedpassword=request.data.get(self.lookup_url_kwarg_encrypted)
+        newencryptedpassword=request.data.get(self.lookup_url_kwarg_new_encrypted)
+        if username!=None and password!=None and encryptedpassword!=None and newencryptedpassword!=None:
+            student=Student.objects.filter(username=username)
+            if len(student)==1:
+                if password == self.serializer_class(student[0]).data["password"] or encryptedpassword == self.serializer_class(student[0]).data["encryptedpassword"]:
+                    student[0].encryptedpassword=newencryptedpassword
+                    student[0].password=None
+                    student[0].save(update_fields=['encryptedpassword', 'password'])
+                    return Response({'PasswordChanged'}, status=status.HTTP_200_OK)
+                return Response({'Incorrect Password'},status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'Bad Request:','User Does not exist'},status=status.HTTP_404_NOT_FOUND)
+        return Response({'Bad Request:','Request parameter Not meant'},status=status.HTTP_400_BAD_REQUEST)
+
 
 class SessionsView(generics.ListAPIView):
     queryset=StoredSessions.objects.all()
