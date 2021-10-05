@@ -1,0 +1,42 @@
+.course-management h1{
+    text-align: center;
+    margin: 20px;
+}
+.btn-secondary {
+    margin-top: 20px;
+  }
+   .btn-secondary {
+    background: var(--bgcol);
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 11px;
+    box-shadow: none;
+    margin-top: 26px;
+    text-shadow: none;
+    outline: none;
+    color: var(--cpcolor);
+  }
+  
+   .btn-secondary:hover,
+   .btn-secondary:active {
+    background: var(--cpcolborder);
+    outline: none;
+    color: white;
+  }
+    .btn-secondary:active {
+    transform: translateY(1px);
+  }
+  .course-management .container{
+    color: var(--cpcoltable);
+    background: none;
+    max-width: 320px;
+    width: 90%;
+    background-color: var(--col1);
+    padding: 40px;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }

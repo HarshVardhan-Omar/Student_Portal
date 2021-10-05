@@ -10,6 +10,7 @@ import ChangePassword from './ChangePassword'
 import Lodge from './Lodge';
 import StudentRegistration from './studentRegistration';
 import Cp from './Cp';
+import CourseManagement from './courseManagement';
 
 function getCookie(name) {
     var cookieValue = null;
@@ -113,6 +114,7 @@ export default function Homepage(props) {
             <Route exact path={`${match.url}/studentregistration`}  render={props => <StudentRegistration theme={hometheme} data={data} />}  />
             <Route exact path={`${match.url}/lodgegrievance`} render={props => <Lodge data={data} />} />
             <Route exact path={`${match.url}/semesterregistration`} render={props => <Cp data={data} />} />
+            <Route exact path={`${match.url}/coursemanagement`} render={props => <CourseManagement data={data} />} />
              <Route> <NotFound/> </Route>
             </Switch>
             {/* <button onClick={logout}>LogOut</button> */}
