@@ -3,7 +3,7 @@
 font-family: 'Raleway', sans-serif; */
 
 .application {
-  /* height: 100vh; */
+  height: 100vh;
   width: 60%;
   margin: auto;
   font-family: 'Raleway', sans-serif;
@@ -24,4 +24,9 @@ font-family: 'Raleway', sans-serif; */
 
 .input-form:focus {
   background-color: var(--col1);
+}
+@media (max-width: 470px) {
+  .application td {
+    font-size: 11px;
+  }
 }
