@@ -11,19 +11,19 @@ function Lodge() {
                 <tbody>
                     <tr>
                         <td>
-                            <i className="fas fa-user"></i>{" To,"}
+                            To,
                         </td>
                         <td colSpan="3">VC, HBTU Kanpur</td>
                     </tr>
                     <tr>
                         <td>
-                            <i className="fas fa-user"></i>{" CC,"}
+                            CC,
                         </td>
                         <td colSpan="3">Pro VC, HBTU Kanpur</td>
                     </tr>
                     <tr>
                         <td>
-                            <i className="fas fa-user"></i>{" BCC,"}
+                            BCC,
                         </td>
                         <td colSpan="3">Registrar, HBTU Kanpur</td>
                     </tr>
