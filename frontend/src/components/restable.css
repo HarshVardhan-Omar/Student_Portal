@@ -1,0 +1,50 @@
+.resultTable {
+  font-family: 'Raleway';
+  font-weight: 500;
+}
+.res-table {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+.download {
+  margin-top: 25px;
+}
+@media (max-width: 576px) {
+  .res-table {
+    padding: 0px 10px;
+    margin-bottom: 20px;
+  }
+}
+.row-res {
+  color: var(--cpcoltable);
+}
+
+.butn-1 {
+  color: var(--cpcoltable);
+  background-color: var(--col1);
+  border: 2px solid var(--cpcoltable);
+  border-radius: 7px;
+}
+.butn-1:hover {
+  color: var(--col1);
+  background-color: var(--cpcoltable);
+  border: 2px solid var(--col1);
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-accent-bg: var(--bs-table-striped-bg);
+  color: var(--cpcoltable);
+}
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--cpcoltable);
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: var(--col1);
+  background-color: var(--cpcoltable);
+}

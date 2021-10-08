@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Raleway:wght@400;500&display=swap');
+.restab {
+  background-color: var(--col1);
+  color: var(--cpcoltable);
+}
+.col-sm-2 {
+  width: 100%;
+  text-align: center;
+}
+@media (min-width: 576px) {
+  .col-sm-2 {
+    width: 15.9%;
+  }
+}

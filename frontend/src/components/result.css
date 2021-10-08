@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Raleway:wght@400;500&display=swap');
+
+.result-tab {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--cpcoltable);
+}
+.res-head {
+  text-align: center;
+  color: var(--cpcoltable);
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 15px;
+  font-weight: 500;
+  /* color: #1d41df; */
+}
