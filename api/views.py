@@ -1,6 +1,7 @@
 from django.shortcuts import HttpResponse
 from rest_framework import generics,status
 from rest_framework.response import Response
+from rest_framework.serializers import Serializer
 from rest_framework.views import APIView
 from .serializers import StudentSerializer,SessionSerializer
 from .models import Student,StoredSessions
@@ -8,17 +9,16 @@ from .models import Student,StoredSessions
 # Create your views here.
 
 def welcome(request):
-    return HttpResponse("<h1>bsdk tm hamare ghar me aa gaye Nikal Laude</h1>")
+    return HttpResponse("404 Not Found")
 
 
 class StudentView(generics.ListCreateAPIView):
     queryset=Student.objects.all()
     serializer_class=StudentSerializer
 
-    
 class GetStudent(APIView):
     def get(self, request,format=None):
-        return HttpResponse("<h1>BSDK Aukat me madarchod tmhare baap ki api ni hai</h1>")
+        return HttpResponse("<h1>404 Not Found</h1>")
     serializer_class=StudentSerializer
     lookup_url_kwarg_user='user_name'
     lookup_url_kwarg_pass='password'
@@ -46,7 +46,7 @@ class GetStudent(APIView):
 
 class GetStudentBySession(APIView):
     def get(self, request,format=None):
-        return HttpResponse("<h1>BSDK Aukat me madarchod tmhare baap ki api ni hai</h1>")
+        return HttpResponse("<h1>404 Not Found</h1>")
     serializer_class=StudentSerializer
     session_serializer_class=SessionSerializer
     def post(self,request,format=None):
@@ -62,7 +62,7 @@ class GetStudentBySession(APIView):
 
 class LogoutStudentBySession(APIView):
     def get(self, request,format=None):
-        return HttpResponse("<h1>BSDK Aukat me madarchod tmhare baap ki api ni hai</h1>")
+        return HttpResponse("<h1>404 Not Found</h1>")
     serializer_class=StudentSerializer
     def post(self,request,format=None):
         if not self.request.session.exists(self.request.session.session_key):
@@ -76,7 +76,7 @@ class LogoutStudentBySession(APIView):
 
 class ChangePassword(APIView):
     def get(self, request,format=None):
-        return HttpResponse("<h1>BSDK Aukat me madarchod tmhare baap ki api ni hai</h1>")
+        return HttpResponse("<h1>404 Not Found</h1>")
     serializer_class=StudentSerializer
     lookup_url_kwarg_user='user_name'
     lookup_url_kwarg_pass='password'
@@ -98,6 +98,26 @@ class ChangePassword(APIView):
                 return Response({'Incorrect Password'},status=status.HTTP_401_UNAUTHORIZED)
             return Response({'Bad Request:','User Does not exist'},status=status.HTTP_404_NOT_FOUND)
         return Response({'Bad Request:','Request parameter Not meant'},status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class SaveDetails(APIView):
+    def get(self,request,format=None):
+        return HttpResponse("404 Not Found")
+    serializer_class=StudentSerializer
+    lookup_url_kwarg_user='user_name'
+    lookup_url_kwarg_details='details'
+    def post(self,request,format=None):
+        username=request.data.get(self.lookup_url_kwarg_user)
+        details=request.data.get(self.lookup_url_kwarg_details)
+        if username!=None:
+            student=Student.objects.filter(username=username)
+            if len(student)==1:
+                student.update(**details)
+                data=self.serializer_class(student[0]).data
+                return Response(data,status=status.HTTP_200_OK)
+            return Response("Username Not Found",status=status.HTTP_401_UNAUTHORIZED)
+        return Response("Request parameter not met",status=status.HTTP_400_BAD_REQUEST)
 
 
 class SessionsView(generics.ListAPIView):

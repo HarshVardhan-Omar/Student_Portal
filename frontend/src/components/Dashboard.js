@@ -19,7 +19,7 @@ export default function Dashboard({ data }) {
               </div>
               <div className="card-body">
                 <p className="mb-0">
-                  Roll Number: {data.RollNo}
+                  Roll Number: {data.UniversityRollNo}
                 </p>
                 <p className="mb-0">
                   Course: {data.Programme}
@@ -56,12 +56,12 @@ export default function Dashboard({ data }) {
                           <tr>
                             {/* <td>2</td> */}
                             <td>HBTU Email</td>
-                            <td>{data.OfficialEmail}</td>
+                            <td>{data.HBTUEmail}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
                             <td>Personal Email</td>
-                            <td>{data.Email}</td>
+                            <td>{data.PersonalEmail}</td>
                           </tr>
                         </tbody>
                 </Table>
@@ -85,7 +85,7 @@ export default function Dashboard({ data }) {
                           <tr>
                             {/* <td>1</td> */}
                             <td>University Roll No.</td>
-                            <td>{data.RollNo}</td>
+                            <td>{data.UniversityRollNo}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
@@ -123,11 +123,11 @@ export default function Dashboard({ data }) {
                         <tbody>
                           <tr>
                             <td>Student Name</td>
-                            <td>{data.Name}</td>
+                            <td>{data.StudentName}</td>
                           </tr>
                           <tr>
                             <td>Student Name in Hindi</td>
-                            <td>{data.Name}</td>
+                            <td>{data.StudentNameHindi}</td>
                           </tr>
                           <tr>
                             <td>Date of Birth</td>
@@ -147,11 +147,11 @@ export default function Dashboard({ data }) {
                           </tr>
                           <tr>
                             <td>Personal Email</td>
-                            <td>{data.Email}</td>
+                            <td>{data.PersonalEmail}</td>
                           </tr>
                           <tr>
                             <td>HBTU Email</td>
-                            <td>{data.OfficialEmail}</td>
+                            <td>{data.HBTUEmail}</td>
                           </tr>
                           <tr>
                             <td>Category</td>
@@ -171,11 +171,11 @@ export default function Dashboard({ data }) {
                           </tr>
                           <tr>
                             <td>Aadhar Card Number</td>
-                            <td>{data.Aadhaar}</td>
+                            <td>{data.AadhaarCard}</td>
                           </tr>
                           <tr>
                             <td>Hostel Required</td>
-                            <td>{data.Hosteler}</td>
+                            <td>{data.Hostel}</td>
                           </tr>
                           <tr>
                             <td>Mode of Transport</td>
@@ -206,7 +206,7 @@ export default function Dashboard({ data }) {
                           </tr>
                           <tr>
                             <td>Year</td>
-                            <td>{data.YearOfEntranceExam}</td>
+                            <td>{data.Year}</td>
                           </tr>
                           <tr>
                             <td>Roll No / Application Number</td>
@@ -235,7 +235,7 @@ export default function Dashboard({ data }) {
                         <tbody>
                           <tr>
                             <td>Father's Name</td>
-                            <td>{data.Fathername}</td>
+                            <td>{data.FatherName}</td>
                           </tr>
                           <tr>
                             <td>Father's Contact</td>
@@ -243,11 +243,11 @@ export default function Dashboard({ data }) {
                           </tr>
                           <tr>
                             <td>Mother's Name</td>
-                            <td>{data.Mothername}</td>
+                            <td>{data.MotherName}</td>
                           </tr>
                           <tr>
                             <td>Parent's Mail Id</td>
-                            <td>{data.FatherMail}</td>
+                            <td>{data.ParentEmail}</td>
                           </tr>
                         </tbody>
                       </Table>

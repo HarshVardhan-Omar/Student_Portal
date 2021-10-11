@@ -557,3 +557,20 @@ background-color: var(--col1);
     height: 50px;
   }
 }
+
+.mybutton{
+  width: fit-content;
+  margin: auto;
+}
+.savebutton{
+  border: none;
+    outline: none;
+    border-radius: 12px;
+    padding: 7px 32px;
+
+}
+.response{
+  padding: 5px;
+  animation: hide-after 1s ease-in 7s 1 forwards !important; 
+  opacity: 80%;
+}
