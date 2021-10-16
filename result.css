@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Raleway:wght@400;500&display=swap');
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: var(--col1);
+  background-color: var(--cpcoltable);
+  border: none;
+  border-radius: 5px 5px 0px 0px;
+  cursor: pointer;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: var(--col1);
+  background-color: var(--cpcoltable);
+}
+.nav-tabs .nav-link {
+  border: none;
+}
+.nav-tabs {
+  border: transparent;
+}
+.nav-link:focus,
+.nav-link:hover {
+  color: var(--cpcoltable);
+}
+.result-tab {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--cpcoltable);
+}
+.res-head {
+  text-align: center;
+  color: var(--cpcoltable);
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 15px;
+  font-weight: 500;
+  /* color: #1d41df; */
+}
+.resultTable {
+  font-family: 'Raleway';
+  font-weight: 500;
+}
+.res-table {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+.restab {
+  background-color: var(--col1);
+  color: var(--cpcoltable);
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-accent-bg: var(--bs-table-striped-bg);
+  color: var(--cpcoltable);
+}
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--cpcoltable);
+  text-decoration: none;
+
+  outline: none;
+  border: none;
+  padding: 13px 10px;
+  cursor: pointer;
+  margin-bottom: 0px;
+  color: var(--cpcoltable);
+  background-color: var(--col1);
+}
+.download {
+  margin-top: 25px;
+}
+.row-res {
+  color: var(--cpcoltable);
+}
+
+.butn-1 {
+  color: var(--cpcoltable);
+  background-color: var(--col1);
+  border: 2px solid var(--cpcoltable);
+  border-radius: 7px;
+}
+.butn-1:hover {
+  color: var(--col1);
+  background-color: var(--cpcoltable);
+  border: 2px solid var(--col1);
+}
+@media (max-width: 576px) {
+  .res-table {
+    padding: 0px 10px;
+    margin-bottom: 20px;
+  }
+}
+.col-sm-2 {
+  width: 100%;
+  text-align: center;
+}
+@media (min-width: 576px) {
+  .col-sm-2 {
+    width: 15.9%;
+  }
+}
