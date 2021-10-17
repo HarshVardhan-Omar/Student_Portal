@@ -12,6 +12,7 @@ import StudentRegistration from './studentRegistration';
 import Cp from './Cp';
 import CourseManagement from './courseManagement';
 import ExamForm from "./examForm"
+import Result from "./Result"
 
 function getCookie(name) {
     var cookieValue = null;
@@ -117,6 +118,8 @@ export default function Homepage(props) {
             <Route exact path={`${match.url}/semesterregistration`} render={props => <Cp data={data} />} />
             <Route exact path={`${match.url}/coursemanagement`} render={props => <CourseManagement data={data} />} />
             <Route exact path={`${match.url}/examform`} render={props => <ExamForm data={data} />} />
+            <Route exact path={`${match.url}/result`} render={props => <Result data={data} />} />
+            
              <Route> <NotFound/> </Route>
             </Switch>
             {/* <button onClick={logout}>LogOut</button> */}
