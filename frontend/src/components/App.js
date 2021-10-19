@@ -27,7 +27,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/" render={props => <LoginPage setData={setData} setProgress={setProgress} />} />
-        <Route path="/getstudentdetails" render={props => <Homepage setData={setData} theme={theme} setTheme={setTheme} data={data} setProgress={setProgress} />}  />
+        <Route path="/dashboard" render={props => <Homepage setData={setData} theme={theme} setTheme={setTheme} data={data} setProgress={setProgress} />}  />
         <Route> <NotFound/> </Route>
       </Switch>
     </Router>

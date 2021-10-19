@@ -561,6 +561,8 @@ background-color: var(--col1);
 .mybutton{
   width: fit-content;
   margin: auto;
+  display: flex;
+  flex-direction: row;
 }
 .savebutton{
   border: none;
