@@ -1,6 +1,6 @@
 import React from 'react'
 import "./studentRegistration.css"
-import { useState ,useEffect} from 'react'
+import { useState ,useEffect,useRef} from 'react'
 
 export default function studentRegistrationimproved(props) {
     const[ImageField,setImageField]=useState("https://www.pngitem.com/pimgs/b/508-5087236_profile-icon-png.png");
@@ -169,14 +169,23 @@ export default function studentRegistrationimproved(props) {
         ChemMarks:props.data.IsformSaved?props.data.ChemMarks:"",
         MathMarks:props.data.IsformSaved?props.data.MathMarks:"",
         Percentage:props.data.IsformSaved?props.data.Percentage:"",
-        IsformSaved:"false",
-        IsformSubmitted:"false",
+        IsformSaved:"False",
+        IsformSubmitted:"False",
         Image:ImageField         
     })
     const[isperchecked,setIsPerChecked]=useState()
     const setform=(e)=>{
         setFormtitle(e.target.id)
     }
+    const firstRender=useRef(true)
+    useEffect(()=>{
+        if(firstRender.current){
+            firstRender.current=false
+            return
+        }
+        saveDetails()
+
+    },[FormDetails.IsformSubmitted,FormDetails.IsformSaved])
     const buttonstyleinactive={
         outline: 'none',
         border: 'none',
@@ -238,8 +247,19 @@ export default function studentRegistrationimproved(props) {
             }));
 
         }
-       saveDetails()
+    //    saveDetails()
     }
+    const submit= ()=>{
+        console.log("Submitted")
+        var reply=confirm("Before Submitting make sure all the details provided by you are correct.Once Submitted you will have to contact DSW Office for further Changes!")
+        if(reply===true){
+        setFormDetails(prevState=>({
+            ...prevState,
+            IsformSubmitted:"True",
+        }))
+    }
+    }
+    
     async function saveDetails(){
         // Requesting Backend to Save the Provided Data
         const requestoptions={
@@ -258,9 +278,7 @@ export default function studentRegistrationimproved(props) {
         if(response.ok){
             props.setProgress(100)
             let Data=await response.json()
-            setData(Data)
             setResponse("Success!! The Data you Entered was Saved Successfully.")
-            console.log(data)
         }
         else{
             props.setProgress(100)
@@ -1489,6 +1507,7 @@ export default function studentRegistrationimproved(props) {
             </div>
             <div className="mybutton mt-3" style={{display:(formTitle==="qualifyingexam"?'block':'none')}}>
                 <button className="savebutton btn-success"type="button" onClick={save}>Save</button>
+                <button className="savebutton btn-success mx-4"type="button" onClick={submit}>Submit</button>
             </div>
             </form>
             </div>

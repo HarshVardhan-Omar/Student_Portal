@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
 from rest_framework import generics,status
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
@@ -18,7 +18,7 @@ class StudentView(generics.ListCreateAPIView):
 
 class GetStudent(APIView):
     def get(self, request,format=None):
-        return HttpResponse("<h1>404 Not Found</h1>")
+        return render(request,'frontend/index.html')
     serializer_class=StudentSerializer
     lookup_url_kwarg_user='user_name'
     lookup_url_kwarg_pass='password'
@@ -46,7 +46,7 @@ class GetStudent(APIView):
 
 class GetStudentBySession(APIView):
     def get(self, request,format=None):
-        return HttpResponse("<h1>404 Not Found</h1>")
+        return render(request,'frontend/index.html')
     serializer_class=StudentSerializer
     session_serializer_class=SessionSerializer
     def post(self,request,format=None):
@@ -62,7 +62,7 @@ class GetStudentBySession(APIView):
 
 class LogoutStudentBySession(APIView):
     def get(self, request,format=None):
-        return HttpResponse("<h1>404 Not Found</h1>")
+        return render(request,'frontend/index.html')
     serializer_class=StudentSerializer
     def post(self,request,format=None):
         if not self.request.session.exists(self.request.session.session_key):
@@ -70,13 +70,13 @@ class LogoutStudentBySession(APIView):
         sessionobject = StoredSessions.objects.filter(key=self.request.session.session_key)
         if sessionobject.exists():
             sessionfound = sessionobject[0]
-            sessionfound.delete();
+            sessionfound.delete()
             return Response({'OK:','OK'}, status=status.HTTP_200_OK)
         return Response({'Login Required:','No Session Found'},status=status.HTTP_204_NO_CONTENT)
 
 class ChangePassword(APIView):
     def get(self, request,format=None):
-        return HttpResponse("<h1>404 Not Found</h1>")
+        return render(request,'frontend/index.html')
     serializer_class=StudentSerializer
     lookup_url_kwarg_user='user_name'
     lookup_url_kwarg_pass='password'
@@ -103,7 +103,7 @@ class ChangePassword(APIView):
 
 class SaveDetails(APIView):
     def get(self,request,format=None):
-        return HttpResponse("404 Not Found")
+        return render(request,'frontend/index.html')
     serializer_class=StudentSerializer
     lookup_url_kwarg_user='user_name'
     lookup_url_kwarg_details='details'

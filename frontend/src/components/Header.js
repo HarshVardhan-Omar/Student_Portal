@@ -148,7 +148,7 @@ export default function Header({ data, logout, csrftoken,theme,setTheme }) {
                                 </Link>
                             </li>
                             <li className="items">
-                                <Link to={`${match.path}/studentregistration`} style={{ backgroundColor: activeLink === "/getstudentdetails/studentregistration" ? "#ffffff56" : "#00000000" }} onClick={(e) => setActiveLink("/getstudentdetails/studentregistration")} className="menu-btn">
+                                <Link to={`${match.path}/studentregistration`} style={{ backgroundColor: activeLink === "/getstudentdetails/studentregistration" ? "#ffffff56" : "#00000000",display:data.IsformSubmitted==="False"?'block':'none'} } onClick={(e) => setActiveLink("/getstudentdetails/studentregistration")} className="menu-btn">
                                     <i className="far fa-registered nav-icon"></i>
                                     Student Registration
                                 </Link>

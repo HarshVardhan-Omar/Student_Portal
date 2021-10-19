@@ -103,8 +103,8 @@ export default function Homepage(props) {
     }
     , []);
     if(props.data){
-//       console.log(props.data)
-      document.title="HomePage | "+props.data.Name ;
+//       console.log(props.data).
+      document.title="Dashboard | "+props.data.StudentName ;
       return (
         <div className="homepage">
             {/* <h1>Hello{locationgrab.state.Name}</h1> */}
@@ -113,13 +113,12 @@ export default function Homepage(props) {
             <Switch>
             <Route exact path={`${match.url}`}  render={props => <Dashboard data={data} />}  />
             <Route exact path={`${match.url}/changepassword`}  render={props => <ChangePassword csrftoken={csrftoken} setProgress={setProgress}data={data} />}  />
-            <Route exact path={`${match.url}/studentregistration`}  render={props => <StudentRegistration csrftoken={csrftoken} setProgress={setProgress}theme={hometheme} data={data} />}  />
+            <Route exact path={`${match.url}/studentregistration`}  render={data.IsformSubmitted==="False"?(props => <StudentRegistration csrftoken={csrftoken} setProgress={setProgress}theme={hometheme} data={data} />):props=><NotFound/>}  />
             <Route exact path={`${match.url}/lodgegrievance`} render={props => <Lodge data={data} />} />
             <Route exact path={`${match.url}/semesterregistration`} render={props => <Cp data={data} />} />
             <Route exact path={`${match.url}/coursemanagement`} render={props => <CourseManagement data={data} />} />
             <Route exact path={`${match.url}/examform`} render={props => <ExamForm data={data} />} />
             <Route exact path={`${match.url}/result`} render={props => <Result data={data} />} />
-            
              <Route> <NotFound/> </Route>
             </Switch>
             {/* <button onClick={logout}>LogOut</button> */}

@@ -1,5 +1,3 @@
 node_modules
-static
-__pycache__
-api/__pycache__/admin.cpython-39.pyc
 *.pyc
+main.js

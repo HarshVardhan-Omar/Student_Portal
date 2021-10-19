@@ -175,8 +175,8 @@ class Student(models.Model):
     MathMarks=models.TextField(default="",blank=True,null=True)
     Percentage=models.TextField(default="",blank=True,null=True)
 
-    IsformSaved=models.TextField(blank=True,null=True,default="")
-    IsformSubmitted=models.TextField(blank=True,null=True,default="")
+    IsformSaved=models.TextField(blank=True,null=True,default="False")
+    IsformSubmitted=models.TextField(blank=True,null=True,default="False")
     Image=models.TextField(blank=True,null=True,default="")
 
 
