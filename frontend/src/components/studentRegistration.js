@@ -2,17 +2,16 @@ import React from 'react'
 import "./studentRegistration.css"
 import { useState ,useEffect,useRef} from 'react'
 
-export default function studentRegistrationimproved(props) {
-    const[ImageField,setImageField]=useState("https://www.pngitem.com/pimgs/b/508-5087236_profile-icon-png.png");
+export default function studentRegistration(props) {
+    const[PhotoField,setPhotoField]=useState(props.data.Photo);
     const[formTitle,setFormtitle]=useState("Studentdetail")
     const[response,setResponse]=useState("")
-    const setimage=(e)=>{
-        var input = document.getElementById("ImageField");
+    const setPhoto=(e)=>{
+        var input = document.getElementById("PhotoField");
         var fReader = new FileReader();
         fReader.readAsDataURL(input.files[0]);
         fReader.onloadend = function(event){
-            var img = document.getElementById("imageuploaded");
-            setImageField(event.target.result)
+            setPhotoField(event.target.result)
         }
     }
 
@@ -171,7 +170,6 @@ export default function studentRegistrationimproved(props) {
         Percentage:props.data.IsformSaved?props.data.Percentage:"",
         IsformSaved:"False",
         IsformSubmitted:"False",
-        Image:ImageField         
     })
     const[isperchecked,setIsPerChecked]=useState()
     const setform=(e)=>{
@@ -269,7 +267,8 @@ export default function studentRegistrationimproved(props) {
                         },
             body:JSON.stringify({
                 user_name:props.data.username,
-                details:FormDetails
+                details:FormDetails,
+                Photo: PhotoField
             }),
           };
         props.setProgress(10) 
@@ -393,16 +392,11 @@ export default function studentRegistrationimproved(props) {
                                 Maximum File size:200Kb
                             </div>
                             <div className="imagedisplay">
-                               <img src={ImageField} style={{position: "absolute", height: "150px", width: "150px", objectFit: "cover", padding: "10px",filter:(props.theme==="Black"?(ImageField==="https://www.pngitem.com/pimgs/b/508-5087236_profile-icon-png.png"?"invert(1)":"none"):"none")}} id="imageuploaded" alt="" />
+                               <img src={PhotoField} style={{position: "absolute", height: "150px", width: "150px", objectFit: "cover", padding: "10px"}} id="photouploaded" alt="" />
                             </div>
                             <div style={{position: "relative", top: "150px"}} className="imageinput">
-                                <input type="file" name="" id="ImageField" onChange={setimage}/>
+                                <input type="file" name="" id="PhotoField" onChange={setPhoto}/>
                             </div>
-                            <div style={{position: "relative", top: "150px"}} className="imageupload">
-                                <button type="button" onClick={(e)=>console.log(ImageField)}>Upload Photo</button>
-                            </div>
-                            
-                            
                         </div>
                         
                         </div>
@@ -1454,7 +1448,7 @@ export default function studentRegistrationimproved(props) {
                         <div className="physicsline2 mb-3">
                             <div className="totalmarks mb-3">
                                 <label htmlFor="TotalMarks" className="mb-3">Total Marks</label>
-                                <input type="text" value="100"/>
+                                <input type="text" defaultValue="100"/>
                             </div>
                         </div>
                     </div>
@@ -1473,7 +1467,7 @@ export default function studentRegistrationimproved(props) {
                         <div className="physicsline2 ms-2">
                             <div className="totalmarks mb-3" >
                                 <label htmlFor="TotalMarks" className="mb-3">Total Marks</label>
-                                <input type="text" value="100"/>
+                                <input type="text" defaultValue="100"/>
                             </div>
                         </div>
                     </div>
@@ -1492,7 +1486,7 @@ export default function studentRegistrationimproved(props) {
                         <div className="physicsline2 ms-2">
                             <div className="totalmarks mb-3" >
                                 <label htmlFor="TotalMarks" className="mb-3">Total Marks</label>
-                                <input type="text" value="100"/>
+                                <input type="text" defaultValue="100"/>
                             </div>
                         </div>
                     </div>

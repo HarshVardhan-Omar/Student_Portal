@@ -1,5 +1,7 @@
 from django.shortcuts import HttpResponse, render
 from rest_framework import generics,status
+import base64
+from django.core.files.base import ContentFile
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from rest_framework.views import APIView
@@ -110,9 +112,15 @@ class SaveDetails(APIView):
     def post(self,request,format=None):
         username=request.data.get(self.lookup_url_kwarg_user)
         details=request.data.get(self.lookup_url_kwarg_details)
+        photo=request.data.get('Photo')
         if username!=None:
             student=Student.objects.filter(username=username)
             if len(student)==1:
+                format, imgstr = photo.split(';base64,') 
+                ext = format.split('/')[-1] 
+                photo = ContentFile(base64.b64decode(imgstr), name='photo.' + ext)
+                student[0].Photo = photo
+                student[0].save(update_fields=['Photo'])
                 student.update(**details)
                 data=self.serializer_class(student[0]).data
                 return Response(data,status=status.HTTP_200_OK)

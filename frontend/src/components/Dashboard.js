@@ -12,7 +12,7 @@ export default function Dashboard({ data }) {
               <div className="card-header bg-transparent text-center">
                 <img
                   className="profile_img"
-                  src={data.photo}
+                  src={data.Photo}
                   alt="student dp"
                 />
                 <h3>{data.Name}</h3>

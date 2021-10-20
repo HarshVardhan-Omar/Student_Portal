@@ -135,7 +135,7 @@ export default function Header({ data, logout, csrftoken,theme,setTheme }) {
                             <a href="#">
                                 <img
                                     className="profile-pic"
-                                    src={data.photo}
+                                    src={data.Photo}
                                     alt="#"
                                 />
                             </a>
@@ -147,13 +147,13 @@ export default function Header({ data, logout, csrftoken,theme,setTheme }) {
                                     Dashboard
                                 </Link>
                             </li>
-                            <li className="items">
-                                <Link to={`${match.path}/studentregistration`} style={{ backgroundColor: activeLink === "/getstudentdetails/studentregistration" ? "#ffffff56" : "#00000000",display:data.IsformSubmitted==="False"?'block':'none'} } onClick={(e) => setActiveLink("/getstudentdetails/studentregistration")} className="menu-btn">
+                            <li className="items" style={{display:data.IsformSubmitted==="False"?'flex':'none'}}>
+                                <Link to={`${match.path}/studentregistration`} style={{ backgroundColor: activeLink === "/getstudentdetails/studentregistration" ? "#ffffff56" : "#00000000"} } onClick={(e) => setActiveLink("/getstudentdetails/studentregistration")} className="menu-btn">
                                     <i className="far fa-registered nav-icon"></i>
                                     Student Registration
                                 </Link>
                             </li>
-                            <li className="items">
+                            {/* <li className="items">
                                 <Link to={`${match.path}/semesterregistration`} style={{ backgroundColor: activeLink === "/getstudentdetails/semesterregistration" ? "#ffffff56" : "#00000000" }} onClick={(e) => setActiveLink("/getstudentdetails/semesterregistration")} className="menu-btn">
                                     <i className="far fa-registered nav-icon"></i>
                                     Semester Registration
@@ -164,7 +164,7 @@ export default function Header({ data, logout, csrftoken,theme,setTheme }) {
                                     <i className="fas fa-download nav-icon"></i>
                                     Registration Card
                                 </Link>
-                            </li>
+                            </li> */}
                             <li className="items">
                                 <Link to={`${match.path}/examform`} style={{ backgroundColor: activeLink === "/getstudentdetails/examform" ? "#ffffff56" : "#00000000" }} onClick={(e) => setActiveLink("/getstudentdetails/examform")} className="menu-btn">
                                     <i className="fas fa-sticky-note nav-icon"></i>
