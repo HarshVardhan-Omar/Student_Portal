@@ -3,8 +3,8 @@ from django.core.validators import RegexValidator
 
 
 # Create your models here.
-def upload_path(instance, filename):
-    return '/'.join({filename, 'images/'+str(instance.UniversityRollNo)})
+# def upload_path(instance, filename):
+#     return '/'.join({'images/'+str(instance.UniversityRollNo), filename})
 
 class Student(models.Model):
     UniversityRollNo=models.CharField(max_length=9, validators=[RegexValidator(regex='^[0-9]{9}$', message='Required 9 Digit Roll Number')], default="",null=True,blank=False)
@@ -14,7 +14,9 @@ class Student(models.Model):
     username=models.TextField(null=False,unique=True,blank=True)
     HBTUEmail=models.EmailField(default='',null=True,blank=True)
     StudentNameHindi=models.CharField(max_length=50,default="",null=True,blank=True,unique=False)
-    Photo=models.ImageField(upload_to=upload_path, default="user.png",null=True,blank=True)
+    Photo=models.ImageField(upload_to="images/studentPhoto", default="user.png",null=True,blank=True)
+    Sign=models.ImageField(upload_to="images/studentSign", default="sign.png",null=True,blank=True)
+    Thumb=models.ImageField(upload_to="images/studentThumb", default="thumb.png",null=True,blank=True)
     DateOfBirth=models.DateField(null=True,blank=True,default="")
     Contact=models.TextField(default='',null=True,blank=True)
     AlternateContact=models.TextField(default='',null=True,blank=True)
@@ -181,7 +183,8 @@ class Student(models.Model):
     IsformSaved=models.TextField(blank=True,null=True,default="False")
     IsformSubmitted=models.TextField(blank=True,null=True,default="False")
 
-
+    PasswordResetOTP = models.TextField(blank=True,null=True,default="")
+    PasswordResetting = models.BooleanField(blank=True,null=True,default=False)
 
     def __str__(self):
         return self.username

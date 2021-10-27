@@ -249,6 +249,103 @@ h1{
     display: none;
   }
 }
+.rstpwdStatus{
+  position: absolute;
+  animation: hide-after 1s ease-in 7s 1 forwards !important; 
+  bottom: 15px;
+}
+.resetpwdwindow{
+  font-family: "raleway";
+}
+.rstpwdusernameinput{
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  display: flex;
+  flex-direction: column;
+}
+.rstpwdusernameinput .rstpwdheading1{
+  font-size: 20px;
+  margin: 10px 0px;
+}
+.rstpwdusernameinput input{
+  width: 100%;
+  height: 30px;
+  line-height: 20px;
+  font-size: 20px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 2px solid darkgreen;
+  margin-bottom: 20px;
+}
+.rstpwdusernameinput input:focus-visible{
+  border: none;
+  outline: none;
+  border-bottom: 2px solid darkgreen;
+}
+.rstpwdusernameinput button{
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  transition: 0.4s;
+}
+.rstpwdusernameinput button:hover{
+  background: #577d11;
+}
+.rstpwdOtp{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3vh 0px;
+}
+.rstpwdOtp .otpinput{
+  margin: 3vh 1vh;
+}
+.rstpwdOtp .otpinput input{
+  padding: 1vh;
+  width: 4vh !important;
+  font-size: 2.5vh;
+}
+.rstpwdOtp .OTPmessage2 span{
+  font-weight: 600;
+  text-decoration: underline;
+}
+.rstpwdOtp .OTPmessage a{
+  color: darkblue;
+  font-family: sans-serif;
+}
+.rstpwdchange form{
+  margin: 0 !important;
+  background: none !important;
+  color: black !important;
+  width: 100% !important;
+  max-width: none !important;
+  padding: 3vh 5vw !important;
+}
+.rstpwdchange .form-control{
+  background: none !important;
+  color: black !important;
+  caret-color: black !important;
+  border-radius: 0;
+}
+.rstpwdchange .form-group{
+  margin: 10px 0px;
+}
+.rstpwdchange form .btn-secondary{
+  background-color: #117d38 !important;
+  color: white !important;
+}
+.rstpwdchange form .btn-secondary:hover{
+  background-color: #033a17 !important;
+  color: white !important;
+}
+.rstpwdchange .pwd_info_content {
+  top: 60px !important;
+  left: 10vw !important;
+}
 @media screen and (max-width: 920px) {
     .all{
       height: 100vh;

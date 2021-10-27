@@ -22,6 +22,9 @@
 }
 .form-body{
 background-color: var(--col1);
+justify-content: center;
+flex-direction: column;
+align-items: center;
 }
 .student-registration input{
   font-size: medium;
@@ -62,225 +65,46 @@ background-color: var(--col1);
 
 .student-registration select:focus{
   outline: none;
-  font-weight: bold;
   color: var(--cpcoltable);
   border: 1px solid var(--cpcoltable);
 }
-.academic-details-input{
+
+
+.imageinputs{
   display: flex;
-  flex-direction: row;
+  margin-top: 20px;
+  justify-content: space-around;
 }
-.academicline1{
+.imageinputs input{
+  width: 300px !important;
+}
+.imageinput{
   width: 100%;
-  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.academicline2{
+.photoinput{
+  width: 25%;
+  padding: 20px 0px !important;
+}
+.signinput{
+  width: 25%;
+  padding: 20px 0px !important;
+}
+.thumbinput{
+  width: 25%;
+  padding: 20px 0px !important;
+}
+.imagedisplay{
   width: 100%;
-}
-.academicline3{
-  width: 30%;
-}
-.academic-detail-input1{
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  /* justify-content: space-evenly; */
-}
-.academic-detail-input2{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  /* justify-content: space-evenly; */
-}
-.academic-detail-input3{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  /* justify-content: space-evenly; */
-}
-.roll-input{
-  display: flex;
-  flex-direction: column;
-  /* margin: 14px; */
-}
-.enroll-input{
-  display: flex;
-  flex-direction: column;
-}
-.programme{
-  display: flex;
-  flex-direction: column;
-
-}
-.branch{
-  display: flex;
-  flex-direction: column;
-
-}
-.admission-source{
-  display: flex;
-  flex-direction: column;
-
-}
-.current-semester{
-  display: flex;
-  flex-direction: column;
-
+  justify-content: center;
+  align-items: center;
 }
 
-/* Personal Details Start */
-.personalline1{
-  width: 100%;
-  /* border: 1px solid red; */
-}
-.personalline2{
-  width: 100%;
-  /* border: 1px solid red; */
-}
-.personal-details-input{
-  display: flex;
-  flex-direction: row;
-}
-.englishname{
-  display: flex;
-  flex-direction: column;
 
-}
-.dob{
-  display: flex;
-  flex-direction: column;
 
-}
-.contactnumber{
-  display: flex;
-  flex-direction: column;
-
-}
-.hbtuemail{
-  display: flex;
-  flex-direction: column;
-
-}
-.subcategoryinput{
-  display: flex;
-  flex-direction: column;
-
-}
-.bloodgroupinput{
-  display: flex;
-  flex-direction: column;
-
-}
-.aadhaarinput{
-  display: flex;
-  flex-direction: column;
-
-}
-.nationalityinput{
-  display: flex;
-  flex-direction: column;
-}
-.hindiname{
-  display: flex;
-  flex-direction: column;
-}
-.genderinput{
-  display: flex;
-  flex-direction: column;
-}
-.alternatecontactinput{
-  display: flex;
-  flex-direction: column;
-}
-.personalemailinput{
-  display: flex;
-  flex-direction: column;
-}
-.categoryinput{
-  display: flex;
-  flex-direction: column;
-}
-.feewaiverinput{
-  display: flex;
-  flex-direction: column;
-}
-.hostelrequired{
-  display: flex;
-  flex-direction: column;
-}
-.transportmodeinput{
-  display: flex;
-  flex-direction: column;
-}
-.religioninput{
-  display: flex;
-  flex-direction: column;
-}
-.entrance-exam-input{
-  display: flex;
-  flex-direction: row;
-}
-.entranceline1{
-  width: 100%;
-}
-.entranceline2{
-  width: 100%;
-}
-.entranceexaminput{
-  display: flex;
-  flex-direction: column;
-}
-.applicationno{
-  display: flex;
-  flex-direction: column;
-}
-.categoryrank{
-  display: flex;
-  flex-direction: column;
-}
-.yearinput{
-  display: flex;
-  flex-direction: column;
-}
-.airrank{
-  display: flex;
-  flex-direction: column;
-}
-.seatcategoryinput{
-  display: flex;
-  flex-direction: column;
-}
-
-.parent-detail-input{
-  display: flex;
-  flex-direction: row;
-}
-.parentline1{
-  width: 100%;
-}
-.parentline2{
-  width: 100%;
-}
-.fathername{
-  display: flex;
-  flex-direction: column;
-}
-.mothername{
-  display: flex;
-  flex-direction: column;
-}
-.fathercontact{
-  display: flex;
-  flex-direction: column;
-}
-.landline{
-  display: flex;
-  flex-direction: column;
-}
-.parentemailid{
-  display: flex;
-  flex-direction: column;
-}
 .tabs{
   background-color: var(--sidecol1);
   /* padding: 6px; */
@@ -300,241 +124,98 @@ background-color: var(--col1);
   margin: auto;
   padding-top: 8px;
   width: 770px;
+  height: 50px;
 }
 /* #Studentdetail:focus{
   background-color: red;
 } */
 
-.address-input{
-  display: flex;
-  flex-direction: row;
-}
-.curraddressline1{
-  width: 100%;
-}
-.curraddressline2{
-  width: 100%;
-}
-.addressline1{
-  display: flex;
-  flex-direction: column;
-}
-.addressline2{
-  display: flex;
-  flex-direction: column;
-}
-.zipcode{
-  display: flex;
-  flex-direction: column;
-}
-.city{
-  display: flex;
-  flex-direction: column;
-}
-.state{
-  display: flex;
-  flex-direction: column;
-}
-.country{
-  display: flex;
-  flex-direction: column;
-}
-.permanentaddressheading{
-  display: flex;
-  flex-direction: row;
+
+
+#checkbox1{
+  margin: 0px 5px;
+  height: 15px;
+  width: 15px;
 }
 .checkbox{
-  width: fit-content;
-  height: fit-content;
-  padding: 12px;
-}
-.permanent-address-input{
+  margin: 15px;
+  padding: 0px 15px;
+  width: 100%;
   display: flex;
   flex-direction: row;
-}
-.permanentaddressline1{
-  width: 100%;
-}
-.permanentaddressline2{
-  width: 100%;
-}
-#checkbox1{
-  width: fit-content;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
-.highschool-detail-input{
-  display: flex;
-  flex-direction: row;
-}
-.highschoolline1{
-  width: 100%;
-}
-.highschoolline2{
-  width: 100%;
-}
-.board{
-  display: flex;
-  flex-direction: column;
-}
-.rollno{
-  display: flex;
-  flex-direction: column;
-}
-.year{
-  display: flex;
-  flex-direction: column;
-}
-.nameofinstitute{
-  display: flex;
-  flex-direction: column;
-}
-.division{
-  display: flex;
-  flex-direction: column;
-}
-.subjects{
-  display: flex;
-  flex-direction: column;
-}
-.family-detail-input{
-  display: flex;
-  flex-direction: row;
-}
-.familydetailline1{
-  width: 100%;
-}
-.familydetailline2{
-  width: 100%;
-}
-.membername{
-  display: flex;
-  flex-direction: column;
-}
-.relationship{
-  display: flex;
-  flex-direction: column;
-}
-.ageinput{
-  display: flex;
-  flex-direction: column;
-}
-.familyaddressinput{
-  display: flex;
-  flex-direction: column;
-}
-.eduqualification{
-  display: flex;
-  flex-direction: column;
-}
-.proqualification{
-  display: flex;
-  flex-direction: column;
-}
-.earningstatus{
-  display: flex;
-  flex-direction: column;
-}
-.occupation{
-  display: flex;
-  flex-direction: column;
-}
-.organization{
-  display: flex;
-  flex-direction: column;
-}
-.incomepermonth{
-  display: flex;
-  flex-direction: column;
-}
-.physics-marks-input{
-  display: flex;
-  flex-direction: row;
-}
-.physicsline1{
-  width: 100%;
-}
-.physicsline2{
-  width: 100%;
-}
-.obtainedmarks{
-  display: flex;
-  flex-direction: column;
 
-}
-.totalmarks{
-  display: flex;
-  flex-direction: column;
-}
-.percentageheading{
+
+.width100{
   width: 100%;
 }
+.width100 h2{
+  margin: 5px 0px;
+}
+.student-registration .line div{
+  width: 100%;
+  padding: 8px 0px;
+}
+.line{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px 20px;
+}
+.student-registration input{
+  width: 100%;
+}
+.student-registration select{
+  width: 100%;
+}
+.medflexrow{
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 1000px){
   .buttons{
     width: 100%;
   }
 }
 @media screen and (max-width: 770px){
-  .academic-details-input{
-    display: flex;
-    flex-direction: column;
-  }
-  .academic-detail-input1{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* justify-content: space-evenly; */
-  }
-  .academic-detail-input2{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* justify-content: space-evenly; */
-  }
-  .academic-detail-input3{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* justify-content: space-evenly; */
-  }
-  .personal-details-input{
-    display: flex;
-    flex-direction: column;
-  }
-  .entrance-exam-input{
-    display: flex;
-    flex-direction: column;
-  }
-  .parent-detail-input{
-    display: flex;
-    flex-direction: column;
-  }
-  .address-input{
-    display: flex;
-    flex-direction: column;
-  }
-  .permanentaddressheading{
-    display: flex;
-    flex-direction: column;
-  }
-  .permanent-address-input{
-    display: flex;
-    flex-direction: column;
-  }
-  .highschool-detail-input{
-    display: flex;
-    flex-direction: column;
-  }
-  .family-detail-input{
-    display: flex;
-    flex-direction: column;
-  }
-  .physics-marks-input{
-    display: flex;
+  .medflexrow{
     flex-direction: column;
   }
   .buttons{
     display: flex;
     flex-direction: row;
+  }
+  .imageinputs{
+    flex-direction: column;
+  }
+  .photoinput{
+    width: 100%;
+  }
+  .signinput{
+    width: 100%;
+  }
+  .thumbinput{
+    width: 100%;
+  }
+  .buttons button{
+    height: 50px
+  }
+  .buttons{
+    height: max-content;
   }
 }
 @media screen and (max-width: 580px){
@@ -560,16 +241,18 @@ background-color: var(--col1);
 
 .mybutton{
   width: fit-content;
-  margin: auto;
+  margin: 2vh 0px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .savebutton{
   border: none;
-    outline: none;
-    border-radius: 12px;
-    padding: 7px 32px;
-
+  outline: none;
+  border-radius: 12px;
+  padding: 7px 32px;
+  margin: 0px 1vw;
 }
 .response{
   padding: 5px;

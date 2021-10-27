@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('username', models.TextField(blank=True, unique=True)),
                 ('HBTUEmail', models.EmailField(blank=True, default='', max_length=254, null=True)),
                 ('StudentNameHindi', models.CharField(blank=True, default='', max_length=50, null=True)),
-                ('Photo', models.ImageField(blank=True, default='user.png', null=True, upload_to=api.models.upload_path)),
+                ('Photo', models.ImageField(blank=True, default='user.png', null=True, upload_to="")),
                 ('DateOfBirth', models.DateField(blank=True, default='', null=True)),
                 ('Contact', models.TextField(blank=True, default='', null=True)),
                 ('AlternateContact', models.TextField(blank=True, default='', null=True)),
