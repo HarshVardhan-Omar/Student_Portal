@@ -302,11 +302,13 @@ export default function studentRegistration(props) {
         props.setProgress(50)
         if (response.ok) {
             props.setProgress(100)
+            window.location.reload()
             let Data = await response.json()
             setResponse("Success!! The Data you Entered was Saved Successfully.")
         }
         else {
             props.setProgress(100)
+            window.location.reload()
             setResponse("OOPS!! The Data was not Saved.")
             console.clear()
         }
