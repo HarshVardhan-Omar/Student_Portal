@@ -105,7 +105,7 @@ export default function Dashboard({ data }) {
                           <tr>
                             {/* <td>2</td> */}
                             <td>Admission Source</td>
-                            <td>{data.EntranceExam}</td>
+                            <td>{data.AdmissionSource}</td>
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
