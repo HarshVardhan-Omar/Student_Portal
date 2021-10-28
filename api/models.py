@@ -1,18 +1,25 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 # Create your models here.
+# def upload_path(instance, filename):
+#     return '/'.join({'images/'+str(instance.UniversityRollNo), filename})
 
 class Student(models.Model):
-    username=models.TextField(max_length=50, default="",null=False,unique=True)
-    password=models.TextField(max_length=40,null=True,unique=False)
+    UniversityRollNo=models.CharField(max_length=9, validators=[RegexValidator(regex='^[0-9]{9}$', message='Required 9 Digit Roll Number')], default="",null=True,blank=False)
+    StudentName=models.CharField(max_length=50,default="",blank=False,null=True,unique=False)
+    password=models.CharField(max_length=40,null=True,unique=False,blank=False)
     encryptedpassword=models.TextField(max_length=500,null=True,blank=True)
-    StudentName=models.CharField(max_length=50,default="",blank=True,null=True,unique=False)
+    username=models.TextField(null=False,unique=True,blank=True)
+    HBTUEmail=models.EmailField(default='',null=True,blank=True)
     StudentNameHindi=models.CharField(max_length=50,default="",null=True,blank=True,unique=False)
-    photo=models.ImageField(upload_to="api/images",default="",null=True,blank=True)
+    Photo=models.ImageField(upload_to="images/studentPhoto", default="user.png",null=True,blank=True)
+    Sign=models.ImageField(upload_to="images/studentSign", default="sign.png",null=True,blank=True)
+    Thumb=models.ImageField(upload_to="images/studentThumb", default="thumb.png",null=True,blank=True)
     DateOfBirth=models.DateField(null=True,blank=True,default="")
-    Contact=models.TextField(default=0,null=True,blank=True)
-    AlternateContact=models.TextField(default=0,null=True,blank=True)
+    Contact=models.TextField(default='',null=True,blank=True)
+    AlternateContact=models.TextField(default='',null=True,blank=True)
     Branch=models.TextField(default='',null=True,blank=True)
     Programme=models.TextField(default='',null=True,blank=True)
     Category=models.TextField(default='',null=True,blank=True)
@@ -26,24 +33,22 @@ class Student(models.Model):
     AIRRank=models.TextField(default='',null=True,blank=True)
     CategoryRank=models.TextField(default='',null=True,blank=True)
     Gender=models.TextField(default='',null=True,blank=True)
-    UniversityRollNo=models.TextField(default=1,null=True,blank=True)
     EnrollmentNumber=models.CharField(max_length=20,default='',null=True,blank=True)
     AdmissionSource=models.CharField(max_length=15,default="JEE MAINS",null=True,blank=True)
     Nationality=models.CharField(max_length=10,default="",null=True,blank=True)
     Religion=models.CharField(max_length=10,default='',null=True,blank=True)
-    Hostel=models.TextField(default='True',null=True,blank=True)
+    Hostel=models.BooleanField(default='',null=True,blank=True)
     ModeOfTransport=models.CharField(max_length=10,default='',null=True,blank=True)
     PersonalEmail=models.EmailField(default='',null=True,blank=True)
-    HBTUEmail=models.EmailField(default='',null=True,blank=True)
     BloodGroup=models.CharField(max_length=10,default='',null=True,blank=True)
-    AadhaarCard=models.TextField(default=1,null=True,blank=True)
+    AadhaarCard=models.TextField(default="",null=True,blank=True)
     FatherName=models.CharField(max_length=50,default='',null=True,blank=True)
     MotherName=models.CharField(max_length=50,default='',null=True,blank=True)
-    FatherContact=models.TextField(default=1,null=True,blank=True)
+    FatherContact=models.TextField(default="",null=True,blank=True)
     Landline=models.TextField(null=True,default="",blank=True)
     ParentEmail=models.EmailField(default='',null=True,blank=True)
     CurrentSemester=models.TextField(default='',null=True,blank=True)
-    CGPA=models.DecimalField(default=0.0,max_digits=7,decimal_places=4,null=True,blank=True)
+    CGPA=models.DecimalField(default="",max_digits=7,decimal_places=4,null=True,blank=True)
     CurAddress=models.TextField(default="",blank=True,null=True)
     CurAddress1=models.TextField(default="",blank=True,null=True)
     CurAddress2=models.TextField(default="",blank=True,null=True)
@@ -177,12 +182,17 @@ class Student(models.Model):
 
     IsformSaved=models.TextField(blank=True,null=True,default="False")
     IsformSubmitted=models.TextField(blank=True,null=True,default="False")
-    Image=models.TextField(blank=True,null=True,default="")
 
-
+    PasswordResetOTP = models.TextField(blank=True,null=True,default="")
+    PasswordResetting = models.BooleanField(blank=True,null=True,default=False)
 
     def __str__(self):
         return self.username
+
+    def save(self, *args, **kwargs):
+        self.username = str(self.UniversityRollNo) + "@hbtu.ac.in"
+        self.HBTUEmail = str(self.username)
+        super(Student, self).save(*args, **kwargs) # Call the "real" save() method.
 
 class StoredSessions(models.Model):
     key = models.CharField(unique=True,max_length=50,null=False,default="")

@@ -29,7 +29,9 @@
     "bootstrap": "^5.1.0",
     "react-bootstrap": "^2.0.0-beta.6",
     "react-icons": "^4.2.0",
-    "crypto-js": "^4.1.1"
+    "crypto-js": "^4.1.1",
+    "react-otp-input": "^2.4.0"
   },
-  "dependencies": {}
+  "dependencies": {
+  }
 }

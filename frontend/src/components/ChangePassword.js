@@ -26,7 +26,7 @@ export default function ChangePassword(props) {
     check_new_p_validity();
     check_new_re_p_validity();
     check_form_validity();
-    console.log("checking")
+    // console.log("checking")
   }, [oldp,newp,new_re_p,new_p_validity,new_re_p_validity]);
 
   const handle_old_p=async(e)=>{
