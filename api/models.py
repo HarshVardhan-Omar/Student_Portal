@@ -10,7 +10,7 @@ class Student(models.Model):
     UniversityRollNo=models.CharField(max_length=9, validators=[RegexValidator(regex='^[0-9]{9}$', message='Required 9 Digit Roll Number')], default="",null=True,blank=False)
     StudentName=models.CharField(max_length=50,default="",blank=False,null=True,unique=False)
     password=models.CharField(max_length=40,null=True,unique=False,blank=False)
-    encryptedpassword=models.TextField(max_length=500,null=True,blank=False)
+    encryptedpassword=models.TextField(max_length=500,null=True,blank=True)
     username=models.TextField(null=False,unique=True,blank=True)
     HBTUEmail=models.EmailField(default='',null=True,blank=True)
     StudentNameHindi=models.CharField(max_length=50,default="",null=True,blank=True,unique=False)
