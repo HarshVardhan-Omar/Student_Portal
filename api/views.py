@@ -187,7 +187,7 @@ class ResetPasswordOTPVerification(APIView):
             student=Student.objects.filter(username=username)
             if len(student)==1:
                 if OTP == student[0].PasswordResetOTP:
-                    student[0].PasswordResetting = True;
+                    student[0].PasswordResetting = True
                     student[0].save(update_fields = ["PasswordResetting"])
                     return Response(status=status.HTTP_200_OK)
                 return Response("OTP Incorrect",status=status.HTTP_401_UNAUTHORIZED)
