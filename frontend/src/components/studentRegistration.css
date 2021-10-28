@@ -72,8 +72,12 @@ align-items: center;
 
 .imageinputs{
   display: flex;
-  margin-top: 20px;
+  flex-direction: column;
   justify-content: space-around;
+}
+.restofstudentdetails{
+  flex: 1;
+  min-width: 480px;
 }
 .imageinputs input{
   width: 300px !important;
@@ -86,15 +90,18 @@ align-items: center;
 }
 .photoinput{
   width: 25%;
-  padding: 20px 0px !important;
+  margin-bottom: 40px !important;
+  padding: 0% !important;
 }
 .signinput{
   width: 25%;
-  padding: 20px 0px !important;
+  margin-bottom: 40px !important;
+  padding: 0% !important;
 }
 .thumbinput{
   width: 25%;
-  padding: 20px 0px !important;
+  margin-bottom: 0px  !important;
+  padding: 0% !important;
 }
 .imagedisplay{
   width: 100%;
@@ -152,6 +159,9 @@ align-items: center;
 .width100{
   width: 100%;
 }
+.images{
+  width: auto !important;
+}
 .width100 h2{
   margin: 5px 0px;
 }
@@ -190,6 +200,9 @@ align-items: center;
   .buttons{
     width: 100%;
   }
+  .studentdetailscover{
+    flex-direction: column;
+  }
 }
 @media screen and (max-width: 770px){
   .medflexrow{
@@ -224,6 +237,9 @@ align-items: center;
   }
   .tabs{
     width: 85vw;
+  }
+  .restofstudentdetails{
+    min-width: 10px;
   }
   .buttons{
     flex-direction: column;

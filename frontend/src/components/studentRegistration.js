@@ -346,6 +346,8 @@ export default function studentRegistration(props) {
 
 
                 <div className="form-body container" style={{ display: (formTitle === "Studentdetail" ? 'flex' : 'none') }}>
+                    <div className="studentdetailscover medflexrow width100">
+                    <div className="restofstudentdetails">
                     <div className="width100 academic-details">
                         <div className="academic-details-heading">
                             <h2>Academic Details</h2>
@@ -521,63 +523,6 @@ export default function studentRegistration(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="width100 images">
-                        <div className="entranceexamheading">
-                            <h2>Images</h2>
-                        </div>
-                        <div className="imageinputs">
-                            <div className="photoinput line">
-                                <h3>Photo</h3>
-                                <code className="instructions">
-                                    <br></br>
-                                    Supported Format: png, jpg, jpeg<br></br>
-                                    Minimum File size: 50Kb<br></br>
-                                    Maximum File size: 200Kb<br></br>
-                                    Preferred Aspect Ratio: 1:1
-                                </code>
-                                <div className="imagedisplay">
-                                    <img src={PhotoField} style={{ position: "relative", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="photouploaded" alt="" />
-                                </div>
-                                <div style={{ position: "relative", top: "" }} className="imageinput">
-                                    <input type="file" name="" id="PhotoField" onChange={setPhoto} />
-                                </div>
-                            </div>
-                            <div className="signinput line">
-                                <h3>Signature</h3>
-                                <code className="instructions">
-                                    <br></br>
-                                    Supported Format: png, jpg, jpeg<br></br>
-                                    Minimum File size: 50Kb<br></br>
-                                    Maximum File size: 200Kb<br></br>
-                                    Preferred Aspect Ratio: 1:1<br></br>
-                                    Ink: Blue/Black
-                                </code>
-                                <div className="imagedisplay">
-                                    <img src={SignField} style={{ position: "relative", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="photouploaded" alt="" />
-                                </div>
-                                <div style={{ position: "relative", top: "" }} className="imageinput">
-                                    <input type="file" name="" id="SignField" onChange={setSign} />
-                                </div>
-                            </div>
-                            <div className="thumbinput line">
-                                <h3>Thumb Impression</h3>
-                                <code className="instructions">
-                                    <br></br>
-                                    Supported Format: png, jpg, jpeg<br></br>
-                                    Minimum File size: 50Kb<br></br>
-                                    Maximum File size: 200Kb<br></br>
-                                    Preferred Aspect Ratio: 1:1<br></br>
-                                    Ink: Blue/Black
-                                </code>
-                                <div className="imagedisplay">
-                                    <img src={ThumbField} style={{ position: "relative", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="photouploaded" alt="" />
-                                </div>
-                                <div style={{ position: "relative", top: "" }} className="imageinput">
-                                    <input type="file" name="" id="ThumbField" onChange={setThumb} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div className="width100 entranceexamdetails">
                         <div className="entranceexamheading">
                             <h2>Entrance Examination Details</h2>
@@ -656,6 +601,65 @@ export default function studentRegistration(props) {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    </div>
+                    <div className="width100 images line">
+                        <div className="entranceexamheading">
+                            <h2>Images</h2>
+                        </div>
+                        <div className="imageinputs">
+                            <div className="photoinput line">
+                                <h3>Photo</h3>
+                                <code className="instructions">
+                                    <br></br>
+                                    Supported Format: png, jpg, jpeg<br></br>
+                                    Minimum File size: 50Kb<br></br>
+                                    Maximum File size: 200Kb<br></br>
+                                    Preferred Aspect Ratio: 1:1
+                                </code>
+                                <div className="imagedisplay">
+                                    <img src={PhotoField} style={{ position: "relative", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="photouploaded" alt="" />
+                                </div>
+                                <div style={{ position: "relative", top: "" }} className="imageinput">
+                                    <input type="file" name="" id="PhotoField" onChange={setPhoto} />
+                                </div>
+                            </div>
+                            <div className="signinput line">
+                                <h3>Signature</h3>
+                                <code className="instructions">
+                                    <br></br>
+                                    Supported Format: png, jpg, jpeg<br></br>
+                                    Minimum File size: 50Kb<br></br>
+                                    Maximum File size: 200Kb<br></br>
+                                    Preferred Aspect Ratio: 1:1<br></br>
+                                    Ink: Blue/Black
+                                </code>
+                                <div className="imagedisplay">
+                                    <img src={SignField} style={{ position: "relative", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="photouploaded" alt="" />
+                                </div>
+                                <div style={{ position: "relative", top: "" }} className="imageinput">
+                                    <input type="file" name="" id="SignField" onChange={setSign} />
+                                </div>
+                            </div>
+                            <div className="thumbinput line">
+                                <h3>Thumb Impression</h3>
+                                <code className="instructions">
+                                    <br></br>
+                                    Supported Format: png, jpg, jpeg<br></br>
+                                    Minimum File size: 50Kb<br></br>
+                                    Maximum File size: 200Kb<br></br>
+                                    Preferred Aspect Ratio: 1:1<br></br>
+                                    Ink: Blue/Black
+                                </code>
+                                <div className="imagedisplay">
+                                    <img src={ThumbField} style={{ position: "relative", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="photouploaded" alt="" />
+                                </div>
+                                <div style={{ position: "relative", top: "" }} className="imageinput">
+                                    <input type="file" name="" id="ThumbField" onChange={setThumb} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
 
 
@@ -1299,6 +1303,222 @@ export default function studentRegistration(props) {
                                 <div className="incomepermonth ">
                                     <label htmlFor="Income" className="">Income Per Month</label>
                                     <input type="text" defaultValue={props.data.Member2Income} name="Member2Income" onChange={updateFormdetails} />
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="familydetails width100">
+                        <div className="familydetailheading ">
+                            <h2>Member 3</h2>
+                        </div>
+                        <div className="family-detail-input medflexrow">
+                            <div className="familydetailline1 line">
+                                <div className="membername ">
+                                    <label htmlFor="Member Name" className="">Name</label>
+                                    <input type="text" defaultValue={props.data.Member3Name} name="Member3Name" onChange={updateFormdetails} />
+                                </div>
+                                <div className="relationship ">
+                                    <label htmlFor="Relationship" className="">Relationship</label>
+                                    <select htmlFor="Relationship" defaultValue={props.data.Member3Relationship} name="Member3Relationship" onChange={updateFormdetails} id="">
+                                        <option value="select">--Select--</option>
+                                        <option value="father">Father</option>
+                                        <option value="mother">Mother</option>
+                                        <option value="brother">Brother</option>
+                                        <option value="sister">Sister</option>
+                                        <option value="localguardian">Local Guardian</option>
+                                        <option value="sister">Sister</option>
+                                    </select>
+                                </div>
+                                <div className="ageinput ">
+                                    <label htmlFor="Age" className="">Age</label>
+                                    <input type="text" defaultValue={props.data.Member3Age} name="Member3Age" onChange={updateFormdetails} />
+                                </div>
+                                <div className="familyaddressinput ">
+                                    <label htmlFor="Address" className="">Address</label>
+                                    <input type="text" defaultValue={props.data.Member3Address} name="Member3Address" onChange={updateFormdetails} />
+                                </div>
+                                <div className="eduqualification ">
+                                    <label htmlFor="eduqualification" className="">Educational Qualification</label>
+                                    <input type="text" defaultValue={props.data.Member3EduQualification} name="Member3EduQualification" onChange={updateFormdetails} />
+                                </div>
+                            </div>
+                            <div className="familydetailline2 line">
+                                <div className="proqualification ">
+                                    <label htmlFor="proqualification" className="">Professional Qualification</label>
+                                    <input type="text" defaultValue={props.data.Member3ProQualification} name="Member3ProQualification" onChange={updateFormdetails} />
+                                </div>
+                                <div className="earningstatus ">
+                                    <label htmlFor="status" className="">Earning Status</label>
+                                    <select htmlFor="status" defaultValue={props.data.Member3EarningStatus} name="Member3EarningStatus" onChange={updateFormdetails}>
+                                        <option value="select">--Select--</option>
+                                        <option value="Working">Working</option>
+                                        <option value="Retired">Retired</option>
+                                        <option value="Studying">Studying</option>
+                                    </select>
+                                </div>
+                                <div className="occupation ">
+                                    <label htmlFor="occupation" className="">Occupation</label>
+                                    <select htmlFor="occupation" defaultValue={props.data.Member3Occupation} name="Member3Occupation" onChange={updateFormdetails} id="">
+                                        <option value="select">--Select--</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Buiseness">Buiseness</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Agriculture">Agriculture</option>
+                                    </select>
+                                </div>
+                                <div className="organization ">
+                                    <label htmlFor="Organization" className="">Organization</label>
+                                    <input type="text" defaultValue={props.data.Member3Organization} name="Member3Organization" onChange={updateFormdetails} />
+                                </div>
+                                <div className="incomepermonth ">
+                                    <label htmlFor="Income" className="">Income Per Month</label>
+                                    <input type="text" defaultValue={props.data.Member3Income} name="Member3Income" onChange={updateFormdetails} />
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="familydetails width100">
+                        <div className="familydetailheading ">
+                            <h2>Member 4</h2>
+                        </div>
+                        <div className="family-detail-input medflexrow">
+                            <div className="familydetailline1 line">
+                                <div className="membername ">
+                                    <label htmlFor="Member Name" className="">Name</label>
+                                    <input type="text" defaultValue={props.data.Member4Name} name="Member4Name" onChange={updateFormdetails} />
+                                </div>
+                                <div className="relationship ">
+                                    <label htmlFor="Relationship" className="">Relationship</label>
+                                    <select htmlFor="Relationship" defaultValue={props.data.Member4Relationship} name="Member4Relationship" onChange={updateFormdetails} id="">
+                                        <option value="select">--Select--</option>
+                                        <option value="father">Father</option>
+                                        <option value="mother">Mother</option>
+                                        <option value="brother">Brother</option>
+                                        <option value="sister">Sister</option>
+                                        <option value="localguardian">Local Guardian</option>
+                                        <option value="sister">Sister</option>
+                                    </select>
+                                </div>
+                                <div className="ageinput ">
+                                    <label htmlFor="Age" className="">Age</label>
+                                    <input type="text" defaultValue={props.data.Member4Age} name="Member4Age" onChange={updateFormdetails} />
+                                </div>
+                                <div className="familyaddressinput ">
+                                    <label htmlFor="Address" className="">Address</label>
+                                    <input type="text" defaultValue={props.data.Member4Address} name="Member4Address" onChange={updateFormdetails} />
+                                </div>
+                                <div className="eduqualification ">
+                                    <label htmlFor="eduqualification" className="">Educational Qualification</label>
+                                    <input type="text" defaultValue={props.data.Member4EduQualification} name="Member4EduQualification" onChange={updateFormdetails} />
+                                </div>
+                            </div>
+                            <div className="familydetailline4 line">
+                                <div className="proqualification ">
+                                    <label htmlFor="proqualification" className="">Professional Qualification</label>
+                                    <input type="text" defaultValue={props.data.Member4ProQualification} name="Member4ProQualification" onChange={updateFormdetails} />
+                                </div>
+                                <div className="earningstatus ">
+                                    <label htmlFor="status" className="">Earning Status</label>
+                                    <select htmlFor="status" defaultValue={props.data.Member4EarningStatus} name="Member4EarningStatus" onChange={updateFormdetails}>
+                                        <option value="select">--Select--</option>
+                                        <option value="Working">Working</option>
+                                        <option value="Retired">Retired</option>
+                                        <option value="Studying">Studying</option>
+                                    </select>
+                                </div>
+                                <div className="occupation ">
+                                    <label htmlFor="occupation" className="">Occupation</label>
+                                    <select htmlFor="occupation" defaultValue={props.data.Member4Occupation} name="Member4Occupation" onChange={updateFormdetails} id="">
+                                        <option value="select">--Select--</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Buiseness">Buiseness</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Agriculture">Agriculture</option>
+                                    </select>
+                                </div>
+                                <div className="organization ">
+                                    <label htmlFor="Organization" className="">Organization</label>
+                                    <input type="text" defaultValue={props.data.Member4Organization} name="Member4Organization" onChange={updateFormdetails} />
+                                </div>
+                                <div className="incomepermonth ">
+                                    <label htmlFor="Income" className="">Income Per Month</label>
+                                    <input type="text" defaultValue={props.data.Member4Income} name="Member4Income" onChange={updateFormdetails} />
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="familydetails width100">
+                        <div className="familydetailheading ">
+                            <h2>Member 5</h2>
+                        </div>
+                        <div className="family-detail-input medflexrow">
+                            <div className="familydetailline1 line">
+                                <div className="membername ">
+                                    <label htmlFor="Member Name" className="">Name</label>
+                                    <input type="text" defaultValue={props.data.Member5Name} name="Member5Name" onChange={updateFormdetails} />
+                                </div>
+                                <div className="relationship ">
+                                    <label htmlFor="Relationship" className="">Relationship</label>
+                                    <select htmlFor="Relationship" defaultValue={props.data.Member5Relationship} name="Member5Relationship" onChange={updateFormdetails} id="">
+                                        <option value="select">--Select--</option>
+                                        <option value="father">Father</option>
+                                        <option value="mother">Mother</option>
+                                        <option value="brother">Brother</option>
+                                        <option value="sister">Sister</option>
+                                        <option value="localguardian">Local Guardian</option>
+                                        <option value="sister">Sister</option>
+                                    </select>
+                                </div>
+                                <div className="ageinput ">
+                                    <label htmlFor="Age" className="">Age</label>
+                                    <input type="text" defaultValue={props.data.Member5Age} name="Member5Age" onChange={updateFormdetails} />
+                                </div>
+                                <div className="familyaddressinput ">
+                                    <label htmlFor="Address" className="">Address</label>
+                                    <input type="text" defaultValue={props.data.Member5Address} name="Member5Address" onChange={updateFormdetails} />
+                                </div>
+                                <div className="eduqualification ">
+                                    <label htmlFor="eduqualification" className="">Educational Qualification</label>
+                                    <input type="text" defaultValue={props.data.Member5EduQualification} name="Member5EduQualification" onChange={updateFormdetails} />
+                                </div>
+                            </div>
+                            <div className="familydetailline5 line">
+                                <div className="proqualification ">
+                                    <label htmlFor="proqualification" className="">Professional Qualification</label>
+                                    <input type="text" defaultValue={props.data.Member5ProQualification} name="Member5ProQualification" onChange={updateFormdetails} />
+                                </div>
+                                <div className="earningstatus ">
+                                    <label htmlFor="status" className="">Earning Status</label>
+                                    <select htmlFor="status" defaultValue={props.data.Member5EarningStatus} name="Member5EarningStatus" onChange={updateFormdetails}>
+                                        <option value="select">--Select--</option>
+                                        <option value="Working">Working</option>
+                                        <option value="Retired">Retired</option>
+                                        <option value="Studying">Studying</option>
+                                    </select>
+                                </div>
+                                <div className="occupation ">
+                                    <label htmlFor="occupation" className="">Occupation</label>
+                                    <select htmlFor="occupation" defaultValue={props.data.Member5Occupation} name="Member5Occupation" onChange={updateFormdetails} id="">
+                                        <option value="select">--Select--</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Buiseness">Buiseness</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Agriculture">Agriculture</option>
+                                    </select>
+                                </div>
+                                <div className="organization ">
+                                    <label htmlFor="Organization" className="">Organization</label>
+                                    <input type="text" defaultValue={props.data.Member5Organization} name="Member5Organization" onChange={updateFormdetails} />
+                                </div>
+                                <div className="incomepermonth ">
+                                    <label htmlFor="Income" className="">Income Per Month</label>
+                                    <input type="text" defaultValue={props.data.Member5Income} name="Member5Income" onChange={updateFormdetails} />
                                 </div>
 
                             </div>
