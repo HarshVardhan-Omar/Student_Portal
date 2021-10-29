@@ -411,7 +411,7 @@ export default function LoginPage(props) {
 
 
 
-        <div className="resetpwdbg" style={{ position: "absolute", display: resetWindowVisibility?"flex":"none", alignItems: "center" , justifyContent: "center" ,zIndex: "1", backgroundColor: "#00000063", height: "100vh", width: "100%", top: "0px"}}>
+        <div className="resetpwdbg" style={{ position: "absolute", display: resetWindowVisibility?"flex":"none", alignItems: "center" , justifyContent: "center" ,zIndex: "1", backgroundColor: "#00000063", height: "calc(var(--vh, 1vh) * 100)", width: "100%", top: "0px"}}>
           <div className="resetpwdwindow" style={{position: "relative" , color:"black", height: "55vh", width: "50vw", minWidth:"320px", borderRadius: "20px", background: "linear-gradient(135deg , #eaffd6, #c8ff93)", display: "flex", flexDirection:"column", padding: "40px", position: "relative"}}>
             <button type="button" className="cross" onClick={ResetWindowHide} style={{ fontSize: "35px", fontFamily: "raleway", position: "absolute", top: "5px", right: "5px",color: "#117d38", height: "40px", width: "40px", border: "none", background: "none", cursor: "pointer", lineHeight: "0"}} >
               x
