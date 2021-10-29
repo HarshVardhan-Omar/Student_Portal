@@ -89,7 +89,8 @@ export default function Homepage(props) {
           // history.push({
           //   pathname:'/getstudentdetails',
           // })
-          props.setData(data)
+          setTimeout(function(){ props.setData(data) }, 1000);
+          
         }
         else{
           props.setProgress(100)
@@ -119,13 +120,33 @@ export default function Homepage(props) {
             <Route exact path={`${match.url}/coursemanagement`} render={props => <CourseManagement data={data} />} />
             <Route exact path={`${match.url}/examform`} render={props => <ExamForm data={data} />} />
             <Route exact path={`${match.url}/result`} render={props => <Result data={data} />} />
-             <Route> <NotFound/> </Route>
+            <Route> <NotFound/> </Route>
             </Switch>
             {/* <button onClick={logout}>LogOut</button> */}
         </div>
       )
     }
     else{
-      return(<><h1>You are not logged In.</h1><button onClick={logout}>LogOut</button></>)
+      return(<><div class="loadergrid">
+      <div class="loaderanimation">
+          <div id="ld2">
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div>
+            </div>
+          </div>
+      </div>  
+      </div>
+      </>)
     }
 }

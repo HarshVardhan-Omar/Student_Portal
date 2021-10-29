@@ -160,6 +160,7 @@ export default function LoginPage(props) {
       const[new_re_p,setNew_re_p]=useState("");
       const[new_p_validity,setNew_p_validity]=useState();
       const[new_re_p_validity,setNew_re_p_validity]=useState();
+      const[rstpwssuccess,setRstpwssuccess]=useState(false);
       const[form_validity,setForm_validity]=useState(false);
       const[reset_password_alert, setReset_password_alert] = useState("")
       useDidMountEffect(() => {
@@ -174,6 +175,7 @@ export default function LoginPage(props) {
         setRstPwdUsernameWindowVisibility(true);
         setRstPwdotpWindowVisibility(false);
         setNewpWindowVisibility(false);
+        setRstpwssuccess(false)
       }
       const ResetWindowHide=(e)=>{
         setResetWindowVisibility(false);
@@ -295,10 +297,15 @@ export default function LoginPage(props) {
           setRstPwdUsernameWindowVisibility(false)
           setRstPwdotpWindowVisibility(false)
           setNewpWindowVisibility(true)
+          setRstPwdotp("")
         }
         else if(response.status == 404 || response.status == 401 || response.status == 400){
           console.clear()
+          setRstPwdotp("")
           props.setProgress(100)
+          if(document.querySelector(".otpinput").querySelector("input")){
+            document.querySelector(".otpinput").querySelector("input").focus()
+          }
           setReset_password_alert("OTP Incorrect");
         }
       }
@@ -327,10 +334,17 @@ export default function LoginPage(props) {
         props.setProgress(50)
         if(response.ok){
           props.setProgress(100)
-          setReset_password_alert("Success!! Your password is changed.")
           if(document.getElementById("changePasswordForm")){
             document.getElementById("changePasswordForm").reset();
           }
+          setNewp("")
+          setNew_re_p("")
+          setNewpWindowVisibility(false)
+          setRstPwdUsernameWindowVisibility(false)
+          setRstPwdotpWindowVisibility(false)
+          setRstpwssuccess(true)
+          setTimeout(function(){ setRstpwssuccess(false) }, 5000);
+          setResetWindowVisibility(false)
         }
         else if(response.status == 401 || response.status ==  404 || response.status ==  400){
           console.clear()
@@ -403,7 +417,7 @@ export default function LoginPage(props) {
               x
             </button>
             <div className="rstpwdheading0" style={{width: "100%", fontFamily: "raleway", fontWeight: "normal", fontSize: "4vh", }}>Reset Password</div>
-            <div style={{overflowX: "auto", }}>
+            <div style={{overflowX: "auto",height: "100%" }}>
             <div className="rstpwdusernameinput" style={{display:rstPwdUsernameWindowVisibility?"flex":"none"}}>
               <div className="rstpwdheading1" style={{}}>Enter Your Username</div>
               <form onSubmit={sendmail}>
@@ -443,7 +457,9 @@ export default function LoginPage(props) {
           </div>
         </div>
 
-
+        <div className="resetpasswordsuccess" style={{transition: "1s", top:rstpwssuccess?"0px":"-100px", display:"flex", width: "100%", height: "80px", position: "absolute", zIndex: "5", fontFamily: "raleway", fontWeight: "normal", fontSize: "6vh", justifyContent: "center", alignItems: "center", }}>
+              <h1 style={{color: 'black',fontFamily: "raleway", fontWeight: "normal", fontSize: "3vh",margin: "0px 10px", background: "linear-gradient(135deg , #eaffd6, #c8ff93)", borderRadius: "5px",padding: "10px 30px"}}>Your Password was changed successfully!!</h1>
+        </div>
 
 
       </div>
