@@ -1,6 +1,7 @@
 import React from 'react'
 import "./studentRegistration.css"
 import { useState, useEffect, useRef } from 'react'
+import $ from "jQuery"
 
 export default function studentRegistration(props) {
     const [PhotoField, setPhotoField] = useState(props.data.Photo);
@@ -8,6 +9,9 @@ export default function studentRegistration(props) {
     const [ThumbField, setThumbField] = useState(props.data.Thumb);
     const [formTitle, setFormtitle] = useState("Studentdetail")
     const [response, setResponse] = useState("")
+    const[Formvalidity,setFormValidity]=useState(false)
+    const[saveform,setSaveForm]=useState()
+    const[inputvalid,setInputValid]=useState(true)
     const setPhoto = (e) => {
         var input = document.getElementById("PhotoField");
         var fReader = new FileReader();
@@ -239,8 +243,60 @@ export default function studentRegistration(props) {
             ...prevState,
             [e.target.name]: e.target.value
         }));
+        setInputValid(true)
     }
-    const save = () => {
+    const checkonlynumberinput=(e)=>{
+        const valid = /^[0-9- .]+$/;
+        if ((e.target.value).match(valid)||e.target.value===""){
+            setInputValid(true)
+            setFormValidity(true)
+            setFormDetails(prevState => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }));
+    }
+    else{
+        alert(e.target.name+" Should not contain an Alphabet or special character")
+        e.target.value=""
+        setInputValid(false)
+        setFormValidity(false)
+    }
+    }
+    const checkonlylettersinput=(e)=>{
+        var letters = /^[A-Za-z .]+$/;
+        if((e.target.value).match(letters)||e.target.value===""){
+            setInputValid(true)
+            setFormValidity(true)
+            setFormDetails(prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value
+            }));
+        }
+        else{
+            alert(e.target.name+" Should not contain any numbers or special characters")
+            e.target.value=""
+            setInputValid(false)
+            setFormValidity(false)
+        }
+    }
+    const checklettersandnumbers=(e)=>{
+        var lettersandnumbers=/^[0-9a-zA-Z .]+$/;
+        if((e.target.value).match(lettersandnumbers)||e.target.value===""){
+            setInputValid(true)
+            setFormValidity(true)
+            setFormDetails(prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value
+            }));
+        }
+        else{
+            alert(e.target.name+" Should contain only letters and numbers")
+            e.target.value=""
+            setInputValid(false)
+            setFormValidity(false)
+        }
+    }
+    const save =() => {
 
         if (isperchecked) {
             setFormDetails(prevState => ({
@@ -253,7 +309,6 @@ export default function studentRegistration(props) {
                 PerCity: FormDetails.CurCity,
                 PerState: FormDetails.CurState,
                 PerCountry: FormDetails.CurCountry,
-                IsformSaved: "True"
 
             }));
 
@@ -263,20 +318,79 @@ export default function studentRegistration(props) {
                 ...prevState,
                 CurAddress: FormDetails.CurAddress1 + " " + FormDetails.CurAddress2 + ", " + FormDetails.CurZipCode,
                 PerAddress: FormDetails.PerAddress1 + " " + FormDetails.PerAddress2 + ", " + FormDetails.PerZipCode,
-                IsformSaved: "True"
 
             }));
 
         }
-        //    saveDetails()
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var phoneno = /^\d{10}$/;
+        if(((FormDetails.HBTUEmail).match(mailformat)||(FormDetails.HBTUEmail)==="")&&((FormDetails.PersonalEmail).match(mailformat)||(FormDetails.PersonalEmail)==="")&&((FormDetails.ParentEmail).match(mailformat)||(FormDetails.ParentEmail)==="")
+        &&((FormDetails.Contact).match(phoneno)||(FormDetails.Contact)==="")&&((FormDetails.AlternateContact).match(phoneno)||(FormDetails.AlternateContact)==="")&&((FormDetails.FatherContact).match(phoneno)||(FormDetails.FatherContact===""))){
+            if(inputvalid){
+            setSaveForm(true)
+            setFormValidity(true)
+            }
+            else{
+                setResponse("Error Saving Form Details one or more inputs may be invalid")
+                setSaveForm(false)
+            }
+        }
+        else{
+            setResponse("Error Saving Form Details Contact number or Email Address Invalid")
+            setSaveForm(false)
+            setFormValidity(false)
+        }
+    }
+    const firstrender1=useRef(true)
+    useEffect(() => {
+        if (firstrender1.current) {
+            firstrender1.current = false
+            return
+        }
+        checkvalidation()
+
+    }, [saveform])
+    
+
+    function checkvalidation(){
+        if(saveform){
+            setFormDetails(prevState => ({
+                ...prevState,
+                IsformSaved:"True"
+
+            }));
+        }
+        else{
+            setResponse("Error Saving Form Details Contact or Email Address Invalid!")
+
+        }
     }
     const submit = () => {
+        var blankinput=false
+        $("form#studentregistrationform :input").each(function(){
+            var input = $(this); 
+            if(input.val().length===0){
+                var error=input.attr('name')+" cannot be blank!"
+                alert(error)
+                blankinput=true
+                return false
+            }
+            else{
+                
+            }
+        });
+       
+        if(!blankinput){
         var reply = confirm("Before Submitting make sure all the details provided by you are correct.Once Submitted you will have to contact DSW Office for further Changes!")
-        if (reply === true) {
+        if (reply === true &&Formvalidity) {
             setFormDetails(prevState => ({
                 ...prevState,
                 IsformSubmitted: "True",
             }))
+        }
+    }
+        else{
+           setResponse("Input Fields are invalid or blank.")
         }
     }
 
@@ -342,7 +456,7 @@ export default function studentRegistration(props) {
                     <button id="qualifyingexam" style={(formTitle === "qualifyingexam" ? buttonstyleactive : buttonstyleinactive)} onClick={setform}>Qualifying Exam</button>
                 </div>
             </div>
-            <form>
+            <form id="studentregistrationform">
 
 
 
@@ -357,12 +471,12 @@ export default function studentRegistration(props) {
                             <div className="academicline1 line">
                                 <div className="roll-input">
                                     <label htmlFor="RollNo" className="">University Roll No.</label>
-                                    <input type="text" defaultValue={props.data.UniversityRollNo} name="UniversityRollNo" onChange={updateFormdetails} id="roll-no" />
+                                    <input type="text" defaultValue={props.data.UniversityRollNo} name="UniversityRollNo" onChange={checkonlynumberinput} id="roll-no" />
                                 </div>
                                 <div className="programme">
                                     <label htmlFor="Programme" className="">Programme</label>
                                     <select htmlFor="Programme" defaultValue={props.data.Programme} name="Programme" onChange={updateFormdetails} id="programme">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Btech">BTech</option>
                                         <option value="Mtech">MTech</option>
                                         <option value="PHD">Phd</option>
@@ -373,7 +487,7 @@ export default function studentRegistration(props) {
                                 <div className="admission-source">
                                     <label htmlFor="AdmissionSource" className="">Admission Source</label>
                                     <select htmlFor="AdmissionSource" defaultValue={props.data.AdmissionSource} name="AdmissionSource" onChange={updateFormdetails} id="admissionsource">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="JEE Mains">JEE Mains</option>
                                         <option value="JEE Mains govt">JEE Mains GOVT Nominee</option>
                                         <option value="nimcet">NIMCET</option>
@@ -388,12 +502,12 @@ export default function studentRegistration(props) {
                             <div className="academicline2 line">
                                 <div className="enroll-input">
                                     <label htmlFor="EnrollmentNumber" className="">Enrollment Number</label>
-                                    <input type="text" defaultValue={props.data.EnrollmentNumber} name="EnrollmentNumber" id="enrollment-no" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.EnrollmentNumber} name="EnrollmentNumber" id="enrollment-no" onChange={checklettersandnumbers} />
                                 </div>
                                 <div className="branch">
                                     <label htmlFor="Branch" className="">Branch</label>
                                     <select htmlFor="Branch" defaultValue={props.data.Branch} name="Branch" id="Branch" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="CSE">Computer Science and Engineering</option>
                                         <option value="IT">Information Technology</option>
                                         <option value="ET">Electronics Technology</option>
@@ -411,7 +525,17 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="current-semester">
                                     <label htmlFor="CurrentSemester" className="">Current Semester</label>
-                                    <input type="text" defaultValue={props.data.CurrentSemester} name="CurrentSemester" onChange={updateFormdetails} id="currentsemester" />
+                                    <select htmlFor="Gender" defaultValue={props.data.BloodGroup} name="BloodGroup" onChange={updateFormdetails}>
+                                        <option value="">--Select--</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                    </select>
 
                                 </div>
 
@@ -426,7 +550,7 @@ export default function studentRegistration(props) {
                             <div className="personalline1 line">
                                 <div className="englishname">
                                     <label htmlFor="StudentName" className="">Student Name</label>
-                                    <input type="text" defaultValue={props.data.StudentName} name="StudentName" onChange={updateFormdetails} id="studentname" />
+                                    <input type="text" defaultValue={props.data.StudentName} name="StudentName" onChange={checkonlylettersinput} id="studentname" />
                                 </div>
                                 <div className="dob">
                                     <label htmlFor="DOB" className="">Date Of Birth</label>
@@ -434,7 +558,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="contactnumber">
                                     <label htmlFor="ContactNumber" className="">Contact</label>
-                                    <input type="text" defaultValue={props.data.Contact} name="Contact" onChange={updateFormdetails} id="" />
+                                    <input type="text" defaultValue={props.data.Contact} name="Contact" onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="hbtuemail">
                                     <label htmlFor="HBTUEmail" className="">HBTU Email</label>
@@ -443,7 +567,7 @@ export default function studentRegistration(props) {
                                 <div className="subcategoryinput">
                                     <label htmlFor="SubCategory" className="">SubCategory</label>
                                     <select htmlFor="SubCategory" defaultValue={props.data.SubCategory} name="SubCategory" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="girl">Girl</option>
                                         <option value="af">AF</option>
                                         <option value="ff">FF</option>
@@ -453,11 +577,21 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="bloodgroupinput">
                                     <label htmlFor="BloodGroup" className="">Blood Group</label>
-                                    <input type="text" defaultValue={props.data.BloodGroup} name="BloodGroup" onChange={updateFormdetails} id="" />
+                                    <select htmlFor="Gender" defaultValue={props.data.BloodGroup} name="BloodGroup" onChange={updateFormdetails}>
+                                        <option value="">--Select--</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                    </select>
                                 </div>
                                 <div className="aadhaarinput">
                                     <label htmlFor="Aadhaar" className="">Aadhaar Card Number</label>
-                                    <input type="text" defaultValue={props.data.AadhaarCard} name="AadhaarCard" onChange={updateFormdetails} id="" />
+                                    <input type="text" defaultValue={props.data.AadhaarCard} name="AadhaarCard" onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="nationalityinput">
                                     <label htmlFor="Nationality" className="">Nationality</label>
@@ -471,11 +605,16 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="genderinput">
                                     <label htmlFor="Gender" className="">Gender</label>
-                                    <input type="text" defaultValue={props.data.Gender} name="Gender" onChange={updateFormdetails} id="" />
+                                    <select htmlFor="Gender" defaultValue={props.data.Gender} name="Gender" onChange={updateFormdetails}>
+                                        <option value="">--Select--</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Prefer not to say">Prefer not to say</option>
+                                    </select>
                                 </div>
                                 <div className="alternatecontactinput">
                                     <label htmlFor="AlternateContact" className="">Alternate Contact</label>
-                                    <input type="text" defaultValue={props.data.AlternateContact} name="AlternateContact" onChange={updateFormdetails} id="" />
+                                    <input type="text" defaultValue={props.data.AlternateContact} name="AlternateContact" onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="personalemailinput">
                                     <label htmlFor="PersonalEmail" className="">Personal Email</label>
@@ -484,7 +623,7 @@ export default function studentRegistration(props) {
                                 <div className="categoryinput">
                                     <label htmlFor="Category" className="">Category</label>
                                     <select htmlFor="Category" defaultValue={props.data.Category} name="Category" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="GEN">GEN</option>
                                         <option value="GENEWS">GEN-EWS</option>
                                         <option value="obc">OBC</option>
@@ -497,12 +636,16 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="feewaiverinput">
                                     <label htmlFor="FeeWaiver" className="">Fee Waiver</label>
-                                    <input type="text" defaultValue={props.data.FeeWaiver} name="FeeWaiver" onChange={updateFormdetails} id="" />
+                                    <select htmlFor="FeeWaiver" defaultValue={props.data.FeeWaiver} name="FeeWaiver" onChange={updateFormdetails}>
+                                        <option value="">--Select--</option>
+                                        <option value="True">Yes</option>
+                                        <option value="False">No</option>
+                                    </select>
                                 </div>
                                 <div className="hostelrequired">
                                     <label htmlFor="Hostel" className="">Hostel Required</label>
                                     <select htmlFor="Hostel" defaultValue={props.data.Hostel} name="Hostel" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="True">Yes</option>
                                         <option value="False">No</option>
                                     </select>
@@ -510,7 +653,7 @@ export default function studentRegistration(props) {
                                 <div className="transportmodeinput">
                                     <label htmlFor="Mode" className="">Mode Of Transport</label>
                                     <select htmlFor="Mode" defaultValue={props.data.ModeOfTransport} name="ModeOfTransport" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Bus">Bus</option>
                                         <option value="pickedup">Picked Up</option>
                                         <option value="walker">Walker</option>
@@ -518,7 +661,18 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="religioninput">
                                     <label htmlFor="Releigion" className="">Religion</label>
-                                    <input type="text" defaultValue={props.data.Religion} name="Religion" onChange={updateFormdetails} id="" />
+                                    <select htmlFor="Category" defaultValue={props.data.Religion} name="Religion" onChange={updateFormdetails}>
+                                        <option value="">--Select--</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Muslim">Muslim</option>
+                                        <option value="Sikh">Sikh</option>
+                                        <option value="Christian">Christian</option>
+                                        <option value="Jain">Jain</option>
+                                        <option value="nri">Buddhist</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Judaism">Judaism</option>
+                                        <option value="Zoroastrianism">Zoroastrianism</option>
+                                    </select>
                                 </div>
 
                             </div>
@@ -531,31 +685,35 @@ export default function studentRegistration(props) {
                         <div className="entrance-exam-input medflexrow">
                             <div className="entranceline1 line">
                                 <div className="entranceexaminput">
-                                    <label htmlFor="EntranceExam" className="">Entrane Exam</label>
-                                    <input type="text" defaultValue={props.data.EntranceExam} name="EntranceExam" onChange={updateFormdetails} id="" />
+                                    <label htmlFor="EntranceExam" className="">Entrance Exam</label>
+                                    <select htmlFor="EntranceExam" defaultValue={props.data.EntranceExam} name="EntranceExam" onChange={updateFormdetails}>
+                                        <option value="">--Select--</option>
+                                        <option value="JEE Mains">JEE Mains</option>
+                                        <option value="UPTU">UPTU</option>
+                                    </select>
                                 </div>
                                 <div className="applicationno">
                                     <label htmlFor="ApplicationNo" className="">Roll No./Application No.</label>
-                                    <input type="text" defaultValue={props.data.ApplicationNo} name="ApplicationNo" onChange={updateFormdetails} id="" />
+                                    <input type="text" defaultValue={props.data.ApplicationNo} name="ApplicationNo" onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="categoryrank">
                                     <label htmlFor="CategoryRank" className="">Category Rank</label>
-                                    <input type="text" defaultValue={props.data.CategoryRank} name="CategoryRank" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.CategoryRank} name="CategoryRank" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="entranceline2 line">
                                 <div className="yearinput">
                                     <label htmlFor="YearInput" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.Year} name="Year" onChange={updateFormdetails} id="" />
+                                    <input type="text" defaultValue={props.data.Year} name="Year" onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="airrank">
                                     <label htmlFor="AIRRank" className="">AIR Rank</label>
-                                    <input type="text" defaultValue={props.data.AIRRank} name="AIRRank" onChange={updateFormdetails} id="" />
+                                    <input type="text" defaultValue={props.data.AIRRank} name="AIRRank" onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="seatcategoryinput">
                                     <label htmlFor="SeatCategory" className="">Seat Allot in Category</label>
                                     <select htmlFor="SeatCategory" defaultValue={props.data.SeatCategory} name="SeatCategory" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="BC-PH">BC-PH</option>
                                         <option value="OBC-NCL">OBC-NCL</option>
                                         <option value="OPEN">OPEN</option>
@@ -580,21 +738,21 @@ export default function studentRegistration(props) {
                             <div className="parentline1 line">
                                 <div className="fathername">
                                     <label htmlFor="FatherName" className="">Father's Name</label>
-                                    <input type="text" defaultValue={props.data.FatherName} name="FatherName" onChange={updateFormdetails} id="" />
+                                    <input type="name" defaultValue={props.data.FatherName} name="FatherName" onChange={checkonlylettersinput} id="" />
                                 </div>
                                 <div className="mothername">
                                     <label htmlFor="MotherName" className="">Mother's Name</label>
-                                    <input type="text" defaultValue={props.data.MotherName} name="MotherName" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MotherName} name="MotherName" onChange={checkonlylettersinput} />
                                 </div>
                             </div>
                             <div className="parentline2 line">
                                 <div className="fathercontact">
                                     <label htmlFor="FatherContact" className="">Father's Contact Number</label>
-                                    <input type="text" defaultValue={props.data.FatherContact} name="FatherContact" onChange={updateFormdetails} id="" />
+                                    <input type="text" defaultValue={props.data.FatherContact} name="FatherContact" onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="landline">
                                     <label htmlFor="Landline" className="">LandLine Number</label>
-                                    <input type="text" defaultValue={props.data.Landline} name="Landline" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Landline} name="Landline" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="parentemailid">
                                     <label htmlFor="ParentEmailID" className="">Parent's Email ID</label>
@@ -692,14 +850,14 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="">
                                     <label htmlFor="Zipcode" className="">ZipCode</label>
-                                    <input type="text" defaultValue={props.data.CurZipCode} name="CurZipCode" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.CurZipCode} name="CurZipCode" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
                                 <div className="city">
                                     <label htmlFor="City" className="">City</label>
                                     <select htmlFor="City" defaultValue={props.data.CurCity} name="CurCity" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Kanpur">Kanpur</option>
                                         <option value="Lucknow">Lucknow</option>
                                         <option value="Allahabad">Allahabad</option>
@@ -712,7 +870,7 @@ export default function studentRegistration(props) {
                                 <div className="state ">
                                     <label htmlFor="State" className="">State/District</label>
                                     <select htmlFor="State" defaultValue={props.data.CurState} name="CurState" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                                         <option value="Assam">Assam</option>
                                         <option value="Bihar">Bihar</option>
@@ -732,7 +890,7 @@ export default function studentRegistration(props) {
                                 <div className="country ">
                                     <label htmlFor="Country" className="">Country</label>
                                     <select htmlFor="Country" defaultValue={props.data.CurCountry} name="CurCountry" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="India">India</option>
                                         <option value="Sri Lanka">Sri Lanka</option>
                                     </select>
@@ -763,14 +921,14 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="">
                                     <label htmlFor="Zipcode" className="">ZipCode</label>
-                                    <input type="text" defaultValue={isperchecked ? (FormDetails.CurZipCode) : (props.data.PerZipCode)} name="PerZipCode" disabled={isperchecked} onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={isperchecked ? (FormDetails.CurZipCode) : (props.data.PerZipCode)} name="PerZipCode" disabled={isperchecked} onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
                                 <div className="">
                                     <label htmlFor="City" className="">City</label>
                                     <select htmlFor="City" defaultValue={isperchecked ? (FormDetails.CurCity) : (props.data.PerCity)} name="PerCity" disabled={isperchecked} onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option defaultValue="Kanpur" value="Kanpur">Kanpur</option>
                                         <option defaultValue="Lucknow" value="Lucknow">Lucknow</option>
                                         <option defaultValue="Allahabad" value="Allahabad">Allahabad</option>
@@ -782,7 +940,7 @@ export default function studentRegistration(props) {
                                 <div className="">
                                     <label htmlFor="State" className="">State/District</label>
                                     <select htmlFor="State" defaultValue={isperchecked ? (FormDetails.CurState) : (props.data.PerState)} name="PerState" disabled={isperchecked} onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                                         <option value="Arunachal Pradesh">Arunachal Pradesh</option>
                                         <option value="Assam">Assam</option>
@@ -803,7 +961,7 @@ export default function studentRegistration(props) {
                                 <div className="">
                                     <label htmlFor="Country" className="">Country</label>
                                     <select htmlFor="Country" defaultValue={isperchecked ? (FormDetails.CurCountry) : (props.data.PerCountry)} name="PerCountry" disabled={isperchecked} onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="India">India</option>
                                         <option value="Sri Lanka">Sri Lanka</option>
                                     </select>
@@ -838,17 +996,17 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="rollno ">
                                     <label htmlFor="RollNo" className="">Roll No.</label>
-                                    <input type="text" defaultValue={props.data.HighSchoolRollNo} name="HighSchoolRollNo" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.HighSchoolRollNo} name="HighSchoolRollNo" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.HighSchoolYear} name="HighSchoolYear" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.HighSchoolYear} name="HighSchoolYear" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
                                 <div className="nameofinstitute ">
                                     <label htmlFor="Institute Name" className="">Name of Institution </label>
-                                    <input type="text" defaultValue={props.data.HighSchoolInstitution} name="HighSchoolInstitution" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.HighSchoolInstitution} name="HighSchoolInstitution" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="division ">
                                     <label htmlFor="Division" className="">Division</label>
@@ -870,7 +1028,7 @@ export default function studentRegistration(props) {
                                 <div className="board ">
                                     <label htmlFor="Board" className="">Board/University</label>
                                     <select htmlFor="Board" defaultValue={props.data.IntermediateBoard} name="IntermediateBoard" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="ISC">ISC</option>
                                         <option value="CBSE">CBSE</option>
                                         <option value="UP-Board">UP Board</option>
@@ -878,17 +1036,17 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="rollno ">
                                     <label htmlFor="RollNo" className="">Roll No.</label>
-                                    <input type="text" defaultValue={props.data.IntermediateRollNo} name="IntermediateRollNo" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.IntermediateRollNo} name="IntermediateRollNo" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.IntermediateYear} name="IntermediateYear" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.IntermediateYear} name="IntermediateYear" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
                                 <div className="nameofinstitute ">
                                     <label htmlFor="Institute Name" className="">Name of Institution </label>
-                                    <input type="text" defaultValue={props.data.IntermediateInstitution} name="IntermediateInstitution" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.IntermediateInstitution} name="IntermediateInstitution" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="division ">
                                     <label htmlFor="Division" className="">Division</label>
@@ -911,7 +1069,7 @@ export default function studentRegistration(props) {
                                 <div className="board ">
                                     <label htmlFor="Board" className="">Board/University</label>
                                     <select htmlFor="Board" defaultValue={props.data.BSCBoard} name="BSCBoard" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="ISC">ICSE</option>
                                         <option value="CBSE">CBSE</option>
                                         <option value="UP-Board">UP Board</option>
@@ -919,17 +1077,17 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="rollno ">
                                     <label htmlFor="RollNo" className="">Roll No.</label>
-                                    <input type="text" defaultValue={props.data.BSCRollNo} name="BSCRollNo" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.BSCRollNo} name="BSCRollNo" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.BSCYear} name="BSCYear" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.BSCYear} name="BSCYear" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
                                 <div className="nameofinstitute ">
                                     <label htmlFor="Institute Name" className="">Name of Institution </label>
-                                    <input type="text" defaultValue={props.data.BSCInstitution} name="BSCInstitution" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.BSCInstitution} name="BSCInstitution" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="division ">
                                     <label htmlFor="Division" className="">Division</label>
@@ -952,7 +1110,7 @@ export default function studentRegistration(props) {
                                 <div className="board ">
                                     <label htmlFor="Board" className="">Board/University</label>
                                     <select htmlFor="Board" defaultValue={props.data.MtechBoard} name="MtechBoard" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="ICSE">ICSE</option>
                                         <option value="CBSE">CBSE</option>
                                         <option value="UP-Board">UP Board</option>
@@ -960,17 +1118,17 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="rollno ">
                                     <label htmlFor="RollNo" className="">Roll No.</label>
-                                    <input type="text" defaultValue={props.data.MtechRollNo} name="MtechRollNo" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MtechRollNo} name="MtechRollNo" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.MtechYear} name="MtechYear" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MtechYear} name="MtechYear" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
                                 <div className="nameofinstitute ">
                                     <label htmlFor="Institute Name" className="">Name of Institution </label>
-                                    <input type="text" defaultValue={props.data.MtechInstitution} name="MtechInstitution" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MtechInstitution} name="MtechInstitution" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="division ">
                                     <label htmlFor="Division" className="">Division</label>
@@ -993,7 +1151,7 @@ export default function studentRegistration(props) {
                                 <div className="board ">
                                     <label htmlFor="Board" className="">Board/University</label>
                                     <select htmlFor="Board" defaultValue={props.data.BtechBoard} name="BtechBoard" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="ICSE">ICSE</option>
                                         <option value="CBSE">CBSE</option>
                                         <option value="UP-Board">UP Board</option>
@@ -1001,17 +1159,17 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="rollno ">
                                     <label htmlFor="RollNo" className="">Roll No.</label>
-                                    <input type="text" defaultValue={props.data.BtechRollNo} name="BtechRollNo" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.BtechRollNo} name="BtechRollNo" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.BtechYear} name="BtechYear" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.BtechYear} name="BtechYear" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
                                 <div className="nameofinstitute ">
                                     <label htmlFor="Institute Name" className="">Name of Institution </label>
-                                    <input type="text" defaultValue={props.data.BtechInstitution} name="BtechInstitution" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.BtechInstitution} name="BtechInstitution" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="division ">
                                     <label htmlFor="Division" className="">Division</label>
@@ -1034,7 +1192,7 @@ export default function studentRegistration(props) {
                                 <div className="board ">
                                     <label htmlFor="Board" className="">Board/University</label>
                                     <select htmlFor="Board" defaultValue={props.data.MCABoard} name="MCABoard" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="ICSE">ICSE</option>
                                         <option value="CBSE">CBSE</option>
                                         <option value="Ip-Board">UP Board</option>
@@ -1042,17 +1200,17 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="rollno ">
                                     <label htmlFor="RollNo" className="">Roll No.</label>
-                                    <input type="text" defaultValue={props.data.MCARollNo} name="MCARollNo" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MCARollNo} name="MCARollNo" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.MCAYear} name="MCAYear" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MCAYear} name="MCAYear" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
                                 <div className="nameofinstitute ">
                                     <label htmlFor="Institute Name" className="">Name of Institution </label>
-                                    <input type="text" defaultValue={props.data.MCAInstitution} name="MCAInstitution" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MCAInstitution} name="MCAInstitution" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="division ">
                                     <label htmlFor="Division" className="">Division</label>
@@ -1075,7 +1233,7 @@ export default function studentRegistration(props) {
                                 <div className="board ">
                                     <label htmlFor="Board" className="">Board/University</label>
                                     <select htmlFor="Board" defaultValue={props.data.MSCBoard} name="MSCBoard" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="ICSE">ICSE</option>
                                         <option value="CBSE">CBSE</option>
                                         <option value="UP-Board">UP Board</option>
@@ -1083,17 +1241,17 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="rollno ">
                                     <label htmlFor="RollNo" className="">Roll No.</label>
-                                    <input type="text" defaultValue={props.data.MSCRollNo} name="MSCRollNo" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MSCRollNo} name="MSCRollNo" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.MSCYear} name="MSCYear" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MSCYear} name="MSCYear" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
                                 <div className="nameofinstitute ">
                                     <label htmlFor="Institute Name" className="">Name of Institution </label>
-                                    <input type="text" defaultValue={props.data.MSCInstitution} name="MSCInstitution" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MSCInstitution} name="MSCInstitution" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="division ">
                                     <label htmlFor="Division" className="">Division</label>
@@ -1116,7 +1274,7 @@ export default function studentRegistration(props) {
                                 <div className="board ">
                                     <label htmlFor="Board" className="">Board/University</label>
                                     <select htmlFor="Board" defaultValue={props.data.BCABoard} name="BCABoard" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="ICSE">ICSE</option>
                                         <option value="CBSE">CBSE</option>
                                         <option value="Ip-Board">UP Board</option>
@@ -1124,17 +1282,17 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="rollno ">
                                     <label htmlFor="RollNo" className="">Roll No.</label>
-                                    <input type="text" defaultValue={props.data.BCARollNo} name="BCARollNo" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.BCARollNo} name="BCARollNo" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.BCAYear} name="BCAYear" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.BCAYear} name="BCAYear" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
                                 <div className="nameofinstitute ">
                                     <label htmlFor="Institute Name" className="">Name of Institution </label>
-                                    <input type="text" defaultValue={props.data.BCAInstitution} name="BCAInstitution" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.BCAInstitution} name="BCAInstitution" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="division ">
                                     <label htmlFor="Division" className="">Division</label>
@@ -1174,12 +1332,12 @@ export default function studentRegistration(props) {
                             <div className="familydetailline1 line">
                                 <div className="membername ">
                                     <label htmlFor="Member Name" className="">Name</label>
-                                    <input type="text" defaultValue={props.data.Member1Name} name="Member1Name" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member1Name} name="Member1Name" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="relationship ">
                                     <label htmlFor="Relationship" className="">Relationship</label>
                                     <select htmlFor="Relationship" defaultValue={props.data.Member1Relationship} name="Member1Relationship" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Father">Father</option>
                                         <option value="Mother">Mother</option>
                                         <option value="Brother">Brother</option>
@@ -1190,7 +1348,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="ageinput ">
                                     <label htmlFor="Age" className="">Age</label>
-                                    <input type="text" defaultValue={props.data.Member1Age} name="Member1Age" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member1Age} name="Member1Age" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="familyaddressinput ">
                                     <label htmlFor="Address" className="">Address</label>
@@ -1209,7 +1367,7 @@ export default function studentRegistration(props) {
                                 <div className="earningstatus ">
                                     <label htmlFor="status" className="">Earning Status</label>
                                     <select htmlFor="status" defaultValue={props.data.Member1EarningStatus} name="Member1EarningStatus" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Working">Working</option>
                                         <option value="Retired">Retired</option>
                                         <option value="Studying">Studying</option>
@@ -1218,7 +1376,7 @@ export default function studentRegistration(props) {
                                 <div className="occupation ">
                                     <label htmlFor="occupation" className="">Occupation</label>
                                     <select htmlFor="occupation" defaultValue={props.data.Member1Occupation} name="Member1Occupation" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Service">Service</option>
                                         <option value="Buiseness">Buiseness</option>
                                         <option value="Student">Student</option>
@@ -1230,8 +1388,8 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member1Organization} name="Member1Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month</label>
-                                    <input type="text" defaultValue={props.data.Member1Income} name="Member1Income" onChange={updateFormdetails} />
+                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <input type="text" defaultValue={props.data.Member1Income} name="Member1Income" onChange={checkonlynumberinput} />
                                 </div>
 
                             </div>
@@ -1246,12 +1404,12 @@ export default function studentRegistration(props) {
                             <div className="familydetailline1 line">
                                 <div className="membername ">
                                     <label htmlFor="Member Name" className="">Name</label>
-                                    <input type="text" defaultValue={props.data.Member2Name} name="Member2Name" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member2Name} name="Member2Name" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="relationship ">
                                     <label htmlFor="Relationship" className="">Relationship</label>
                                     <select htmlFor="Relationship" defaultValue={props.data.Member2Relationship} name="Member2Relationship" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="father">Father</option>
                                         <option value="mother">Mother</option>
                                         <option value="brother">Brother</option>
@@ -1262,7 +1420,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="ageinput ">
                                     <label htmlFor="Age" className="">Age</label>
-                                    <input type="text" defaultValue={props.data.Member2Age} name="Member2Age" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member2Age} name="Member2Age" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="familyaddressinput ">
                                     <label htmlFor="Address" className="">Address</label>
@@ -1281,7 +1439,7 @@ export default function studentRegistration(props) {
                                 <div className="earningstatus ">
                                     <label htmlFor="status" className="">Earning Status</label>
                                     <select htmlFor="status" defaultValue={props.data.Member2EarningStatus} name="Member2EarningStatus" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Working">Working</option>
                                         <option value="Retired">Retired</option>
                                         <option value="Studying">Studying</option>
@@ -1290,7 +1448,7 @@ export default function studentRegistration(props) {
                                 <div className="occupation ">
                                     <label htmlFor="occupation" className="">Occupation</label>
                                     <select htmlFor="occupation" defaultValue={props.data.Member2Occupation} name="Member2Occupation" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Service">Service</option>
                                         <option value="Buiseness">Buiseness</option>
                                         <option value="Student">Student</option>
@@ -1302,8 +1460,8 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member2Organization} name="Member2Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month</label>
-                                    <input type="text" defaultValue={props.data.Member2Income} name="Member2Income" onChange={updateFormdetails} />
+                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <input type="text" defaultValue={props.data.Member2Income} name="Member2Income" onChange={checkonlynumberinput} />
                                 </div>
 
                             </div>
@@ -1318,12 +1476,12 @@ export default function studentRegistration(props) {
                             <div className="familydetailline1 line">
                                 <div className="membername ">
                                     <label htmlFor="Member Name" className="">Name</label>
-                                    <input type="text" defaultValue={props.data.Member3Name} name="Member3Name" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member3Name} name="Member3Name" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="relationship ">
                                     <label htmlFor="Relationship" className="">Relationship</label>
                                     <select htmlFor="Relationship" defaultValue={props.data.Member3Relationship} name="Member3Relationship" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="father">Father</option>
                                         <option value="mother">Mother</option>
                                         <option value="brother">Brother</option>
@@ -1334,7 +1492,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="ageinput ">
                                     <label htmlFor="Age" className="">Age</label>
-                                    <input type="text" defaultValue={props.data.Member3Age} name="Member3Age" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member3Age} name="Member3Age" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="familyaddressinput ">
                                     <label htmlFor="Address" className="">Address</label>
@@ -1353,7 +1511,7 @@ export default function studentRegistration(props) {
                                 <div className="earningstatus ">
                                     <label htmlFor="status" className="">Earning Status</label>
                                     <select htmlFor="status" defaultValue={props.data.Member3EarningStatus} name="Member3EarningStatus" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Working">Working</option>
                                         <option value="Retired">Retired</option>
                                         <option value="Studying">Studying</option>
@@ -1362,7 +1520,7 @@ export default function studentRegistration(props) {
                                 <div className="occupation ">
                                     <label htmlFor="occupation" className="">Occupation</label>
                                     <select htmlFor="occupation" defaultValue={props.data.Member3Occupation} name="Member3Occupation" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Service">Service</option>
                                         <option value="Buiseness">Buiseness</option>
                                         <option value="Student">Student</option>
@@ -1374,8 +1532,8 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member3Organization} name="Member3Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month</label>
-                                    <input type="text" defaultValue={props.data.Member3Income} name="Member3Income" onChange={updateFormdetails} />
+                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <input type="text" defaultValue={props.data.Member3Income} name="Member3Income" onChange={checkonlynumberinput} />
                                 </div>
 
                             </div>
@@ -1390,12 +1548,12 @@ export default function studentRegistration(props) {
                             <div className="familydetailline1 line">
                                 <div className="membername ">
                                     <label htmlFor="Member Name" className="">Name</label>
-                                    <input type="text" defaultValue={props.data.Member4Name} name="Member4Name" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member4Name} name="Member4Name" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="relationship ">
                                     <label htmlFor="Relationship" className="">Relationship</label>
                                     <select htmlFor="Relationship" defaultValue={props.data.Member4Relationship} name="Member4Relationship" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="father">Father</option>
                                         <option value="mother">Mother</option>
                                         <option value="brother">Brother</option>
@@ -1406,7 +1564,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="ageinput ">
                                     <label htmlFor="Age" className="">Age</label>
-                                    <input type="text" defaultValue={props.data.Member4Age} name="Member4Age" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member4Age} name="Member4Age" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="familyaddressinput ">
                                     <label htmlFor="Address" className="">Address</label>
@@ -1425,7 +1583,7 @@ export default function studentRegistration(props) {
                                 <div className="earningstatus ">
                                     <label htmlFor="status" className="">Earning Status</label>
                                     <select htmlFor="status" defaultValue={props.data.Member4EarningStatus} name="Member4EarningStatus" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Working">Working</option>
                                         <option value="Retired">Retired</option>
                                         <option value="Studying">Studying</option>
@@ -1434,7 +1592,7 @@ export default function studentRegistration(props) {
                                 <div className="occupation ">
                                     <label htmlFor="occupation" className="">Occupation</label>
                                     <select htmlFor="occupation" defaultValue={props.data.Member4Occupation} name="Member4Occupation" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Service">Service</option>
                                         <option value="Buiseness">Buiseness</option>
                                         <option value="Student">Student</option>
@@ -1446,8 +1604,8 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member4Organization} name="Member4Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month</label>
-                                    <input type="text" defaultValue={props.data.Member4Income} name="Member4Income" onChange={updateFormdetails} />
+                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <input type="text" defaultValue={props.data.Member4Income} name="Member4Income" onChange={checkonlynumberinput} />
                                 </div>
 
                             </div>
@@ -1462,12 +1620,12 @@ export default function studentRegistration(props) {
                             <div className="familydetailline1 line">
                                 <div className="membername ">
                                     <label htmlFor="Member Name" className="">Name</label>
-                                    <input type="text" defaultValue={props.data.Member5Name} name="Member5Name" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member5Name} name="Member5Name" onChange={checkonlylettersinput} />
                                 </div>
                                 <div className="relationship ">
                                     <label htmlFor="Relationship" className="">Relationship</label>
                                     <select htmlFor="Relationship" defaultValue={props.data.Member5Relationship} name="Member5Relationship" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="father">Father</option>
                                         <option value="mother">Mother</option>
                                         <option value="brother">Brother</option>
@@ -1478,7 +1636,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="ageinput ">
                                     <label htmlFor="Age" className="">Age</label>
-                                    <input type="text" defaultValue={props.data.Member5Age} name="Member5Age" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.Member5Age} name="Member5Age" onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="familyaddressinput ">
                                     <label htmlFor="Address" className="">Address</label>
@@ -1497,7 +1655,7 @@ export default function studentRegistration(props) {
                                 <div className="earningstatus ">
                                     <label htmlFor="status" className="">Earning Status</label>
                                     <select htmlFor="status" defaultValue={props.data.Member5EarningStatus} name="Member5EarningStatus" onChange={updateFormdetails}>
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Working">Working</option>
                                         <option value="Retired">Retired</option>
                                         <option value="Studying">Studying</option>
@@ -1506,7 +1664,7 @@ export default function studentRegistration(props) {
                                 <div className="occupation ">
                                     <label htmlFor="occupation" className="">Occupation</label>
                                     <select htmlFor="occupation" defaultValue={props.data.Member5Occupation} name="Member5Occupation" onChange={updateFormdetails} id="">
-                                        <option value="select">--Select--</option>
+                                        <option value="">--Select--</option>
                                         <option value="Service">Service</option>
                                         <option value="Buiseness">Buiseness</option>
                                         <option value="Student">Student</option>
@@ -1518,8 +1676,8 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member5Organization} name="Member5Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month</label>
-                                    <input type="text" defaultValue={props.data.Member5Income} name="Member5Income" onChange={updateFormdetails} />
+                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <input type="text" defaultValue={props.data.Member5Income} name="Member5Income" onChange={checkonlynumberinput} />
                                 </div>
 
                             </div>
@@ -1547,7 +1705,7 @@ export default function studentRegistration(props) {
                             <div className="line">
                                 <div className="obtainedmarks ">
                                     <label htmlFor="ObtainedMarks" className="">Marks Obtained</label>
-                                    <input type="text" defaultValue={props.data.PhyMarks} name="PhyMarks" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.PhyMarks} name="PhyMarks" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
@@ -1566,7 +1724,7 @@ export default function studentRegistration(props) {
                             <div className="line">
                                 <div className="obtainedmarks ">
                                     <label htmlFor="ObtainedMarks" className="">Marks Obtained</label>
-                                    <input type="text" defaultValue={props.data.ChemMarks} name="ChemMarks" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.ChemMarks} name="ChemMarks" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
@@ -1585,7 +1743,7 @@ export default function studentRegistration(props) {
                             <div className="line">
                                 <div className="obtainedmarks ">
                                     <label htmlFor="ObtainedMarks" className="">Marks Obtained</label>
-                                    <input type="text" defaultValue={props.data.MathMarks} name="MathMarks" onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.MathMarks} name="MathMarks" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
@@ -1603,7 +1761,7 @@ export default function studentRegistration(props) {
                         <div className="medflexrow">
                             <div className="line">
                                 <label htmlFor="Percentage"></label>
-                                <input type="text" defaultValue={props.data.Percentage} name="Percentage" onChange={updateFormdetails} />
+                                <input type="text" defaultValue={props.data.Percentage} name="Percentage" onChange={checkonlynumberinput} />
                             </div>
                         </div>
                     </div>
@@ -1614,11 +1772,6 @@ export default function studentRegistration(props) {
                         <button className="savebutton btn-success" type="button" onClick={submit}>Submit</button>
                     </div>
                 </div>
-
-
-
-
-
             </form>
         </div>
 
