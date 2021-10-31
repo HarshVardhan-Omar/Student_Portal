@@ -324,8 +324,8 @@ export default function studentRegistration(props) {
         }
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         var phoneno = /^\d{10}$/;
-        if(((FormDetails.HBTUEmail).match(mailformat)||(FormDetails.HBTUEmail)==="")&&((FormDetails.PersonalEmail).match(mailformat)||(FormDetails.PersonalEmail)==="")&&((FormDetails.ParentEmail).match(mailformat)||(FormDetails.ParentEmail)==="")
-        &&((FormDetails.Contact).match(phoneno)||(FormDetails.Contact)==="")&&((FormDetails.AlternateContact).match(phoneno)||(FormDetails.AlternateContact)==="")&&((FormDetails.FatherContact).match(phoneno)||(FormDetails.FatherContact===""))){
+        if(((mailformat).test(FormDetails.HBTUEmail)||(FormDetails.HBTUEmail)==="")&&((mailformat).test(FormDetails.PersonalEmail)||(FormDetails.PersonalEmail)==="")&&((mailformat).test(FormDetails.ParentEmail)||(FormDetails.ParentEmail)==="")
+        &&((phoneno).test(FormDetails.Contact)||(FormDetails.Contact)==="")&&((phoneno).test(FormDetails.AlternateContact)||(FormDetails.AlternateContact)==="")&&((phoneno).test(FormDetails.FatherContact)||(FormDetails.FatherContact===""))){
             if(inputvalid){
             setSaveForm(true)
             setFormValidity(true)
