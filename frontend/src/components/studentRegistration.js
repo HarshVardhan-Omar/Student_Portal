@@ -380,7 +380,7 @@ export default function studentRegistration(props) {
             }
         });
        
-        if(!blankinput){
+        if(!blankinput&&inputvalid){
         var reply = confirm("Before Submitting make sure all the details provided by you are correct.Once Submitted you will have to contact DSW Office for further Changes!")
         if (reply === true &&Formvalidity) {
             setFormDetails(prevState => ({
