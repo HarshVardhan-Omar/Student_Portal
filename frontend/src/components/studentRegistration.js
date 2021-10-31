@@ -322,10 +322,10 @@ export default function studentRegistration(props) {
             }));
 
         }
-        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var mailformat = /^$|^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(?:[a-zA-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$/;
         var phoneno = /^\d{10}$/;
-        if(((mailformat).test(FormDetails.HBTUEmail)||(FormDetails.HBTUEmail)==="")&&((mailformat).test(FormDetails.PersonalEmail)||(FormDetails.PersonalEmail)==="")&&((mailformat).test(FormDetails.ParentEmail)||(FormDetails.ParentEmail)==="")
-        &&((phoneno).test(FormDetails.Contact)||(FormDetails.Contact)==="")&&((phoneno).test(FormDetails.AlternateContact)||(FormDetails.AlternateContact)==="")&&((phoneno).test(FormDetails.FatherContact)||(FormDetails.FatherContact===""))){
+        if(((FormDetails.HBTUEmail?? "").match(mailformat)||(FormDetails.HBTUEmail)==="")&&((FormDetails.PersonalEmail?? "").match(mailformat)||(FormDetails.PersonalEmail)==="")&&((FormDetails.ParentEmail?? "").match(mailformat)||(FormDetails.ParentEmail)==="")
+        &&((FormDetails.Contact?? "").match(phoneno)||(FormDetails.Contact)==="")&&((FormDetails.AlternateContact?? "").match(phoneno)||(FormDetails.AlternateContact)==="")&&((FormDetails.FatherContact?? "").match(phoneno)||(FormDetails.FatherContact===""))){
             if(inputvalid){
             setSaveForm(true)
             setFormValidity(true)
@@ -333,6 +333,7 @@ export default function studentRegistration(props) {
             else{
                 setResponse("Error Saving Form Details one or more inputs may be invalid")
                 setSaveForm(false)
+                window.location.reload()
             }
         }
         else{
