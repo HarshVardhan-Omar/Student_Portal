@@ -127,8 +127,8 @@ export default function Homepage(props) {
       )
     }
     else{
-      return(<><div class="loadergrid">
-      <div class="loaderanimation">
+      return(<><div className="loadergrid">
+      <div className="loaderanimation">
           <div id="ld2">
             <div>
             </div>

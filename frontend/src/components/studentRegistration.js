@@ -262,6 +262,7 @@ export default function studentRegistration(props) {
         setFormValidity(false)
     }
     }
+
     const checkonlylettersinput=(e)=>{
         var letters = /^[A-Za-z .]+$/;
         if((e.target.value).match(letters)||e.target.value===""){
@@ -559,7 +560,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="contactnumber">
                                     <label htmlFor="ContactNumber" className="">Contact</label>
-                                    <input type="text" defaultValue={props.data.Contact} name="Contact" onChange={checkonlynumberinput} id="" />
+                                    <input type="text" defaultValue={props.data.Contact} name="Contact" maxLength="10"onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="hbtuemail">
                                     <label htmlFor="HBTUEmail" className="">HBTU Email</label>
@@ -592,11 +593,11 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="aadhaarinput">
                                     <label htmlFor="Aadhaar" className="">Aadhaar Card Number</label>
-                                    <input type="text" defaultValue={props.data.AadhaarCard} name="AadhaarCard" onChange={checkonlynumberinput} id="" />
+                                    <input type="text" defaultValue={props.data.AadhaarCard} name="AadhaarCard" maxLength="12"onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="nationalityinput">
                                     <label htmlFor="Nationality" className="">Nationality</label>
-                                    <input type="text" defaultValue={props.data.Nationality} name="Nationality" onChange={updateFormdetails} id="" />
+                                    <input type="text" value="Indian" name="Nationality" onChange={updateFormdetails} id="" />
                                 </div>
                             </div>
                             <div className="personalline2 line">
@@ -615,7 +616,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="alternatecontactinput">
                                     <label htmlFor="AlternateContact" className="">Alternate Contact</label>
-                                    <input type="text" defaultValue={props.data.AlternateContact} name="AlternateContact" onChange={checkonlynumberinput} id="" />
+                                    <input type="text" defaultValue={props.data.AlternateContact} maxLength="10"name="AlternateContact" onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="personalemailinput">
                                     <label htmlFor="PersonalEmail" className="">Personal Email</label>
@@ -705,7 +706,7 @@ export default function studentRegistration(props) {
                             <div className="entranceline2 line">
                                 <div className="yearinput">
                                     <label htmlFor="YearInput" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.Year} name="Year" onChange={checkonlynumberinput} id="" />
+                                    <input type="text" defaultValue={props.data.Year} name="Year" maxLength="4"onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="airrank">
                                     <label htmlFor="AIRRank" className="">AIR Rank</label>
@@ -749,11 +750,11 @@ export default function studentRegistration(props) {
                             <div className="parentline2 line">
                                 <div className="fathercontact">
                                     <label htmlFor="FatherContact" className="">Father's Contact Number</label>
-                                    <input type="text" defaultValue={props.data.FatherContact} name="FatherContact" onChange={checkonlynumberinput} id="" />
+                                    <input type="text" defaultValue={props.data.FatherContact} name="FatherContact" maxLength="10"onChange={checkonlynumberinput} id="" />
                                 </div>
                                 <div className="landline">
-                                    <label htmlFor="Landline" className="">LandLine Number</label>
-                                    <input type="text" defaultValue={props.data.Landline} name="Landline" onChange={checkonlynumberinput} />
+                                    <label htmlFor="Landline" className="">LandLine Number (Enter Without any hyphen(-))</label>
+                                    <input type="text" defaultValue={props.data.Landline} name="Landline" max-length="8"onChange={checkonlynumberinput} />
                                 </div>
                                 <div className="parentemailid">
                                     <label htmlFor="ParentEmailID" className="">Parent's Email ID</label>
@@ -851,7 +852,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="">
                                     <label htmlFor="Zipcode" className="">ZipCode</label>
-                                    <input type="text" defaultValue={props.data.CurZipCode} name="CurZipCode" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.CurZipCode} name="CurZipCode" maxLength="6"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
@@ -922,7 +923,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="">
                                     <label htmlFor="Zipcode" className="">ZipCode</label>
-                                    <input type="text" defaultValue={isperchecked ? (FormDetails.CurZipCode) : (props.data.PerZipCode)} name="PerZipCode" disabled={isperchecked} onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={isperchecked ? (FormDetails.CurZipCode) : (props.data.PerZipCode)} maxLength="6"name="PerZipCode" disabled={isperchecked} onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
@@ -1001,7 +1002,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.HighSchoolYear} name="HighSchoolYear" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.HighSchoolYear} name="HighSchoolYear" maxLength="4"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
@@ -1041,7 +1042,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.IntermediateYear} name="IntermediateYear" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.IntermediateYear} name="IntermediateYear" maxLength="4"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
@@ -1082,7 +1083,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.BSCYear} name="BSCYear" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.BSCYear} name="BSCYear" maxLength="4"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
@@ -1123,7 +1124,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.MtechYear} name="MtechYear" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.MtechYear} name="MtechYear" maxLength="4"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
@@ -1164,7 +1165,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.BtechYear} name="BtechYear" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.BtechYear} name="BtechYear" maxLength="4"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
@@ -1205,7 +1206,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.MCAYear} name="MCAYear" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.MCAYear} name="MCAYear" maxLength="4"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
@@ -1246,7 +1247,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.MSCYear} name="MSCYear" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.MSCYear} name="MSCYear" maxLength="4"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
@@ -1287,7 +1288,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="year ">
                                     <label htmlFor="Year" className="">Year</label>
-                                    <input type="text" defaultValue={props.data.BCAYear} name="BCAYear" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.BCAYear} name="BCAYear" maxLength="4"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="highschoolline2 line">
@@ -1389,7 +1390,7 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member1Organization} name="Member1Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <label htmlFor="Income" className="">Income Per Month (Enter the amount without any commas(,))</label>
                                     <input type="text" defaultValue={props.data.Member1Income} name="Member1Income" onChange={checkonlynumberinput} />
                                 </div>
 
@@ -1461,7 +1462,7 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member2Organization} name="Member2Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <label htmlFor="Income" className="">Income Per Month (Enter the amount without any commas(,))</label>
                                     <input type="text" defaultValue={props.data.Member2Income} name="Member2Income" onChange={checkonlynumberinput} />
                                 </div>
 
@@ -1533,7 +1534,7 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member3Organization} name="Member3Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <label htmlFor="Income" className="">Income Per Month (Enter the amount without any commas(,))</label>
                                     <input type="text" defaultValue={props.data.Member3Income} name="Member3Income" onChange={checkonlynumberinput} />
                                 </div>
 
@@ -1605,7 +1606,7 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member4Organization} name="Member4Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <label htmlFor="Income" className="">Income Per Month (Enter the amount without any commas(,))</label>
                                     <input type="text" defaultValue={props.data.Member4Income} name="Member4Income" onChange={checkonlynumberinput} />
                                 </div>
 
@@ -1677,7 +1678,7 @@ export default function studentRegistration(props) {
                                     <input type="text" defaultValue={props.data.Member5Organization} name="Member5Organization" onChange={updateFormdetails} />
                                 </div>
                                 <div className="incomepermonth ">
-                                    <label htmlFor="Income" className="">Income Per Month(Enter the amount without any commas(,)</label>
+                                    <label htmlFor="Income" className="">Income Per Month (Enter the amount without any commas(,))</label>
                                     <input type="text" defaultValue={props.data.Member5Income} name="Member5Income" onChange={checkonlynumberinput} />
                                 </div>
 
@@ -1706,7 +1707,7 @@ export default function studentRegistration(props) {
                             <div className="line">
                                 <div className="obtainedmarks ">
                                     <label htmlFor="ObtainedMarks" className="">Marks Obtained</label>
-                                    <input type="text" defaultValue={props.data.PhyMarks} name="PhyMarks" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.PhyMarks} name="PhyMarks" maxLength="2"onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
@@ -1725,7 +1726,7 @@ export default function studentRegistration(props) {
                             <div className="line">
                                 <div className="obtainedmarks ">
                                     <label htmlFor="ObtainedMarks" className="">Marks Obtained</label>
-                                    <input type="text" defaultValue={props.data.ChemMarks} name="ChemMarks" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.ChemMarks} maxLength="2"name="ChemMarks" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
@@ -1744,7 +1745,7 @@ export default function studentRegistration(props) {
                             <div className="line">
                                 <div className="obtainedmarks ">
                                     <label htmlFor="ObtainedMarks" className="">Marks Obtained</label>
-                                    <input type="text" defaultValue={props.data.MathMarks} name="MathMarks" onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.MathMarks} maxLength="2"name="MathMarks" onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
