@@ -1,19 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Raleway:wght@400;500&display=swap');
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-  color: var(--col1);
-  background-color: var(--cpcoltable);
+  color: var(--cpcoltable);
+  background-color: var(--col1);
   border: none;
   border-radius: 5px 5px 0px 0px;
   cursor: pointer;
 }
+/* .tab-content {
+  width: 80%;
+  margin: auto;
+} */
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: var(--col1);
-  background-color: var(--cpcoltable);
+  /* color: var(--cpcoltable);
+  background-color: var(--col1); */
+  color: var(--col2);
+  background-color: var(--sidecol1);
 }
 .nav-tabs .nav-link {
   border: none;
+}
+.nav-item {
+  font-size: 13px;
+}
+.result {
+  overflow-x: hidden;
+  width: 100%;
 }
 .nav-tabs {
   border: transparent;
@@ -87,18 +100,22 @@
   background-color: var(--cpcoltable);
   border: 2px solid var(--col1);
 }
-@media (max-width: 576px) {
+@media (max-width: 700px) {
   .res-table {
     padding: 0px 10px;
     margin-bottom: 20px;
+  }
+  .col-sm-10 {
+    width: 100%;
   }
 }
 .col-sm-2 {
   width: 100%;
   text-align: center;
 }
-@media (min-width: 576px) {
+
+@media (min-width: 700px) {
   .col-sm-2 {
-    width: 15.9%;
+    width: 16.2%;
   }
 }
