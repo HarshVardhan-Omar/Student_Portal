@@ -9,7 +9,6 @@ import Dashboard from './Dashboard'
 import ChangePassword from './ChangePassword'
 import Lodge from './Lodge';
 import StudentRegistration from './studentRegistration';
-import Cp from './Cp';
 import CourseManagement from './courseManagement';
 import ExamForm from "./examForm"
 import Result from "./Result"
@@ -117,7 +116,7 @@ export default function Homepage(props) {
             <Route exact path={`${match.url}/studentregistration`}  render={data.IsformSubmitted==="False"?(props => <StudentRegistration csrftoken={csrftoken} setProgress={setProgress}theme={hometheme} data={data} />):props=><NotFound/>}  />
             <Route exact path={`${match.url}/lodgegrievance`} render={props => <Lodge data={data} />} />
             <Route exact path={`${match.url}/semesterregistration`} render={props => <Cp data={data} />} />
-            <Route exact path={`${match.url}/coursemanagement`} render={props => <CourseManagement data={data} />} />
+            <Route exact path={`${match.url}/coursemanagement`} render={props => <CourseManagement data={data} csrftoken={csrftoken} setProgress={setProgress}/>} />
             <Route exact path={`${match.url}/examform`} render={props => <ExamForm data={data} />} />
             <Route exact path={`${match.url}/result`} render={props => <Result data={data} />} />
             <Route> <NotFound/> </Route>
