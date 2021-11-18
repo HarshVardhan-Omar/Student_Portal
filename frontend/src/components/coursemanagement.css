@@ -63,6 +63,7 @@
   width: 80vw;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
@@ -79,6 +80,10 @@
   overflow-y: scroll;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 10px;
+  color: var(--cpcoltable);
+}
+.course-management .syllabusOpacity .syllabus .buttonarea .downloadbutton{
+  cursor: pointer !important;
 }
 .course-management .syllabusOpacity .syllabus .block .subblock{
   border: 2px solid darkgray;

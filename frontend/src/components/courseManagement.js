@@ -257,6 +257,9 @@ export default function CourseManagement({ csrftoken, setProgress }) {
           <div className="cross" onClick={hidesyllabus} style={{ cursor: "pointer" }}>x</div>
           <div className="block">
           </div>
+          <div className="buttonarea">
+            <button onClick={download} className="downloadbutton btn-secondary">Download as PDF</button>
+          </div>
         </div>
       </div>
     </div>
