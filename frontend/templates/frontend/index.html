@@ -81,12 +81,11 @@
     const download = async (e) => {
         if(document.getElementsByClassName("block")[0]){
         var block = document.getElementsByClassName("block")[0];
-        console.log(block);
         var opt = {
             margin: 0.2,
             filename: 'syllabus.pdf',
             image: { type: 'jpeg', quality: 8 },
-            html2canvas: { scale: 5 },
+            html2canvas: { scale: 2 },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
             pagebreak: { mode: ['avoid-all'] }
         };
