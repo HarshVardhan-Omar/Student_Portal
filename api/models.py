@@ -197,3 +197,13 @@ class Student(models.Model):
 class StoredSessions(models.Model):
     key = models.CharField(unique=True,max_length=50,null=False,default="")
     username = models.TextField(max_length=50, default="",null=False)
+
+    def __str__(self):
+        return self.username
+
+class Syllabus(models.Model):
+    Branch = models.CharField(max_length=50,unique=True,blank=False,null=False,default="")
+    Content = models.FileField(upload_to="syllabus/")
+
+    def __str__(self):
+        return self.Branch

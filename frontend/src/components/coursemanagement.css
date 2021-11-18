@@ -1,42 +1,141 @@
-.course-management h1{
-    text-align: center;
-    margin: 20px;
+.course-management{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 90);
+  justify-content: flex-start;
+  padding: 0;
+  align-items: center;
+}
+.course-management h1 {
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+  margin: 20px;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+}
+.course-management .contain{
+  position: relative;
+  background-color: var(--col1);
+  padding: 50px 30px;
+  margin: 20px;
+  border-radius: 5px;
 }
 .btn-secondary {
-    margin-top: 20px;
-  }
-   .btn-secondary {
-    background: var(--bgcol);
-    border: none;
-    border-radius: 4px;
-    margin-top: 20px;
-    padding: 11px;
-    box-shadow: none;
-    margin-top: 26px;
-    text-shadow: none;
-    outline: none;
-    color: var(--cpcolor);
-  }
-  
-   .btn-secondary:hover,
-   .btn-secondary:active {
-    background: var(--cpcolborder);
-    outline: none;
-    color: white;
-  }
-    .btn-secondary:active {
-    transform: translateY(1px);
-  }
-  .course-management .container{
-    color: var(--cpcoltable);
-    background: none;
-    max-width: 320px;
-    width: 90%;
-    background-color: var(--col1);
-    padding: 40px;
-    border-radius: 4px;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
+  background: var(--bgcol);
+  border: none;
+  border-radius: 4px;
+  margin-top: 20px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 10px;
+  text-shadow: none;
+  outline: none;
+  color: var(--textcolor);
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+  background: var(--cpcolborder);
+  outline: none;
+  color: white;
+}
+.btn-secondary:active {
+  transform: translateY(1px);
+}
+
+.course-management .syllabusOpacity{
+  background-color: rgba(0, 0, 0, 0.404);
+  position: fixed;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+}
+.course-management .syllabusOpacity .syllabus{
+  background-color: var(--col1);
+  height: 75vh;
+  width: 80vw;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.course-management .syllabusOpacity .syllabus .cross{
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  font-size: 30px;
+}
+.course-management .syllabusOpacity .syllabus .block{
+  width: 75vw;
+  height: 70vh;
+  overflow-y: scroll;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 10px;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock{
+  border: 2px solid darkgray;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .subname{
+  width: 100%;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .subname h1{
+  margin: 10px 0px 15px 0px;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .uppersection{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0px 0px 20px 0px;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .uppersection .miniblock{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0px 10px 0px 0px;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .uppersection .miniblock .head{
+  font-weight: bolder;
+  margin: 0px 5px;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .uppersection .miniblock .detail{
+  margin: 0px 5px;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .lowersection{
+  display: flex;
+  flex-direction: column;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .lowersection .downwardblock {
+  margin: 5px 0px;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .lowersection .downwardblock .unitheading {
+  font-weight: bolder;
+}
+@media only screen and (max-width: 380px) {
+.course-management .syllabusOpacity .syllabus .block .subblock .uppersection{
+  font-size: 4vw;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .subname h1{
+  word-wrap: break-word;
+  font-size: 8vw;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .uppersection .miniblock{
+  margin: 0px;
+}
+.course-management .syllabusOpacity .syllabus .block .subblock .lowersection .downwardblock {
+  word-wrap: break-word;
+}
+}

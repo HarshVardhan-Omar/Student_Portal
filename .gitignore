@@ -1,4 +1,5 @@
 node_modules
 *.pyc
 frontend/static/main.js
+frontend/static
 myenv

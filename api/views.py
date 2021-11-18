@@ -5,8 +5,8 @@ from django.core.files.base import ContentFile
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from rest_framework.views import APIView
-from .serializers import StudentSerializer,SessionSerializer
-from .models import Student,StoredSessions
+from .serializers import StudentSerializer,SessionSerializer,SyllabusSerializer
+from .models import Student,StoredSessions,Syllabus
 from django.core.mail import send_mail
 
 import math, random
@@ -217,6 +217,19 @@ class ResetPasswordChange(APIView):
         return Response({'Bad Request:','Request parameter Not meant'},status=status.HTTP_400_BAD_REQUEST)
 
 
+class FetchSyllabus(APIView):
+    def get(self, request,format=None):
+        return render(request,'frontend/index.html')
+    serializer_class=SyllabusSerializer
+    def post(self,request,format=None):
+        Branch=request.data.get('Branch')
+        if Branch!=None:
+            SyllabusObject=Syllabus.objects.filter(Branch=Branch)
+            if len(SyllabusObject)==1:
+                SyllabusContent=self.serializer_class(SyllabusObject[0]).data
+                return Response(SyllabusContent, status=status.HTTP_200_OK)
+            return Response({'Bad Request:','No Such Branch'},status=status.HTTP_404_NOT_FOUND)
+        return Response({'Bad Request:','Request parameter Not meant'},status=status.HTTP_400_BAD_REQUEST)
         
 
 class SessionsView(generics.ListAPIView):
