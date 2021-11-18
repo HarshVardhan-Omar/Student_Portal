@@ -89,7 +89,12 @@
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
             pagebreak: { mode: ['avoid-all'] }
         };
-        html2pdf().from(block).set(opt).save();
+        if(await html2pdf().from(block).set(opt).save()){
+            return true
+        }
+        else{
+            return false
+        }
         }
     }
     </script>

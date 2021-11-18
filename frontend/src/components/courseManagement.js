@@ -49,7 +49,17 @@ export default function CourseManagement({ csrftoken, setProgress }) {
     }
   }
 
-
+  const download_with_progress = (e) => {
+    e.preventDefault();
+    setProgress(40)
+    if(download()){
+      setTimeout(function(){ setProgress(60) }, 387);
+      setTimeout(function(){ setProgress(100) }, 687);
+    }
+    else{
+      setTimeout(function(){ setProgress(100) }, 387);
+    }
+  }
 
   const printer = async (e) => {
     if (XLSX) {
@@ -258,7 +268,7 @@ export default function CourseManagement({ csrftoken, setProgress }) {
           <div className="block">
           </div>
           <div className="buttonarea">
-            <button onClick={download} className="downloadbutton btn-secondary">Download as PDF</button>
+            <button onClick={download_with_progress} className="downloadbutton btn-secondary">Download as PDF</button>
           </div>
         </div>
       </div>
