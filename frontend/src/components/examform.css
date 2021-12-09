@@ -164,3 +164,15 @@ font-family: 'Raleway', sans-serif; */
   outline:none;
   width: 100%;
 }
+.ExamForms {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 100%;
+}
+.ExamForms th,.ExamForms td {
+  border: 1px solid black;
+  padding: 15px;
+}
+.details{
+  border:2px solid black;
+}

@@ -257,6 +257,145 @@ function examForm(props) {
                    15.&nbspE-mail ID:&nbsp${props.data.PersonalEmail}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp16. Aadhaar No.:&nbsp${props.data.AadhaarCard}<br>
                    <br>
                    17. Particulars of the Qualifying Examination passed :( Inter / Graduation / Diploma / B.Tech I / II /III / MCA I / II, M.Tech )<br>
+                   Name of Examination :__________________ Year :_______ Roll No :_______________<br><br>
+                   18. Whether he / she has appeared at this Examination Before . If so , give details :<br>
+                   Name of Examination :__________________ Year :_______ Roll No :________________ Result of Examination :_____________
+                   <br><br>
+                   19. Particulars of passing First , Second and Third year of the Programme<br><br>
+                   <table class="ExamForms">
+                     <tr>
+                       <th>Examination 
+                       B.Tech / MCA / 
+                       M.Tech</th>
+                       <th>Year</th>
+                       <th>Roll No.</th>
+                       <th>
+                       Marks 
+                     Obtained</th>
+                       <th>
+                       Maximum 
+                       Marks</th>
+                       <th>
+                       Result</th>
+                       <th> If promoted with Carry Over Papers
+                       provide name of papers and whether it is 
+                       cleared / not cleared</th>
+                     </tr>
+                     <tr>
+                       <td>First Year</td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       </tr>
+                     <tr>
+                     <td>Second Year</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                     <tr>
+                     <td>Third Year</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                     <tr>
+                     <td>Final Year</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                    </table>
+                    <br>
+                    <br>
+                    20. Subject Codes and Paper ID in which student wishes to appear in this Examination<br><br>
+                    <table class="ExamForms">
+                     <tr>
+                       <th colspan="2">
+                       Theory Subjects</th>
+                       <th colspan="2"> Practical And Other Subjects</th>
+                     </tr>
+                     <tr>
+                       <td>Paper Name</td>
+                       <td>Paper Code</td>
+                       <td>Paper Name</td>
+                       <td>Paper Code</td>
+                       </tr>
+                     <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                     <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                     <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                     <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                     <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                     <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    21. Complete permanent mailing address of the student<br>
+                    <div class="details">
+                    Name:  Name<br>
+                    Address: Address<br>
+                    Contact No.(Presently used by student): 1234
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    Pincode: 123455
+                    </div>
+                    <br><br>
+                    <h4>DECLARATION BY THE CANDIDATE</h4>
+                    <br>
+                    I hereby declare that the information given above has been filled by me and is correct to the best of my knowledge and belief .
+                    <br><br><br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    (Signature of Candidate)
+
 
 
 
