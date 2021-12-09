@@ -16,10 +16,21 @@ export default function studentRegistration(props) {
         var input = document.getElementById("PhotoField");
         var fReader = new FileReader();
         fReader.readAsDataURL(input.files[0]);
-        fReader.onloadend = function (event) {
-            setPhotoField(event.target.result)
-        }
+        fReader.onload = function (event) {
+            var image=new Image();
+            image=event.target.result;
+            var size=image.width
+            console.log(size)
+            // console.log(size);
+                // if (height > 100 || width > 100) {
+                //   alert("Height and Width must not exceed 100px.");
+                //   return false;
+                // }
+                // alert("Uploaded image has valid Height and Width.");
+                // return true;
+            setPhotoField(image)
     }
+}
     const setSign = (e) => {
         var input = document.getElementById("SignField");
         var fReader = new FileReader();
@@ -195,7 +206,7 @@ export default function studentRegistration(props) {
         IsformSubmitted: "False",
     })
 
-    const [isperchecked, setIsPerChecked] = useState()
+    // const [isperchecked, setIsPerChecked] = useState()
 
     const setform = (e) => {
         setFormtitle(e.target.id)
@@ -235,9 +246,9 @@ export default function studentRegistration(props) {
     }
 
     // Code For Saving Form Detail Starts here
-    const updateaddresscheckbox = (e) => {
-        setIsPerChecked(e.target.checked)
-    }
+    // const updateaddresscheckbox = (e) => {
+    //     setIsPerChecked(e.target.checked)
+    // }
     const updateFormdetails = (e) => {
         setFormDetails(prevState => ({
             ...prevState,
@@ -298,31 +309,24 @@ export default function studentRegistration(props) {
         }
     }
     const save =() => {
-
-        if (isperchecked) {
             setFormDetails(prevState => ({
                 ...prevState,
                 CurAddress: FormDetails.CurAddress1 + " " + FormDetails.CurAddress2 + ", " + FormDetails.CurZipCode,
-                PerAddress: FormDetails.CurAddress,
-                PerAddress1: FormDetails.CurAddress1,
-                PerAddress2: FormDetails.CurAddress2,
-                PerZipCode: FormDetails.CurZipCode,
-                PerCity: FormDetails.CurCity,
-                PerState: FormDetails.CurState,
-                PerCountry: FormDetails.CurCountry,
+                PerAddress: FormDetails.PerAddress1 + " " + FormDetails.PerAddress2 + ", " + FormDetails.PerZipCode
+                // PerAddress1: FormDetails.CurAddress1,
+                // PerAddress2: FormDetails.CurAddress2,
+                // PerZipCode: FormDetails.CurZipCode,
+                // PerCity: FormDetails.CurCity,
+                // PerState: FormDetails.CurState,
+                // PerCountry: FormDetails.CurCountry,
 
             }));
+            // setFormDetails(prevState => ({
+            //     ...prevState,
+            //     CurAddress: FormDetails.CurAddress1 + " " + FormDetails.CurAddress2 + ", " + FormDetails.CurZipCode,
+            //     PerAddress: FormDetails.PerAddress1 + " " + FormDetails.PerAddress2 + ", " + FormDetails.PerZipCode,
 
-        }
-        else {
-            setFormDetails(prevState => ({
-                ...prevState,
-                CurAddress: FormDetails.CurAddress1 + " " + FormDetails.CurAddress2 + ", " + FormDetails.CurZipCode,
-                PerAddress: FormDetails.PerAddress1 + " " + FormDetails.PerAddress2 + ", " + FormDetails.PerZipCode,
-
-            }));
-
-        }
+            // }));
         var mailformat = /^$|^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(?:[a-zA-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$/;
         var phoneno = /^\d{10}$/;
         if(((FormDetails.HBTUEmail?? "").match(mailformat)||(FormDetails.HBTUEmail)==="")&&((FormDetails.PersonalEmail?? "").match(mailformat)||(FormDetails.PersonalEmail)==="")&&((FormDetails.ParentEmail?? "").match(mailformat)||(FormDetails.ParentEmail)==="")
@@ -334,13 +338,14 @@ export default function studentRegistration(props) {
             else{
                 setResponse("Error Saving Form Details one or more inputs may be invalid")
                 setSaveForm(false)
-                window.location.reload()
+                setTimeout(function(){window.location.reload()},1000);
             }
         }
         else{
             setResponse("Error Saving Form Details Contact number or Email Address Invalid")
             setSaveForm(false)
             setFormValidity(false)
+            setTimeout(function(){window.location.reload()},1000);
         }
     }
     const firstrender1=useRef(true)
@@ -479,11 +484,11 @@ export default function studentRegistration(props) {
                                     <label htmlFor="Programme" className="">Programme</label>
                                     <select htmlFor="Programme" defaultValue={props.data.Programme} name="Programme" onChange={updateFormdetails} id="programme">
                                         <option value="">--Select--</option>
-                                        <option value="Btech">BTech</option>
-                                        <option value="Mtech">MTech</option>
+                                        <option value="Bachelor of Technology">BTech</option>
+                                        <option value="Master of Technology">MTech</option>
                                         <option value="PHD">Phd</option>
-                                        <option value="MCA">MCA</option>
-                                        <option value="MBA">MBA</option>
+                                        <option value="Master of Computer Applications">MCA</option>
+                                        <option value="Master of Buiseness Administration">MBA</option>
                                     </select>
                                 </div>
                                 <div className="admission-source">
@@ -510,24 +515,24 @@ export default function studentRegistration(props) {
                                     <label htmlFor="Branch" className="">Branch</label>
                                     <select htmlFor="Branch" defaultValue={props.data.Branch} name="Branch" id="Branch" onChange={updateFormdetails}>
                                         <option value="">--Select--</option>
-                                        <option value="CSE">Computer Science and Engineering</option>
-                                        <option value="IT">Information Technology</option>
-                                        <option value="ET">Electronics Technology</option>
-                                        <option value="ME">Mechanical Engineering</option>
-                                        <option value="EE">Electrical Engineering</option>
-                                        <option value="CE">Civil Engineering</option>
-                                        <option value="CHE">Chemical Engineering</option>
-                                        <option value="PT">Paint Technology</option>
-                                        <option value="OT">Oil Technology</option>
-                                        <option value="PT">Leather Technology</option>
-                                        <option value="PL">Plastic Technology</option>
-                                        <option value="FT">Food Technology</option>
-                                        <option value="BE">Bio-Chemical Engineering</option>
+                                        <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                                        <option value="Information Technology">Information Technology</option>
+                                        <option value="Electronics Technology">Electronics Technology</option>
+                                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                        <option value="Electrical Engineering">Electrical Engineering</option>
+                                        <option value="Civil Engineering">Civil Engineering</option>
+                                        <option value="Chemical Engineering">Chemical Engineering</option>
+                                        <option value="Paint Technology">Paint Technology</option>
+                                        <option value="Oil Technology">Oil Technology</option>
+                                        <option value="Leather TechnologyPT">Leather Technology</option>
+                                        <option value="Plastic TechnologyPL">Plastic Technology</option>
+                                        <option value="Food Technology">Food Technology</option>
+                                        <option value="Bio-Chemical Engineering">Bio-Chemical Engineering</option>
                                     </select>
                                 </div>
                                 <div className="current-semester">
                                     <label htmlFor="CurrentSemester" className="">Current Semester</label>
-                                    <select htmlFor="Gender" defaultValue={props.data.BloodGroup} name="BloodGroup" onChange={updateFormdetails}>
+                                    <select htmlFor="Gender" defaultValue={props.data.CurrentSemester} name="CurrentSemester" onChange={updateFormdetails}>
                                         <option value="">--Select--</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -902,10 +907,10 @@ export default function studentRegistration(props) {
                     </div>
 
 
-                    <div className="checkbox ">
+                    {/* <div className="checkbox ">
                         <input type="checkbox" name="CheckBox" onChange={updateaddresscheckbox} id="checkbox1" />
                         <label htmlFor="checkbox1" className="">If Permanent Address is same as current address</label>
-                    </div>
+                    </div> */}
 
                     <div className="width100">
                         <div className="">
@@ -915,21 +920,21 @@ export default function studentRegistration(props) {
                             <div className="line">
                                 <div className="">
                                     <label htmlFor="AddressLine1" className="">Address Line 1</label>
-                                    <input type="text" defaultValue={isperchecked ? (FormDetails.CurAddress1) : (props.data.PerAddress1)} name="PerAddress1" disabled={isperchecked} onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.PerAddress1} name="PerAddress1" onChange={updateFormdetails} />
                                 </div>
                                 <div className="">
                                     <label htmlFor="Addressline2" className="">Address Line 2</label>
-                                    <input type="text" defaultValue={isperchecked ? (FormDetails.CurAddress2) : (props.data.PerAddress2)} name="PerAddress2" disabled={isperchecked} onChange={updateFormdetails} />
+                                    <input type="text" defaultValue={props.data.PerAddress2} name="PerAddress2"  onChange={updateFormdetails} />
                                 </div>
                                 <div className="">
                                     <label htmlFor="Zipcode" className="">ZipCode</label>
-                                    <input type="text" defaultValue={isperchecked ? (FormDetails.CurZipCode) : (props.data.PerZipCode)} maxLength="6"name="PerZipCode" disabled={isperchecked} onChange={checkonlynumberinput} />
+                                    <input type="text" defaultValue={props.data.PerZipCode} maxLength="6"name="PerZipCode"  onChange={checkonlynumberinput} />
                                 </div>
                             </div>
                             <div className="line">
                                 <div className="">
                                     <label htmlFor="City" className="">City</label>
-                                    <select htmlFor="City" defaultValue={isperchecked ? (FormDetails.CurCity) : (props.data.PerCity)} name="PerCity" disabled={isperchecked} onChange={updateFormdetails}>
+                                    <select htmlFor="City" defaultValue={props.data.PerCity} name="PerCity"  onChange={updateFormdetails}>
                                         <option value="">--Select--</option>
                                         <option defaultValue="Kanpur" value="Kanpur">Kanpur</option>
                                         <option defaultValue="Lucknow" value="Lucknow">Lucknow</option>
@@ -941,7 +946,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="">
                                     <label htmlFor="State" className="">State/District</label>
-                                    <select htmlFor="State" defaultValue={isperchecked ? (FormDetails.CurState) : (props.data.PerState)} name="PerState" disabled={isperchecked} onChange={updateFormdetails}>
+                                    <select htmlFor="State" defaultValue={props.data.PerState} name="PerState"  onChange={updateFormdetails}>
                                         <option value="">--Select--</option>
                                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                                         <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -962,7 +967,7 @@ export default function studentRegistration(props) {
                                 </div>
                                 <div className="">
                                     <label htmlFor="Country" className="">Country</label>
-                                    <select htmlFor="Country" defaultValue={isperchecked ? (FormDetails.CurCountry) : (props.data.PerCountry)} name="PerCountry" disabled={isperchecked} onChange={updateFormdetails} id="">
+                                    <select htmlFor="Country" defaultValue={props.data.PerCountry} name="PerCountry"  onChange={updateFormdetails} id="">
                                         <option value="">--Select--</option>
                                         <option value="India">India</option>
                                         <option value="Sri Lanka">Sri Lanka</option>

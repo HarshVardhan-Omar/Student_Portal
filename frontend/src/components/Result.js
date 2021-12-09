@@ -6,6 +6,7 @@ import Tab from "react-bootstrap/Tab";
 import "./result.css";
 
 function Result() {
+    document.title="Result"
     return (
         <div className="result">
             <h1 className="res-head">Result</h1>

@@ -1,65 +1,530 @@
 import React from "react";
+import { useState,useRef,useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
+import logo from "./logo.png"
 import "./examform.css";
-function examForm() {
+import XLSX from "./xlsx.full.min.js"
+function examForm(props) {
+    document.title="Exam Form"
+    const[semester,setSemester]=useState("Select")
+    const[examtype,setExamType]=useState("Select")
+
+    const handleSemester=(e)=>{
+        setSemester(e.target.value);     
+    }
+    const handleExamType=(e)=>{
+        setExamType(e.target.value);     
+    }
+    const firstRender = useRef(true)
+
+    useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false
+            return
+        }
+        fetchsubjects()
+
+    }, [semester,examtype])
+    async function fetchsubjects(){
+        if(semester!="Select"&&examtype!="Select"){
+            const requestoptions = {
+                method: "POST",
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': props.csrftoken
+                },
+                body: JSON.stringify({
+                  Branch: props.data.Branch,
+                }),
+              };
+              props.setProgress(10)
+              let response = await fetch("/api/fetchsyllabus", requestoptions)
+              props.setProgress(50)
+              if (response.status == 200) {
+                  console.log("api successfull")
+                props.setProgress(100)
+                let datum = await response.json()
+                let selectedFile = await fetch(await datum.Content);
+                printsubjects(selectedFile)
+              }
+              else {
+                  console.log("api unsuccessfull")
+                  props.setProgress(100)
+              }
+        }
+    }
+    const addsubject=(e)=>{
+      console.log(e.checked)
+
+    }
+
+    //Function to Print Subjects Based on User's Current Semester and Exam Type
+    const printsubjects = async (e) => {
+        if (XLSX) {
+          let data = [{}]
+          var selectedFile = await e.blob()
+          XLSX.utils.json_to_sheet(data, 'out.xlsx');
+          if (selectedFile) {
+            let str = ``;
+            let str1 = ``;
+            let str2= ``;
+            let str3 = ``;
+            let fileReader = new FileReader();
+            fileReader.readAsBinaryString(selectedFile);
+            fileReader.onload = (event) => {
+              let data = event.target.result;
+              let workbook = XLSX.read(data, { type: "binary" });
+              workbook.SheetNames.forEach(sheet => {
+                let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
+                var to_use = JSON.parse(JSON.stringify(rowObject, undefined, 4))
+                // console.log(to_use)
+                // console.log(Object.keys(to_use[0]))
+                for (var i = 0; i < to_use.length; i++) {
+                    // console.log(to_use[i])
+                  if (  (to_use[i][Object.keys(to_use[0])[0]]==1 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="1") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==1 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="2") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==2 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="3") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==2 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="4") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==3 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="5") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==3 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="6") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==4 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="7") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==4 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="8")
+                  ) {
+                      console.log(to_use[i][Object.keys(to_use[0])[2]])
+                      var subject=to_use[i][Object.keys(to_use[0])[2]]
+                    str +=
+                      `<tr>
+                      <input type="checkbox" onChange={addsubject} value=${subject}></input>
+                      </tr>`;
+                    str1+=`<tr>
+                           <p>${to_use[i][Object.keys(to_use[0])[3]]}</p>
+                           </tr>`
+                    str2+=`<tr>
+                           <p>${to_use[i][Object.keys(to_use[0])[4]]}</p>
+                           </tr>`
+                    str3+=`<tr>
+                           <p>${to_use[i][Object.keys(to_use[0])[2]]}</p>
+                           </tr>`
+                  }
+                }
+                appendelement(str,str1,str2,str3)
+              });
+            }
+          }
+        }
+      }
+
+    //Function to Add the fetched Subjects into the DOM
+    function appendelement(str,str1,str2,str3){
+        if(document.getElementsByClassName("default")[0]!=null){
+        var defaultelement=document.getElementsByClassName("default")[0];
+        defaultelement.style.display="none";
+        }
+       
+        var block=document.getElementsByClassName("selecttablecontent")[0];
+        block.innerHTML=str;
+        var block=document.getElementsByClassName("typetablecontent")[0];
+        block.innerHTML=str1;
+        var block=document.getElementsByClassName("codestablecontent")[0];
+        block.innerHTML=str2;
+        var block=document.getElementsByClassName("nametablecontent")[0];
+        block.innerHTML=str3;
+        var subjects=document.getElementsByClassName("subjecttable")[0];
+        subjects.style.display="flex"
+    }
+    var content="";
+    const downloadexamform=async ()=>{
+        // var block=document.getElementsByClassName("ExamFormLayout")[0];
+        
+        content+=`<div class="ExamForm">
+                  <div class="ExamFormHeading">
+                  <div class="Headinglogo">
+                    <img class="examformlogo"src=${logo} alt="HBTU">
+                  </div>
+                  <div class="headingcontent">
+                  <h2>HARCOURT BUTLER TECHNICAL UNIVERSITY</h2>
+                  <h3>( Examination Form For Regular / Readmitted / Ex / Carry Over Students for ODD SEMESTER , 2020-2021 )</h3>
+                  </div>
+                  </div>
+                  <div class="initialdetails">
+                  <div class="examformrollno">
+                  <div class="rollheading">
+                   <h2>Roll No.</h2>
+                  </div>
+                  <div class="rollcontent">
+                   <p>${props.data.UniversityRollNo}</p>
+                  </div>
+                  </div>
+                  <div class="examformrollno">
+                  <div class="rollheading">
+                   <h2>Branch</h2>
+                  </div>
+                  <div class="rollcontent">
+                   <p>${props.data.Branch}</p>
+                  </div>
+                  </div>
+                  <div class="examformrollno">
+                  <div class="rollheading">
+                   <h2>Studying in Year</h2>
+                  </div>
+                  <div class="rollcontent">
+                   <p>${props.data.Year}</p>
+                  </div>
+                  </div>
+                  <div class="examformrollno">
+                  <div class="rollheading">
+                   <h2>Semester</h2>
+                  </div>
+                  <div class="rollcontent">
+                   <p>${props.data.CurrentSemester}</p>
+                  </div>
+                  </div>
+                  <div class="examformrollno">
+                  <div class="rollheading">
+                   <h2>Mobile No.</h2>
+                  </div>
+                  <div class="rollcontent">
+                   <p>${props.data.Contact}</p>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="vcmessage">
+                  <p>
+                  To,<br>
+                    <br>
+                    &nbsp&nbsp&nbsp<strong>Hon'ble Vice Chancellor</strong><br>
+                    &nbsp&nbsp&nbspHarcourt Butler Technical University , Kanpur<br>
+                    <br>
+                    Sir,<br>
+                    <br>
+                    &nbsp&nbsp&nbspKindly grant me permission to appear in the ensuing I / II / III / IV year Semester
+                    Final Examination for Bachelor of Technology / Master of Technology / Master of Computer Appications / Ph.D.<br>
+                    I declare that:<br>
+                    <br>
+                    1.I have read the rules, relevant ordinances, Statutes etc. and undertake to abide by them. I will
+                    not claim any benefit arising out of some error or mistake on the part of the university office.<br>
+                    2.I am not appearing for any other examination of the University not permitted under the Ordinance.<br>
+                    3.I have not been debarred from appearing in the examination by any University on account of use of unfair means<br>
+                    4.I will have no objection if i am being searched by any one deputed by the supritendent of the Examination
+                    during course of examination<br>
+                    <br>
+                    <br>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Signature of Candidate)
+                  </p>
+                  </div>
+                  <div class="particulars">
+                  <h2>PARTICULAR TO BE FILLED BY THE STUDENT</h2>
+                  <br>
+                  <p>
+                   1.&nbspName of the Course:&nbsp ${props.data.Programme}&nbsp&nbsp&nbsp&nbsp2.&nbspSession:&nbsp2020-2021<br>
+                   <br>
+                   3.&nbspSemester:&nbsp${props.data.CurrentSemester}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp4.Branch Code:&nbsp08<br>
+                   <br>
+                   5.&nbsp Status of Students:<br>
+                   <br>
+                   6.&nbspName of candidate in capital letter ( records as per High School,In English ):<br>
+                   ${(props.data.StudentName).toUpperCase()}<br>
+                   Name of Candidate( records as per High School, In Hindi ):<br>
+                   <input type="text"></input><br>
+                   <br>
+                   7.&nbsp Father's Name( as per High School records, In English ):<br>
+                   ${(props.data.FatherName)}<br>
+                   Father's Name( as per High School records, In Hindi):<br>
+                   <input type="text"></input><br>
+                   <br>
+                   8.&nbsp Mother's Name( as per High School records, In English):<br>
+                   ${(props.data.MotherName)}<br>
+                   Mother's Name( as per High School records, In Hindi):<br>
+                   <input type="text"></input><br>
+                   <br>
+                   9.&nbspDate of Birth:&nbsp&nbsp${props.data.DateOfBirth}<br>
+                   <br>
+                   10.&nbspCategory:&nbsp&nbsp${props.data.Category}<br>
+                   <br>
+                   11.&nbspGender:&nbsp&nbsp${props.data.Gender}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                   &nbsp12.&nbspYear of Admission:&nbsp<br>
+                   <br>
+                   13.&nbspEnrollment No.:&nbsp${props.data.EnrollmentNumber}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp14.&nbspRoll No:&nbsp${props.data.UniversityRollNo}<br>
+                   <br>
+                   15.&nbspE-mail ID:&nbsp${props.data.PersonalEmail}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp16. Aadhaar No.:&nbsp${props.data.AadhaarCard}<br>
+                   <br>
+                   17. Particulars of the Qualifying Examination passed :( Inter / Graduation / Diploma / B.Tech I / II /III / MCA I / II, M.Tech )<br>
+
+
+
+                  </p>
+                  </div>
+                  </div>`;
+                  
+        var block=document.getElementsByClassName("pdflayout")[0]
+        block.innerHTML=content
+        
+        downloadpdf();
+    }
+    function downloadpdf(){
+        var block=document.getElementsByClassName("pdflayout")[0]
+        var opt = {
+            margin: 0.2,
+            filename: 'ExamForm.pdf',
+            image: { type: 'jpeg', quality: 8 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+            // pagebreak: { mode: ['avoid-all'] }
+        };
+        html2pdf().from(block).set(opt).save()
+
+    }
+
+
+    //Function to print the Exam Form
+    const printer = async (e) => {
+        if (XLSX) {
+          let data = [{}]
+          var selectedFile = await e.blob()
+          XLSX.utils.json_to_sheet(data, 'out.xlsx');
+          if (selectedFile) {
+            let str = ``;
+            let fileReader = new FileReader();
+            fileReader.readAsBinaryString(selectedFile);
+            fileReader.onload = (event) => {
+              let data = event.target.result;
+              let workbook = XLSX.read(data, { type: "binary" });
+              workbook.SheetNames.forEach(sheet => {
+                let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
+                var to_use = JSON.parse(JSON.stringify(rowObject, undefined, 4))
+                // console.log(to_use)
+                // console.log(Object.keys(to_use[0]))
+                for (var i = 0; i < to_use.length; i++) {
+                  if (  (to_use[i][Object.keys(to_use[0])[0]]==1 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="1") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==1 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="2") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==2 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="3") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==2 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="4") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==3 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="5") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==3 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="6") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==4 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="7") ||
+                        (to_use[i][Object.keys(to_use[0])[0]]==4 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="8")
+                  ) {
+                    str +=
+                      `<div class="subblock">
+                        <div class="subname">
+                        <h1>
+                        ${to_use[i][Object.keys(to_use[0])[2]]}
+                        </h1>
+                        </div>
+                        <div class="uppersection">
+                          <div class="miniblock">
+                            <div class="head">
+                            ${Object.keys(to_use[0])[3]}:
+                            </div>
+                            <div class="detail">
+                            ${to_use[i][Object.keys(to_use[0])[3]]}
+                            </div>
+                          </div>
+                          <div class="miniblock">
+                            <div class="head">
+                            ${Object.keys(to_use[0])[4]}:
+                            </div>
+                            <div class="detail">
+                            ${to_use[i][Object.keys(to_use[0])[4]]}
+                            </div>
+                          </div>
+                          <div class="miniblock">
+                            <div class="head">
+                            ${Object.keys(to_use[0])[5]}:
+                            </div>
+                            <div class="detail">
+                            ${to_use[i][Object.keys(to_use[0])[5]]}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="uppersection">
+                          <div class="miniblock">
+                            <div class="head">
+                            ${Object.keys(to_use[0])[6]}:
+                            </div>
+                            <div class="detail">
+                            ${to_use[i][Object.keys(to_use[0])[6]]}
+                            </div>
+                          </div>
+                          <div class="miniblock">
+                            <div class="head">
+                            ${Object.keys(to_use[0])[7]}:
+                            </div>
+                            <div class="detail">
+                            ${to_use[i][Object.keys(to_use[0])[7]]}
+                            </div>
+                          </div>
+                          <div class="miniblock">
+                            <div class="head">
+                            ${Object.keys(to_use[0])[8]}:
+                            </div>
+                            <div class="detail">
+                            ${to_use[i][Object.keys(to_use[0])[8]]}
+                            </div>
+                          </div>
+                          <div class="miniblock">
+                            <div class="head">
+                            ${Object.keys(to_use[0])[9]}:
+                            </div>
+                            <div class="detail">
+                            ${to_use[i][Object.keys(to_use[0])[9]]}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="lowersection">
+                          <div class="downwardblock">
+                            <div class="unitheading">
+                            ${Object.keys(to_use[0])[10]}:
+                            </div>
+                            <div class="unitdesc">
+                            ${to_use[i][Object.keys(to_use[0])[10]]}
+                            </div>
+                          </div>
+                          <div class="downwardblock">
+                            <div class="unitheading">
+                            ${Object.keys(to_use[0])[11]}:
+                            </div>
+                            <div class="unitdesc">
+                            ${to_use[i][Object.keys(to_use[0])[11]]}
+                            </div>
+                          </div>
+                          <div class="downwardblock">
+                            <div class="unitheading">
+                            ${Object.keys(to_use[0])[12]}:
+                            </div>
+                            <div class="unitdesc">
+                            ${to_use[i][Object.keys(to_use[0])[12]]}
+                            </div>
+                          </div>
+                          <div class="downwardblock">
+                            <div class="unitheading">
+                            ${Object.keys(to_use[0])[13]}:
+                            </div>
+                            <div class="unitdesc">
+                            ${to_use[i][Object.keys(to_use[0])[13]]}
+                            </div>
+                          </div>
+                          <div class="downwardblock">
+                            <div class="unitheading">
+                            ${Object.keys(to_use[0])[14]}:
+                            </div>
+                            <div class="unitdesc">
+                            ${to_use[i][Object.keys(to_use[0])[14]]}
+                            </div>
+                          </div>
+                        </div>
+                      </div>`
+                  }
+                }
+                opener(str)
+              });
+            }
+          }
+        }
+      }
     return (
+        <>
+        <div className="parentpdf">
+        <div className="pdflayout"></div>
+        </div>
         <div className="exam-form">
             <h1 className="exam-head">Examination Form</h1>
             <Form>
                 <Form.Group className="ele-form" controlId="exampleForm.ControlSelect1">
                     <Form.Label >Semester</Form.Label>
-                    <Form.Control className="selectip ele-lab" as="select">
-                        <option>Select Semester</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
+                    <Form.Control onChange={handleSemester}className="selectip ele-lab" as="select">
+                        <option value="Select">Select Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group className="ele-form" controlId="exampleForm.ControlSelect1">
                     <Form.Label >Exam Type</Form.Label>
-                    <Form.Control className="selectip ele-lab" as="select">
-                        <option>Select Exam Type</option>
-                        <option>Regular</option>
-                        <option>CarryOver</option>
-                        <option>Spl. CarryOver</option>
+                    <Form.Control onChange={handleExamType}className="selectip ele-lab" as="select">
+                        <option value="Select">Select Exam Type</option>
+                        <option value="Regular">Regular</option>
+                        <option value="CarryOver">CarryOver</option>
+                        <option value="Spl. CarryOver">Spl. CarryOver</option>
                     </Form.Control>
                 </Form.Group>
+                
                 <Form.Group className="ele-form" controlId="exampleForm.ControlSelect1">
-                    <Form.Label >Session</Form.Label>
-                    <Form.Control className="selectip ele-lab" as="select">
-                        <option>Select Session</option>
-                        <option>2019-20</option>
-                        <option>2020-21</option>
-                        <option>2021-22</option>
-                        <option>2022-23</option>
-                    </Form.Control>
+                    <Form.Label >Branch</Form.Label>
+                    <Form.Control as="input"type="text" style={{'padding':'6px 12px','background':'none'}}className="selectip ele-lab" value={props.data.Branch} disabled={true}></Form.Control>
                 </Form.Group>
-                <Form.Group className="mb-3 ele-form" controlId="subjects">
-                    <Form.Label >Subjects</Form.Label>
-                    <Form.Check className="ele-lab" type="checkbox" label="Subject 1" />
-                    <Form.Check type="checkbox" label="Subject 2" />
-                    <Form.Check type="checkbox" label="Subject 3" />
-                    <Form.Check type="checkbox" label="Subject 4" />
-                    <Form.Check type="checkbox" label="Subject 5" />
-                    <Form.Check type="checkbox" label="Subject 6" />
-                    <Form.Check type="checkbox" label="Subject 7" />
-                </Form.Group>
+                <div className="subjectlistheading ele-form">
+                 <Form.Label >Subjects</Form.Label>
+                </div>
+                <div className="subjectlist">
+                    <p className="default ele-lab">Choose Semester and Exam Type to see subjects...</p>
+                    <div className="subjecttable mt-2">
+                    <div className="selecttab mx-2">
+                        <Form.Label className="ele-form">Select</Form.Label>
+                        <div className="selects">
+                        <Table striped bordered hover variant="dark">
+                            <tbody className="selecttablecontent">
+                                
+                            </tbody>
+                        </Table>
+
+                        </div>
+                    </div>
+                    <div className="subjecttype mx-2">
+                        <Form.Label className="ele-form">Subject Type</Form.Label>
+                        <div className="types">
+                        <Table striped bordered hover variant="dark">
+                            <tbody className="typetablecontent">
+                                
+                            </tbody>
+                        </Table>
+                        </div>
+                    </div>
+                    <div className="subjectcode mx-2">
+                        <Form.Label className="ele-form">Subject Code</Form.Label>
+                        <div className="codes">
+                        <Table striped bordered hover variant="dark">
+                            <tbody className="codestablecontent">
+                                
+                            </tbody>
+                        </Table>
+
+                        </div>
+                    </div>
+                    <div className="subjectname mx-2">
+                        <Form.Label className="ele-form">Subject Name</Form.Label>
+                        <div className="names">
+                        <Table striped bordered hover variant="dark">
+                            <tbody className="nametablecontent">
+                                
+                            </tbody>
+                        </Table>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 <Form.Group className="ele-form button">
-                    <Button className="buttn" variant="outline-dark" type="submit">
-                        Submit
-                    </Button>
-                    <Button className="buttn" variant="outline-dark" href="">
-                        Admit Card
+                    <Button className="buttn" onClick={downloadexamform} disabled={(semester!="Select"&&examtype!="Select")?false:true}variant="outline-dark" type="button">
+                        Download Exam Form
                     </Button>
                 </Form.Group>
             </Form>
         </div>
+        </>
     );
 }
 export default examForm;

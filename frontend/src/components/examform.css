@@ -5,7 +5,7 @@ font-family: 'Raleway', sans-serif; */
 .exam-form {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 55%;
   background-color: var(--col1);
   color: var(--cpcoltable);
   margin: 5% auto;
@@ -76,4 +76,91 @@ font-family: 'Raleway', sans-serif; */
     line-height: 2;
     width: 50%;
   }
+}
+
+
+.subjecttable{
+  display: none;
+}
+.subjecttable p{
+  color: var(--cpcoltable);
+}
+
+
+/* PDF Layout Structure */
+.pdflayout{
+  width: 100%;
+}
+/* .ExamForm{
+  width: 100%;
+  background-color: red;
+} */
+.pdflayout .ExamFormHeading{
+  display: flex;
+  margin-top: 12px;
+}
+.ExamForm{
+  color: black;
+}
+.headingcontent{
+  color: black;
+  font-size: 12px;
+  margin-left: 10px;
+  justify-content: center;
+}
+.headingcontent h2{
+  /* align-items: center; */
+  text-align: center;
+  font-weight: 800;
+}
+.headingcontent h3{
+  margin-top: 4px;
+
+}
+.examformlogo{
+  height: 100px;
+}
+.initialdetails{
+  display: flex;
+  margin-top: 45px;
+}
+.examformrollno{
+  border: 2px solid black;
+  margin-right: 8px;
+  width: 20%;
+}
+.rollheading{
+  border-bottom: 2px solid black;
+  font-size: 10px;
+  text-align: center;
+  padding: 0px 4px;
+  padding-bottom: 4px;
+  font-weight: 500;
+}
+.rollcontent{
+  font-size: 12px;
+  text-align: center;
+  padding: 4px 4px;
+  font-weight: 400;
+}
+.vcmessage{
+  margin-top: 20px;
+}
+.particulars{
+  margin-top: 12px;
+}
+.particulars p{
+  font-size: 14px;
+}
+.particulars h2{
+  /* margin-top: 20px; */
+  font-size: 18px;
+  text-align: center;
+}
+.ExamForm input{
+  border: none;
+  background: none;
+  border-bottom: 1px solid black;
+  outline:none;
+  width: 100%;
 }

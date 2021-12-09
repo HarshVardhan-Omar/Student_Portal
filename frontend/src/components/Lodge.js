@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./lodge.css";
 function Lodge() {
+    document.title="Lodge Grievance"
     return (
         <div className="application">
             <h1>Lodge Grievance</h1>

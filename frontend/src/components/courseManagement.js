@@ -4,6 +4,7 @@ import { useState } from "react";
 import "./coursemanagement.css";
 import XLSX from "./xlsx.full.min.js"
 export default function CourseManagement({ csrftoken, setProgress }) {
+  document.title="Course Management"
   const [branch, setBranch] = useState("")
   const [semester, setSemester] = useState("")
   const [syllabusVisibility, setSyllabusVisibility] = useState(false)
@@ -227,19 +228,19 @@ export default function CourseManagement({ csrftoken, setProgress }) {
           </label>
           <select htmlFor="Branch" id="Branch" onChange={handleBranchChange}>
             <option value="">--Select--</option>
-            <option value="CS">Computer Science and Engineering</option>
-            <option value="IT">Information Technology</option>
-            <option value="ET">Electronics Technology</option>
-            <option value="ME">Mechanical Engineering</option>
-            <option value="EE">Electrical Engineering</option>
-            <option value="CE">Civil Engineering</option>
-            <option value="CH">Chemical Engineering</option>
-            <option value="PT">Paint Technology</option>
-            <option value="OT">Oil Technology</option>
-            <option value="PT">Leather Technology</option>
-            <option value="PL">Plastic Technology</option>
-            <option value="FT">Food Technology</option>
-            <option value="BE">Bio-Chemical Engineering</option>
+            <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Electronics Technology">Electronics Technology</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Electrical Engineering">Electrical Engineering</option>
+            <option value="Civil Engineering">Civil Engineering</option>
+            <option value="Chemical Engineering">Chemical Engineering</option>
+            <option value="Paint Technology">Paint Technology</option>
+            <option value="Oil Technology">Oil Technology</option>
+            <option value="Leather Technology">Leather Technology</option>
+            <option value="Plastic Technology">Plastic Technology</option>
+            <option value="Food Technology">Food Technology</option>
+            <option value="Bio-Chemical Engineering">Bio-Chemical Engineering</option>
           </select>
         </div>
         <div className="current-semester mb-2">

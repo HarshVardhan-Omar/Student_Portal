@@ -15,6 +15,7 @@ const useDidMountEffect = (func, deps) => {
 var SHA512 = require("crypto-js/sha512");
 
 export default function ChangePassword(props) {
+  document.title="Change Password"
   const[oldp,setOldp]=useState("");
   const[newp,setNewp]=useState("");
   const[new_re_p,setNew_re_p]=useState("");
