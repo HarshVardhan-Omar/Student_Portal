@@ -10,6 +10,8 @@ function examForm(props) {
     document.title="Exam Form"
     const[semester,setSemester]=useState("Select")
     const[examtype,setExamType]=useState("Select")
+    const[subjects,setSubjects]=useState([])
+    const[subjectcode,setSubjectCode]=useState([])
 
     const handleSemester=(e)=>{
         setSemester(e.target.value);     
@@ -55,13 +57,12 @@ function examForm(props) {
               }
         }
     }
-    const addsubject=(e)=>{
-      console.log(e.checked)
-
-    }
 
     //Function to Print Subjects Based on User's Current Semester and Exam Type
     const printsubjects = async (e) => {
+      setSubjects([])
+      setSubjectCode([])
+      
         if (XLSX) {
           let data = [{}]
           var selectedFile = await e.blob()
@@ -79,10 +80,7 @@ function examForm(props) {
               workbook.SheetNames.forEach(sheet => {
                 let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
                 var to_use = JSON.parse(JSON.stringify(rowObject, undefined, 4))
-                // console.log(to_use)
-                // console.log(Object.keys(to_use[0]))
                 for (var i = 0; i < to_use.length; i++) {
-                    // console.log(to_use[i])
                   if (  (to_use[i][Object.keys(to_use[0])[0]]==1 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="1") ||
                         (to_use[i][Object.keys(to_use[0])[0]]==1 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="2") ||
                         (to_use[i][Object.keys(to_use[0])[0]]==2 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="3") ||
@@ -92,11 +90,14 @@ function examForm(props) {
                         (to_use[i][Object.keys(to_use[0])[0]]==4 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="7") ||
                         (to_use[i][Object.keys(to_use[0])[0]]==4 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="8")
                   ) {
-                      console.log(to_use[i][Object.keys(to_use[0])[2]])
                       var subject=to_use[i][Object.keys(to_use[0])[2]]
+                      var subjectscode=to_use[i][Object.keys(to_use[0])[4]]
+                      setSubjects(prevArray => [...prevArray, subject])
+                      setSubjectCode(prevArray => [...prevArray, subjectscode])
+                      
                     str +=
                       `<tr>
-                      <input type="checkbox" onChange={addsubject} value=${subject}></input>
+                      <input type="checkbox"  id="subjectcheckbox"value='${subject}'></input>
                       </tr>`;
                     str1+=`<tr>
                            <p>${to_use[i][Object.keys(to_use[0])[3]]}</p>
@@ -110,11 +111,14 @@ function examForm(props) {
                   }
                 }
                 appendelement(str,str1,str2,str3)
+                console.log(subjects)
               });
             }
           }
         }
       }
+
+
 
     //Function to Add the fetched Subjects into the DOM
     function appendelement(str,str1,str2,str3){
@@ -136,7 +140,6 @@ function examForm(props) {
     }
     var content="";
     const downloadexamform=async ()=>{
-        // var block=document.getElementsByClassName("ExamFormLayout")[0];
         
         content+=`<div class="ExamForm">
                   <div class="ExamFormHeading">
@@ -257,7 +260,7 @@ function examForm(props) {
                    15.&nbspE-mail ID:&nbsp${props.data.PersonalEmail}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp16. Aadhaar No.:&nbsp${props.data.AadhaarCard}<br>
                    <br>
                    17. Particulars of the Qualifying Examination passed :( Inter / Graduation / Diploma / B.Tech I / II /III / MCA I / II, M.Tech )<br>
-                   Name of Examination :__________________ Year :_______ Roll No :_______________<br><br>
+                   Name of Examination :__________512sz  bnm,./  _______ Year :_______ Roll No :_______________<br><br>
                    18. Whether he / she has appeared at this Examination Before . If so , give details :<br>
                    Name of Examination :__________________ Year :_______ Roll No :________________ Result of Examination :_____________
                    <br><br>
@@ -334,38 +337,38 @@ function examForm(props) {
                        <td>Paper Code</td>
                        </tr>
                      <tr>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     </tr>
-                     <tr>
-                     <td></td>
-                     <td></td>
+                     <td>${subjects[0]}</td>
+                     <td>${subjectcode[0]}</td>
                      <td></td>
                      <td></td>
                      </tr>
                      <tr>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     </tr>
-                     <tr>
-                     <td></td>
-                     <td></td>
+                     <td>${subjects[1]}</td>
+                     <td>${subjectcode[1]}</td>
                      <td></td>
                      <td></td>
                      </tr>
                      <tr>
-                     <td></td>
-                     <td></td>
+                     <td>${subjects[2]}</td>
+                     <td>${subjectcode[2]}</td>
                      <td></td>
                      <td></td>
                      </tr>
                      <tr>
+                     <td>${subjects[3]}</td>
+                     <td>${subjectcode[3]}</td>
                      <td></td>
                      <td></td>
+                     </tr>
+                     <tr>
+                     <td>${subjects[4]}</td>
+                     <td>${subjectcode[4]}</td>
+                     <td></td>
+                     <td></td>
+                     </tr>
+                     <tr>
+                     <td>${subjects[5]}</td>
+                     <td>${subjectcode[5]}</td>
                      <td></td>
                      <td></td>
                      </tr>
@@ -416,159 +419,11 @@ function examForm(props) {
             image: { type: 'jpeg', quality: 8 },
             html2canvas: { scale: 2 },
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-            // pagebreak: { mode: ['avoid-all'] }
         };
         html2pdf().from(block).set(opt).save()
+        console.log(subjects)
 
     }
-
-
-    //Function to print the Exam Form
-    const printer = async (e) => {
-        if (XLSX) {
-          let data = [{}]
-          var selectedFile = await e.blob()
-          XLSX.utils.json_to_sheet(data, 'out.xlsx');
-          if (selectedFile) {
-            let str = ``;
-            let fileReader = new FileReader();
-            fileReader.readAsBinaryString(selectedFile);
-            fileReader.onload = (event) => {
-              let data = event.target.result;
-              let workbook = XLSX.read(data, { type: "binary" });
-              workbook.SheetNames.forEach(sheet => {
-                let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
-                var to_use = JSON.parse(JSON.stringify(rowObject, undefined, 4))
-                // console.log(to_use)
-                // console.log(Object.keys(to_use[0]))
-                for (var i = 0; i < to_use.length; i++) {
-                  if (  (to_use[i][Object.keys(to_use[0])[0]]==1 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="1") ||
-                        (to_use[i][Object.keys(to_use[0])[0]]==1 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="2") ||
-                        (to_use[i][Object.keys(to_use[0])[0]]==2 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="3") ||
-                        (to_use[i][Object.keys(to_use[0])[0]]==2 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="4") ||
-                        (to_use[i][Object.keys(to_use[0])[0]]==3 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="5") ||
-                        (to_use[i][Object.keys(to_use[0])[0]]==3 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="6") ||
-                        (to_use[i][Object.keys(to_use[0])[0]]==4 && to_use[i][Object.keys(to_use[0])[1]]=="Odd"  && semester=="7") ||
-                        (to_use[i][Object.keys(to_use[0])[0]]==4 && to_use[i][Object.keys(to_use[0])[1]]=="Even" && semester=="8")
-                  ) {
-                    str +=
-                      `<div class="subblock">
-                        <div class="subname">
-                        <h1>
-                        ${to_use[i][Object.keys(to_use[0])[2]]}
-                        </h1>
-                        </div>
-                        <div class="uppersection">
-                          <div class="miniblock">
-                            <div class="head">
-                            ${Object.keys(to_use[0])[3]}:
-                            </div>
-                            <div class="detail">
-                            ${to_use[i][Object.keys(to_use[0])[3]]}
-                            </div>
-                          </div>
-                          <div class="miniblock">
-                            <div class="head">
-                            ${Object.keys(to_use[0])[4]}:
-                            </div>
-                            <div class="detail">
-                            ${to_use[i][Object.keys(to_use[0])[4]]}
-                            </div>
-                          </div>
-                          <div class="miniblock">
-                            <div class="head">
-                            ${Object.keys(to_use[0])[5]}:
-                            </div>
-                            <div class="detail">
-                            ${to_use[i][Object.keys(to_use[0])[5]]}
-                            </div>
-                          </div>
-                        </div>
-                        <div class="uppersection">
-                          <div class="miniblock">
-                            <div class="head">
-                            ${Object.keys(to_use[0])[6]}:
-                            </div>
-                            <div class="detail">
-                            ${to_use[i][Object.keys(to_use[0])[6]]}
-                            </div>
-                          </div>
-                          <div class="miniblock">
-                            <div class="head">
-                            ${Object.keys(to_use[0])[7]}:
-                            </div>
-                            <div class="detail">
-                            ${to_use[i][Object.keys(to_use[0])[7]]}
-                            </div>
-                          </div>
-                          <div class="miniblock">
-                            <div class="head">
-                            ${Object.keys(to_use[0])[8]}:
-                            </div>
-                            <div class="detail">
-                            ${to_use[i][Object.keys(to_use[0])[8]]}
-                            </div>
-                          </div>
-                          <div class="miniblock">
-                            <div class="head">
-                            ${Object.keys(to_use[0])[9]}:
-                            </div>
-                            <div class="detail">
-                            ${to_use[i][Object.keys(to_use[0])[9]]}
-                            </div>
-                          </div>
-                        </div>
-                        <div class="lowersection">
-                          <div class="downwardblock">
-                            <div class="unitheading">
-                            ${Object.keys(to_use[0])[10]}:
-                            </div>
-                            <div class="unitdesc">
-                            ${to_use[i][Object.keys(to_use[0])[10]]}
-                            </div>
-                          </div>
-                          <div class="downwardblock">
-                            <div class="unitheading">
-                            ${Object.keys(to_use[0])[11]}:
-                            </div>
-                            <div class="unitdesc">
-                            ${to_use[i][Object.keys(to_use[0])[11]]}
-                            </div>
-                          </div>
-                          <div class="downwardblock">
-                            <div class="unitheading">
-                            ${Object.keys(to_use[0])[12]}:
-                            </div>
-                            <div class="unitdesc">
-                            ${to_use[i][Object.keys(to_use[0])[12]]}
-                            </div>
-                          </div>
-                          <div class="downwardblock">
-                            <div class="unitheading">
-                            ${Object.keys(to_use[0])[13]}:
-                            </div>
-                            <div class="unitdesc">
-                            ${to_use[i][Object.keys(to_use[0])[13]]}
-                            </div>
-                          </div>
-                          <div class="downwardblock">
-                            <div class="unitheading">
-                            ${Object.keys(to_use[0])[14]}:
-                            </div>
-                            <div class="unitdesc">
-                            ${to_use[i][Object.keys(to_use[0])[14]]}
-                            </div>
-                          </div>
-                        </div>
-                      </div>`
-                  }
-                }
-                opener(str)
-              });
-            }
-          }
-        }
-      }
     return (
         <>
         <div className="parentpdf">

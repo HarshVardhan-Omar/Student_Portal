@@ -88,6 +88,9 @@ font-family: 'Raleway', sans-serif; */
 
 
 /* PDF Layout Structure */
+.parentpdf{
+  display: none;
+}
 .pdflayout{
   width: 100%;
 }
@@ -171,7 +174,7 @@ font-family: 'Raleway', sans-serif; */
 }
 .ExamForms th,.ExamForms td {
   border: 1px solid black;
-  padding: 15px;
+  padding: 10px;
 }
 .details{
   border:2px solid black;

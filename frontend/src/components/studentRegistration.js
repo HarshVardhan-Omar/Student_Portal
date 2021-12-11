@@ -478,7 +478,7 @@ export default function studentRegistration(props) {
                             <div className="academicline1 line">
                                 <div className="roll-input">
                                     <label htmlFor="RollNo" className="">University Roll No.</label>
-                                    <input type="text" defaultValue={props.data.UniversityRollNo} name="UniversityRollNo" onChange={checkonlynumberinput} id="roll-no" />
+                                    <input type="text" value={props.data.UniversityRollNo} name="UniversityRollNo" onChange={checkonlynumberinput} id="roll-no" />
                                 </div>
                                 <div className="programme">
                                     <label htmlFor="Programme" className="">Programme</label>
