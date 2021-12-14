@@ -198,14 +198,14 @@ function Result( {data, setProgress} ) {
         if (document.getElementsByClassName('result-block-odd')) {
             document.getElementsByClassName('result-block-odd')[0].innerHTML = e
         }
-        if(e!="Result Not Declared" && e!=`No ${selectedType} result found for this semester`){setLoads(true); setTimeout(function(){ setErrerv(false); }, 5); setErrerv("");}
+        if(e!="Result Not Declared" && e!=`No ${selectedType} result found for this semester`){setLoads(true); setTimeout(function(){ setErrerv(false); }, 50); setErrerv("");}
         else{setErrerv(true); setErrerv("No Result Found For This Selection");}
     }
     const openereven = (e) => {
         if (document.getElementsByClassName('result-block-even')) {
             document.getElementsByClassName('result-block-even')[0].innerHTML = e
         }
-        if(e!="Result Not Declared" && e!=`No ${selectedType} result found for this semester`){setLoads(true); setTimeout(function(){ setErrerv(false); }, 5); setErrerv("");}
+        if(e!="Result Not Declared" && e!=`No ${selectedType} result found for this semester`){setLoads(true); setTimeout(function(){ setErrerv(false); }, 50); setErrerv("");}
         else{setErrerv(true); setErrer("No Result Found For This Selection");}
     }
 
