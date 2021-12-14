@@ -1,121 +1,239 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Raleway:wght@400;500&display=swap');
-.nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active {
-  color: var(--cpcoltable);
-  background-color: var(--col1);
-  border: none;
-  border-radius: 5px 5px 0px 0px;
-  cursor: pointer;
+.result-container{
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
-/* .tab-content {
-  width: 80%;
-  margin: auto;
-} */
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-  /* color: var(--cpcoltable);
-  background-color: var(--col1); */
-  color: var(--col2);
-  background-color: var(--sidecol1);
+.result-container .errerp{
+    position: fixed;
+    top: max(10vh,71px);
+    z-index: 5;
+    animation: hide-after 1s ease-in-out 5s 1 forwards;
+    margin: 2px;
 }
-.nav-tabs .nav-link {
-  border: none;
-}
-.nav-item {
-  font-size: 13px;
-}
-.result {
-  overflow-x: hidden;
-  width: 100%;
-}
-.nav-tabs {
-  border: transparent;
-}
-.nav-link:focus,
-.nav-link:hover {
-  color: var(--cpcoltable);
-}
-.result-tab {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  color: var(--cpcoltable);
-}
-.res-head {
-  text-align: center;
-  color: var(--cpcoltable);
-  font-family: 'Montserrat', sans-serif;
-  padding-top: 15px;
-  font-weight: 500;
-  /* color: #1d41df; */
-}
-.resultTable {
-  font-family: 'Raleway';
-  font-weight: 500;
-}
-.res-table {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 20px;
-}
-.restab {
-  background-color: var(--col1);
-  color: var(--cpcoltable);
-}
-.table-striped > tbody > tr:nth-of-type(odd) {
-  --bs-table-accent-bg: var(--bs-table-striped-bg);
-  color: var(--cpcoltable);
-}
-.nav-link {
-  display: block;
-  padding: 0.5rem 1rem;
-  color: var(--cpcoltable);
-  text-decoration: none;
-
-  outline: none;
-  border: none;
-  padding: 13px 10px;
-  cursor: pointer;
-  margin-bottom: 0px;
-  color: var(--cpcoltable);
-  background-color: var(--col1);
-}
-.download {
-  margin-top: 25px;
-}
-.row-res {
-  color: var(--cpcoltable);
-}
-
-.butn-1 {
-  color: var(--cpcoltable);
-  background-color: var(--col1);
-  border: 2px solid var(--cpcoltable);
-  border-radius: 7px;
-}
-.butn-1:hover {
-  color: var(--col1);
-  background-color: var(--cpcoltable);
-  border: 2px solid var(--col1);
-}
-@media (max-width: 700px) {
-  .res-table {
-    padding: 0px 10px;
-    margin-bottom: 20px;
-  }
-  .col-sm-10 {
+.result-container .errerp div{
+    border: crimson 1px solid;
+    border-radius: 3px;
+    color: darkred;
+    padding: 3px;
+    background-color: rgba(255, 215, 215, 0.863);
+    animation: appear 0.2s ease-in-out 0s 1 forwards;
     width: 100%;
-  }
+    height: 100%;
 }
-.col-sm-2 {
-  width: 100%;
-  text-align: center;
+@keyframes appear {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.result-container .option-form{
+    margin: 5vh 10vw;
+    width: 85vw;
+    max-width: max-content;
+    padding: 10px 40px;
+    background-color: var(--col1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 1px 1px 1px var(--textcolor);
+    align-items: flex-start;
+    border-radius: 8px;
+}
+.result-container .option-form .resultHead{
+    margin: 10px 0px;
+    width: 100%;
+}
+.result-container .option-form .hr{
+    height: 0.5px;
+    width: 100%;
+    background-color: var(--textcolor);
+}
+.result-container .option-form .option-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+.result-container .option-form .option-container .options{
+    max-width: 200px;
+    width: 70vw;
+    font-size: 1rem;
+    margin: 0px 20px 0px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.result-container .option-form .resultbutton{
+    margin: 15px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.result-container .option-form .resultbutton button{
+    padding: 10px;
+    background-color: var(--bgcol);
+    border: none;
+    border-radius: 3px;
+    color: var(--cpcoltable);
+    cursor: pointer;
+}
+.result-container .option-form .resultbutton button:hover{
+    background-color: var(--sidecol1);
+    color: white;
+}
+.result-container .option-form .resultbutton button:focus{
+    box-shadow: none;
+}
+.result-container .option-form .option-container .options label{
+    margin: 2px 0px;
+}
+.result-container .option-form .option-container .options input{
+    max-width: 200px;
+    box-shadow: 1px 1px 1px var(--textcolor);
+    width: 100%;
+    background: none;
+    height: 30px;
+    padding: 3px;
+    border-width: 1px;
+    border-color: var(--cpcoltable);
+    color: var(--cpcoltable);
+}
+.result-container .option-form .option-container .options select{
+    color: var(--cpcoltable);
+    width: 100%;
+    border-color: var(--cpcoltable);
+    outline: none;
+    background-color: var(--col1);
+    height: 30px;
+    padding: 3px;    
+    box-shadow: 1px 1px 1px var(--textcolor);
+}
+.result-container .option-form .option-container .options select:focus{
+    outline: none;
+    color: var(--cpcoltable);
+    border: 1px solid var(--cpcoltable);
+  }
+  
+.result-container .option-form .option-container .options select option{
+    background-color: var(--sidecol1);
+    color: white;
+}
+.result-container .result-div{
+    max-width: 900px;
+    border-radius: 5px;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 95vw;
+    background-color: var(--col1);
+    margin: 5vh 10px;
+    animation: revealer 1s ease-in-out 0s 1 backwards;
+}
+.result-container .result-div label{
+    margin: 10px 0px;
+}
+.result-container .result-div .result-block{
+    width: 100%;
+    height: max-content;
+    margin: 5px 0px;
+    overflow-x: auto;
+}
+.result-container .result-div .result-block table{
+    border: var(--cpcoltable) 1px solid;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100%;
+}
+.result-container .result-div .result-block table th{
+    width: max-content;
+    text-align: left;
+    padding: 5px;
+    margin: 0px 4px;
+}
+.result-container .result-div .result-block table td{
+    padding: 5px;
+    margin: 0px 4px;
+}
+@keyframes revealer {
+    0%{
+        top:1000px;
+    }
+    100%{
+        top:0px;
+    }
 }
 
-@media (min-width: 700px) {
-  .col-sm-2 {
-    width: 16.2%;
-  }
+
+.result-container .hider .resultpdf{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.result-container .hider .resultpdf .p{
+    margin: 10px 0px;
+    color: brown;
+}
+.result-container .hider .resultpdf .flex-row{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.result-container .hider .resultpdf .flex-row .flex-coloumn{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.result-container .hider .resultpdf .result-box{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0px;
+}
+.result-container .hider .resultpdf .result-box .sem-legends{
+    width: min-content !important;    
+}
+.result-container .hider .resultpdf .result-box .sem-result{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.result-container .hider .resultpdf .result-box .sem-result table{
+    font-size: small;
+    border-collapse: collapse;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100%;
+}
+.result-container .hider .resultpdf .result-box .sem-result .legends{
+    width: 200px;
+}
+.result-container .hider .resultpdf .result-box .sem-result table tr:nth-child(9) th{
+    border-bottom: 2px solid black !important;
+}
+.result-container .hider .resultpdf .result-box .sem-result table th{
+    width: max-content;
+    text-align: left;
+    padding: 2px 2px;
+}
+.result-container .hider .resultpdf .result-box .sem-result table td{
+    padding: 2px 2px;
 }

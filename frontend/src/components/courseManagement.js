@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import "./coursemanagement.css";
 import XLSX from "./xlsx.full.min.js"
+import { IoBookOutline } from "react-icons/io5";
 export default function CourseManagement({ csrftoken, setProgress }) {
   const [branch, setBranch] = useState("")
   const [semester, setSemester] = useState("")
@@ -70,6 +71,10 @@ export default function CourseManagement({ csrftoken, setProgress }) {
         let str = ``;
         let fileReader = new FileReader();
         fileReader.readAsBinaryString(selectedFile);
+        if(selectedFile.type=="text/html"){
+          console.clear();
+          return
+        }
         fileReader.onload = (event) => {
           let data = event.target.result;
           let workbook = XLSX.read(data, { type: "binary" });
@@ -219,10 +224,10 @@ export default function CourseManagement({ csrftoken, setProgress }) {
 
   return (
     <div className="course-management student-registration">
-      <h1>Syllabus Portal</h1>
       <div className="contain">
+        <IoBookOutline className="book-icon" />
         <div className="branch mb-2">
-          <label htmlFor="Branch" className="mb-2">
+          <label htmlFor="Branch" className="mb-4">
             Branch
           </label>
           <select htmlFor="Branch" id="Branch" onChange={handleBranchChange}>
@@ -242,7 +247,7 @@ export default function CourseManagement({ csrftoken, setProgress }) {
             <option value="BE">Bio-Chemical Engineering</option>
           </select>
         </div>
-        <div className="current-semester mb-2">
+        <div className="current-semester mb-4">
           <label htmlFor="CurrentSemester" className="mb-2">
             Current Semester
           </label>

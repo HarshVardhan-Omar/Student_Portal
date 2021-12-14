@@ -6,6 +6,10 @@ from django.core.validators import RegexValidator
 # def upload_path(instance, filename):
 #     return '/'.join({'images/'+str(instance.UniversityRollNo), filename})
 
+def upload_path_result(instance, filename):
+    st = 'Results/'+ str(instance.UniversityRollNo)+'/'+filename
+    return st
+
 class Student(models.Model):
     UniversityRollNo=models.CharField(max_length=9, validators=[RegexValidator(regex='^[0-9]{9}$', message='Required 9 Digit Roll Number')], default="",null=True,blank=False)
     StudentName=models.CharField(max_length=50,default="",blank=False,null=True,unique=False)
@@ -180,11 +184,23 @@ class Student(models.Model):
     MathMarks=models.TextField(default="",blank=True,null=True)
     Percentage=models.TextField(default="",blank=True,null=True)
 
+    ResultSem1=models.FileField(upload_to=upload_path_result,null=True,blank=True)
+    ResultSem2=models.FileField(upload_to=upload_path_result,null=True,blank=True)
+    ResultSem3=models.FileField(upload_to=upload_path_result,null=True,blank=True)
+    ResultSem4=models.FileField(upload_to=upload_path_result,null=True,blank=True)
+    ResultSem5=models.FileField(upload_to=upload_path_result,null=True,blank=True)
+    ResultSem6=models.FileField(upload_to=upload_path_result,null=True,blank=True)
+    ResultSem7=models.FileField(upload_to=upload_path_result,null=True,blank=True)
+    ResultSem8=models.FileField(upload_to=upload_path_result,null=True,blank=True)
+
+
     IsformSaved=models.TextField(blank=True,null=True,default="False")
     IsformSubmitted=models.TextField(blank=True,null=True,default="False")
 
     PasswordResetOTP = models.TextField(blank=True,null=True,default="")
     PasswordResetting = models.BooleanField(blank=True,null=True,default=False)
+
+
 
     def __str__(self):
         return self.username
