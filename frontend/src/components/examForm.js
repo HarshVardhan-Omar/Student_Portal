@@ -45,14 +45,12 @@ function examForm(props) {
               let response = await fetch("/api/fetchsyllabus", requestoptions)
               props.setProgress(50)
               if (response.status == 200) {
-                  console.log("api successfull")
                 props.setProgress(100)
                 let datum = await response.json()
                 let selectedFile = await fetch(await datum.Content);
                 printsubjects(selectedFile)
               }
               else {
-                  console.log("api unsuccessfull")
                   props.setProgress(100)
               }
         }
@@ -111,7 +109,6 @@ function examForm(props) {
                   }
                 }
                 appendelement(str,str1,str2,str3)
-                console.log(subjects)
               });
             }
           }
@@ -421,7 +418,7 @@ function examForm(props) {
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
         };
         html2pdf().from(block).set(opt).save()
-        console.log(subjects)
+        
 
     }
     return (

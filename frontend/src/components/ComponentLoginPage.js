@@ -26,7 +26,6 @@ export default class login extends React.Component{
     
     login(e){
         e.preventDefault();
-        console.log(this.state);
         const requestoptions={
             method:"POST",
             headers:{"Content-Type":"application/json"},
