@@ -132,13 +132,11 @@ export default function Header({ data, logout, csrftoken,theme,setTheme }) {
                 <div id="sidebar" className="side-bar" style={side_bar_style} >
                     <div className="sidebar-menu">
                         <div className="profile">
-                            <a href="#">
-                                <img
-                                    className="profile-pic"
-                                    src={data.Photo}
-                                    alt="#"
-                                />
-                            </a>
+                            <img
+                                className="profile-pic"
+                                src={data.Photo}
+                                alt="#"
+                            />
                         </div>
                         <ul onClick={closeNav} className="items-menu" id="profile" >
                             <li className="items">

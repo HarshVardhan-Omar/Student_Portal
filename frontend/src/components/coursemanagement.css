@@ -3,25 +3,24 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  min-height: calc(var(--vh, 1vh) * 90);
+  min-height: calc(var(--vh, 1vh) * 90 - 71px);
   justify-content: flex-start;
   padding: 0;
   align-items: center;
-}
-.course-management h1 {
-  position: relative;
-  text-align: center;
-  font-size: 30px;
-  margin: 20px;
-  margin-top: 10vh;
-  margin-bottom: 5vh;
 }
 .course-management .contain{
   position: relative;
   background-color: var(--col1);
   padding: 50px 30px;
-  margin: 20px;
+  margin: 15vh auto;
   border-radius: 5px;
+}
+.course-management .contain .book-icon{
+  font-size: 80px;
+  font-weight: bolder;
+  width: 100%;
+  text-align: center;
+  margin: 10px auto;
 }
 .btn-secondary {
   background: var(--bgcol);
