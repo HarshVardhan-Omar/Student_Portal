@@ -407,8 +407,12 @@ function examForm(props) {
         block.innerHTML=content
         
         downloadpdf();
+        console.clear();
     }
     function downloadpdf(){
+        props.setProgress(10)
+        setTimeout(function(){ props.setProgress(60) }, 200);
+        setTimeout(function(){ props.setProgress(100) }, 400);
         var block=document.getElementsByClassName("pdflayout")[0]
         var opt = {
             margin: 0.2,
@@ -418,6 +422,7 @@ function examForm(props) {
             jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
         };
         html2pdf().from(block).set(opt).save()
+        console.clear();
         
 
     }

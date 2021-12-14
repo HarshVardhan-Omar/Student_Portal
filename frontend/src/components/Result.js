@@ -197,8 +197,6 @@ function Result( {data, setProgress} ) {
     const openerodd = (e) => {
         if (document.getElementsByClassName('result-block-odd')) {
             document.getElementsByClassName('result-block-odd')[0].innerHTML = e
-            // console.log(document.getElementsByClassName('block')[0])
-            // console.log(e)
         }
         if(e!="Result Not Declared" && e!=`No ${selectedType} result found for this semester`){setLoads(true); setTimeout(function(){ setErrerv(false); }, 5); setErrerv("");}
         else{setErrerv(true); setErrerv("No Result Found For This Selection");}
@@ -206,8 +204,6 @@ function Result( {data, setProgress} ) {
     const openereven = (e) => {
         if (document.getElementsByClassName('result-block-even')) {
             document.getElementsByClassName('result-block-even')[0].innerHTML = e
-            // console.log(document.getElementsByClassName('block')[0])
-            // console.log(e)
         }
         if(e!="Result Not Declared" && e!=`No ${selectedType} result found for this semester`){setLoads(true); setTimeout(function(){ setErrerv(false); }, 5); setErrerv("");}
         else{setErrerv(true); setErrer("No Result Found For This Selection");}
@@ -265,12 +261,10 @@ function Result( {data, setProgress} ) {
         else
         return ``
     }
-
-    const showfull = (e) => {
-        if(e=="Btech") return "Bachelor of Technology"
-    }
-
     const downloadresult = async (e) => {
+        setProgress(10)
+        setTimeout(function(){ setProgress(60) }, 200);
+        setTimeout(function(){ setProgress(100) }, 400);
         if(document.getElementsByClassName("resultpdf")[0]){
         var block = document.getElementsByClassName("resultpdf")[0];
         var opt = {
@@ -288,6 +282,7 @@ function Result( {data, setProgress} ) {
             return false
         }
         }
+        console.clear();
     }
     document.title="Result"
     return (
