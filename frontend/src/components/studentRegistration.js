@@ -15,25 +15,46 @@ export default function studentRegistration(props) {
     const setPhoto = (e) => {
         var input = document.getElementById("PhotoField");
         var fReader = new FileReader();
-        fReader.readAsDataURL(input.files[0]);
-        fReader.onloadend = function (event) {
-            setPhotoField(event.target.result)
+        if((input.files[0].type=="image/jpeg"||input.files[0].type=="image/jpg"||input.files[0].type=="image/png")&&input.files[0].size<1024*200&&input.files[0].size>1024*15){
+            fReader.readAsDataURL(input.files[0]);
+            fReader.onloadend = function (event) {
+                setPhotoField(event.target.result)
+            }
+        }
+        else{
+            input.files = null
+            input.value = null
+            alert("Please Upload Valid Image File Within Size Limits")
         }
     }
     const setSign = (e) => {
         var input = document.getElementById("SignField");
         var fReader = new FileReader();
-        fReader.readAsDataURL(input.files[0]);
-        fReader.onloadend = function (event) {
-            setSignField(event.target.result)
+        if((input.files[0].type=="image/jpeg"||input.files[0].type=="image/jpg"||input.files[0].type=="image/png")&&input.files[0].size<1024*200&&input.files[0].size>1024*15){
+            fReader.readAsDataURL(input.files[0]);
+            fReader.onloadend = function (event) {
+                setSignField(event.target.result)
+            }
+        }
+        else{
+            input.files = null
+            input.value = null
+            alert("Please Upload Valid Image File Within Size Limits")
         }
     }
     const setThumb = (e) => {
         var input = document.getElementById("ThumbField");
         var fReader = new FileReader();
-        fReader.readAsDataURL(input.files[0]);
-        fReader.onloadend = function (event) {
-            setThumbField(event.target.result)
+        if((input.files[0].type=="image/jpeg"||input.files[0].type=="image/jpg"||input.files[0].type=="image/png")&&input.files[0].size<1024*200&&input.files[0].size>1024*15){
+            fReader.readAsDataURL(input.files[0]);
+            fReader.onloadend = function (event) {
+                setThumbField(event.target.result)
+            }
+        }
+        else{
+            input.files = null
+            input.value = null
+            alert("Please Upload Valid Image File Within Size Limits")
         }
     }
 
@@ -437,7 +458,7 @@ export default function studentRegistration(props) {
         display: response != "" ? "block" : "none",
         position: "fixed",
         userSelect: "none",
-        top: "10vh",
+        top: " max(10vh, 71px) ",
         left: "15vw",
         width: "70vw",
         height: "max-content",
@@ -774,15 +795,15 @@ export default function studentRegistration(props) {
                                 <code className="instructions">
                                     <br></br>
                                     Supported Format: png, jpg, jpeg<br></br>
-                                    Minimum File size: 50Kb<br></br>
-                                    Maximum File size: 200Kb<br></br>
+                                    Minimum File size: 50KB<br></br>
+                                    Maximum File size: 200KB<br></br>
                                     Preferred Aspect Ratio: 1:1
                                 </code>
                                 <div className="imagedisplay">
                                     <img src={PhotoField} style={{ position: "relative", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="photouploaded" alt="" />
                                 </div>
                                 <div style={{ position: "relative", top: "" }} className="imageinput">
-                                    <input type="file" name="" id="PhotoField" onChange={setPhoto} />
+                                    <input type="file" accept="image/png, image/jpg, image/jpeg" name="" id="PhotoField" onChange={setPhoto} />
                                 </div>
                             </div>
                             <div className="signinput line">
@@ -790,8 +811,8 @@ export default function studentRegistration(props) {
                                 <code className="instructions">
                                     <br></br>
                                     Supported Format: png, jpg, jpeg<br></br>
-                                    Minimum File size: 50Kb<br></br>
-                                    Maximum File size: 200Kb<br></br>
+                                    Minimum File size: 50KB<br></br>
+                                    Maximum File size: 200KB<br></br>
                                     Preferred Aspect Ratio: 1:1<br></br>
                                     Ink: Blue/Black
                                 </code>
@@ -799,7 +820,7 @@ export default function studentRegistration(props) {
                                     <img src={SignField} style={{ position: "relative", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="photouploaded" alt="" />
                                 </div>
                                 <div style={{ position: "relative", top: "" }} className="imageinput">
-                                    <input type="file" name="" id="SignField" onChange={setSign} />
+                                    <input type="file" accept="image/png, image/jpg, image/jpeg" name="" id="SignField" onChange={setSign} />
                                 </div>
                             </div>
                             <div className="thumbinput line">
@@ -807,8 +828,8 @@ export default function studentRegistration(props) {
                                 <code className="instructions">
                                     <br></br>
                                     Supported Format: png, jpg, jpeg<br></br>
-                                    Minimum File size: 50Kb<br></br>
-                                    Maximum File size: 200Kb<br></br>
+                                    Minimum File size: 50KB<br></br>
+                                    Maximum File size: 200KB<br></br>
                                     Preferred Aspect Ratio: 1:1<br></br>
                                     Ink: Blue/Black
                                 </code>
@@ -816,7 +837,7 @@ export default function studentRegistration(props) {
                                     <img src={ThumbField} style={{ position: "relative", height: "150px", width: "150px", objectFit: "cover", padding: "10px" }} id="photouploaded" alt="" />
                                 </div>
                                 <div style={{ position: "relative", top: "" }} className="imageinput">
-                                    <input type="file" name="" id="ThumbField" onChange={setThumb} />
+                                    <input type="file" accept="image/png, image/jpg, image/jpeg" name="" id="ThumbField" onChange={setThumb} />
                                 </div>
                             </div>
                         </div>
