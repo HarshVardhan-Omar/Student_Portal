@@ -118,7 +118,7 @@ export default function Homepage(props) {
             <Route exact path={`${match.url}/semesterregistration`} render={props => <Cp data={data} />} />
             <Route exact path={`${match.url}/coursemanagement`} render={props => <CourseManagement data={data} csrftoken={csrftoken} setProgress={setProgress}/>} />
             <Route exact path={`${match.url}/examform`} render={props => <ExamForm data={data} csrftoken={csrftoken} setProgress={setProgress}/>} />
-            <Route exact path={`${match.url}/result`} render={props => <Result data={data} />} />
+            <Route exact path={`${match.url}/result`} render={props => <Result data={data} setProgress={setProgress} />} />
             <Route> <NotFound/> </Route>
             </Switch>
             {/* <button onClick={logout}>LogOut</button> */}
