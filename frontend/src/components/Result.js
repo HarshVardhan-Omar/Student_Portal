@@ -355,7 +355,7 @@ function Result( {data, setProgress} ) {
                 <div className="option-container">
                     <div className="options">
                         <label>Course</label>
-                        <input type="text" value={showfull(data.Programme)} readOnly style={{pointerEvents: "none"}}></input>
+                        <input type="text" value={data.Programme} readOnly style={{pointerEvents: "none"}}></input>
                     </div>
                     <div className="options">
                         <label>Branch</label>
