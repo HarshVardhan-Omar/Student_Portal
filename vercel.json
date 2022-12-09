@@ -1,0 +1,28 @@
+{
+    "version": 2,
+    "builds":[
+        {
+            "src":"student_potal/wsgi.py",
+            "use":"@vercel/python",
+            "config":{ "maxLambdaSize":"1.5mb","runtime":"python3.11.1"}
+        },
+        {
+            "src":"build_files.sh",
+            "use":"@vercel/static_build",
+            "config":{
+                "distDir":"frontend/static"
+            }
+        }
+        
+    ],
+    "routes":[
+        {
+            "src":"/static/(.*)",
+            "dest":"/static/$1"
+        },
+        {
+            "src":"/(.*)",
+            "dest":"student_portal/wsgi.py"
+        }
+    ]
+}
