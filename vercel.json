@@ -4,7 +4,7 @@
         {
             "src":"student_potal/wsgi.py",
             "use":"@vercel/python",
-            "config":{ "maxLambdaSize":"1.5mb","runtime":"python3.11.1"}
+            "config":{ "maxLambdaSize":"1.5mb","runtime":"python3.9"}
         },
         {
             "src":"build_files.sh",
