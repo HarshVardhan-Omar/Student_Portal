@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render
 from rest_framework import generics,status
 import base64
@@ -235,3 +236,22 @@ class FetchSyllabus(APIView):
 class SessionsView(generics.ListAPIView):
     queryset=StoredSessions.objects.all()
     serializer_class=SessionSerializer
+
+
+def update_attendance(request, student_id):
+    try:
+        student = Student.objects.get(id=student_id)
+    except Student.DoesNotExist:
+        return JsonResponse({'error': 'Student not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'POST':
+        attendance = request.POST.get('attendance')
+
+        if attendance is None:
+            return JsonResponse({'error': 'Attendance value not provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+        student.attendance = attendance
+        student.save()
+
+        return JsonResponse({'success': 'Attendance updated successfully'})
+    
